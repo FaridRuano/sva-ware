@@ -85,6 +85,12 @@ input, select {
 
 /* ===================Public=========================== */
 /* Navbar */
+.nav-container{
+  position: fixed;
+  width: 100%;
+  z-index: 10;
+}
+
 .public-navbar{
   display: flex;
   min-width: 720px;
@@ -95,7 +101,6 @@ input, select {
   margin: auto;
   background-color: $black;
   padding: 0 40px;
-  z-index: 10;
   .logo-holder{
       display: flex;
       justify-content: center;
@@ -187,7 +192,7 @@ input, select {
 /* Home */
 .intro{
   width: 100%;
-  height: 600px;
+  height: 700px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -240,9 +245,11 @@ input, select {
       p{
         position: absolute;
         text-align: start;
-        font-size: $standar;
+        font-size: 40px;
         color: $light;
         left: -100px;
+        top: -20px;
+        white-space: nowrap;
       }
       h1{
         position: absolute;
@@ -331,7 +338,7 @@ input, select {
     }
   }
   @media (max-width: 800px) {
-    height: 800px;
+    height: 900px;
     .container{
       width: 300px;
       .title{
@@ -359,29 +366,30 @@ input, select {
           left: 50%;
           top: 270px;
           transform: translate(-50%, -50%);
-          font-size: 85px;
+          font-size: 65px;
         }
         p{
-          left: 5px;
+          left: 70px;
+          font-size: 20px;
           top: 225px;
           transform: translate(-50%, -50%);
         }
         .sub{
           h3{
             top: 310px;
-            left: -50px;
-            font-size: 30px;
+            left: -5px;
+            font-size: 20px;
           }
           h2{
-            font-size: 42px;
-            left: -10px;
+            font-size: 32px;
+            left: 26px;
             top: 305px;
           }
         }
       }
       .body{
         position: absolute;
-        width: 400px;
+        width: 320px;
         font-size: 17px;
         margin-top: 0;
         left: 50%;
