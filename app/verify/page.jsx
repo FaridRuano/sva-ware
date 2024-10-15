@@ -1,8 +1,8 @@
 'use client'
-import { useEffect } from 'react';
+import { useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 
-function Verify(){
+const VerifyEmail = () => {
   const router = useRouter()
   const searchParams = useSearchParams()
   const token = searchParams.get('token') // Obtén el token de la URL
@@ -26,15 +26,11 @@ function Verify(){
     verifyEmail()
   }, [token])
 
-  return <>
-            <h1>Verificando tu correo electrónico...</h1>
-            {token || 0}
-        </>
-}
-
-const VerifyEmail = () => {
   return (
-        <Verify/>
+    <Suspense>
+        <h1>Verificando tu correo electrónico...</h1>
+        {token || 0}
+    </Suspense>
   )
 }
 
