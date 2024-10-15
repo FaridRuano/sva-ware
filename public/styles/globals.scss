@@ -1,0 +1,504 @@
+/* Imports */
+@import './_variables.scss';
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+
+/* Common */
+
+body{
+    margin: 0;
+    padding: 0;
+    font-family: "Montserrat", sans-serif;
+    background-color: $black;
+    overflow-x: hidden;
+}
+
+ul, h1, h2, h3, p{
+  margin: 0;
+  padding: 0;
+}
+
+a{
+  text-decoration: none;
+}
+
+li{
+  margin: 0;
+  list-style: none;
+  padding: 0;
+  width: fit-content;
+}
+
+input, select {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+::-webkit-scrollbar{
+  width: .5em;
+  display: fixed;
+}
+
+::-webkit-scrollbar-track{
+  background-color: $primary-color;
+  border-radius: 100vw;
+  margin-block: 8em;
+}
+
+::-webkit-scrollbar-thumb{
+  background-color: $black;
+  border: .1em solid $primary-color;
+  border-radius: 100vw;
+  
+}
+
+::-webkit-scrollbar-thumb:hover{
+  background-color: $black;
+}
+
+.app{
+  margin: auto;
+  min-width: 100vw;
+  min-height: 100vh;
+}
+
+.cp-hs{
+  cursor: pointer;
+  transition: .3s ease-out;
+  &:hover{
+    transform: scale(1.04);
+  }
+}
+
+.sbtn{
+  background-color: $primary-color;
+  padding: 10px 20px;
+  font-weight: 700;
+  border-radius: 10px;
+  font-size: $standar;
+  @media (max-width: 800px) {
+    padding: 10px 10px;
+
+  }
+}
+
+/* ===================Public=========================== */
+/* Navbar */
+.public-navbar{
+  display: flex;
+  min-width: 720px;
+  max-width: 1200px;
+  height: 70px;
+  justify-content: space-between;
+  align-items: center;
+  margin: auto;
+  background-color: $black;
+  padding: 0 40px;
+  z-index: 10;
+  .logo-holder{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+  }
+  .nav-items{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 300px;
+      .nav-item{
+          width: fit-content;
+          font-size: $standar;
+          color: $light;
+          font-weight: 500;
+          position: relative;
+          cursor: pointer;
+          transition: .3s ease-out;
+          &::after{
+              content: '';
+              width: 0;
+              height: 3px;
+              background-color: $light;
+              position: absolute;
+              bottom: -20px;
+              left: 0;
+              transition: .3s ease-out;
+          }
+          &:hover{
+              &::after{
+                  width: 100%;
+              }
+          }
+      }
+      @media (max-width: 1050px) {
+        width: 250px;
+      }
+  }
+  &.mobile{
+    padding: 0 30px;
+    min-width: auto;
+    max-width: 800px;
+    position: relative;
+    .nav-items{
+      width: 140px;
+      img{
+        cursor: pointer;
+      }
+      &.last{
+        justify-content: flex-end;
+      }
+    }
+    .nav-items-dis{
+      position: absolute;
+      top: 70px;
+      left: 0;
+      width: 100%;
+      background-color: $black;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+      transition: .6s ease-in-out;
+      opacity: 1;
+      border-radius: 0 0 25px 25px;
+      height: 225px;
+      overflow: hidden;
+      transform-origin: 5px 5px;
+      .nav-item{
+        height: 40px;
+        font-size: $big;
+        color: $light;
+        font-weight: 500;
+        border-bottom: solid 1px $light;
+        cursor: pointer;
+      }
+      &.hidden{
+        height: 0;
+        opacity: 0;
+        
+      }
+    }
+  }
+
+}
+
+/* Home */
+.intro{
+  width: 100%;
+  height: 600px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 150px;
+  .container{
+    width: fit-content;
+    height: fit-content;
+    position: relative;
+    height: 250px;
+    width: 600px;
+    .title{
+      width: 100%;
+      height: 100%;
+      .asset{
+        position: absolute;
+        top: -70px;
+        right: -170px;
+        z-index: 1;
+        pointer-events: none;
+      }
+      .asset2{
+        position: absolute;
+        width: 70px;
+        height: 23px;
+        background-color: $primary-color;
+        z-index: 2;
+        right: 20px;
+        top: 10px;
+        animation: glitch 1.5s infinite;
+      }
+      .asset3{
+        position: absolute;
+        width: 150px;
+        height: 23px;
+        background-color: $primary-color;
+        z-index: 2;
+        right: -110px;
+        top: 150px;
+        animation: glitch2 2s infinite;
+      }
+      .asset4{
+        position: absolute;
+        font-size: 12px;
+        font-weight: 500;
+        top: 40px;
+        right: -90px;
+        z-index: 2;
+        color: $light;
+      }
+      p{
+        position: absolute;
+        text-align: start;
+        font-size: $standar;
+        color: $light;
+        left: -100px;
+      }
+      h1{
+        position: absolute;
+        top: 0;
+        left: -110px;
+        color: $light;
+        font-size: 125px;
+      }
+      .sub{
+        display: flex;
+        position: absolute;
+        h3{
+          top: 130px;
+          left: -100px;
+          position: absolute;
+          color: $light;
+          font-size: 40px;
+          font-weight: 300;
+        }
+        h2{
+          position: absolute;
+          top: 125px;
+          left: -40px;
+          color: $primary-color;
+          font-size: 61.5px;
+          white-space: nowrap;
+        }
+    }
+    }
+    .body{
+      margin-top: 100px;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      text-align: center;
+      font-size: $standar;
+      color: $light;
+      font-weight: 500;
+      a{
+        color: $primary-color;
+        font-weight: 700;
+        cursor: pointer;
+      }
+    }
+  }
+  @media (max-width: 1000px) {
+    .container{
+      .title{
+        .asset{
+          right: -80px;
+          width: 300px;
+          height: auto;
+        }
+        .asset2{
+          right: 80px;
+          top: 0px;
+        }
+        .asset3{
+          right: -30px;
+        }
+        .asset4{
+          right: -10px;
+          top: 30px;
+        }
+        h1{
+          top: 5px;
+          left: 0;
+          font-size: 85px;
+        }
+        p{
+          left: 5px;
+        }
+        .sub{
+          h3{
+            top: 90px;
+            left: 5px;
+            font-size: 30px;
+          }
+          h2{
+            font-size: 42px;
+            left: 48px;
+            top: 90px;
+          }
+        }
+      }
+    }
+  }
+  @media (max-width: 800px) {
+    height: 800px;
+    .container{
+      width: 300px;
+      .title{
+        .asset{
+          left: 50%;
+          top: 10px;
+          transform: translate(-50%, -50%);
+          width: 400px;
+          height: auto;
+        }
+        .asset2{
+          left: 55px;
+          top: -100px;
+          transform: translate(-50%, -50%);
+        }
+        .asset3{
+          top: 90px;
+          right: 20px;
+        }
+        .asset4{
+          right: 60px;
+          top: -50px;
+        }
+        h1{
+          left: 50%;
+          top: 270px;
+          transform: translate(-50%, -50%);
+          font-size: 85px;
+        }
+        p{
+          left: 5px;
+          top: 225px;
+          transform: translate(-50%, -50%);
+        }
+        .sub{
+          h3{
+            top: 310px;
+            left: -50px;
+            font-size: 30px;
+          }
+          h2{
+            font-size: 42px;
+            left: -10px;
+            top: 305px;
+          }
+        }
+      }
+      .body{
+        font-size: 17px;
+        margin-top: 150px;
+        p{
+          font-weight: 400;
+        }
+      }
+    }
+  }
+}
+
+.skills{
+  height: 800px;
+  width: 100%;
+  background-color: $light;
+}
+
+/* ===================Animations=========================== */
+
+@keyframes glitch {
+  0% {
+    transform: translate(0, 0);
+    width: 70px;
+    opacity: 1;
+  }
+  
+  10% {
+    transform: translate(-2px, -2px);
+    width: 72px; /* Slight increase in width */
+    opacity: 0.8;
+  }
+  
+  20% {
+    transform: translate(3px, -1px);
+    width: 68px; /* Slight decrease in width */
+    opacity: 0.9;
+  }
+  
+  30% {
+    transform: translate(-2px, 3px);
+    width: 75px; /* Larger increase */
+    opacity: 0.7;
+  }
+  
+  40% {
+    transform: translate(2px, -1px);
+    width: 70px; /* Back to original */
+    opacity: 1;
+  }
+  
+  50% {
+    transform: translate(-1px, 2px);
+    width: 66px; /* Smaller */
+    opacity: 0.6;
+  }
+  
+  60% {
+    transform: translate(3px, 1px);
+    width: 78px; /* Bigger */
+    opacity: 0.8;
+  }
+  
+  70% {
+    transform: translate(-3px, 1px);
+    width: 73px; /* Random change */
+    opacity: 0.7;
+  }
+  
+  80% {
+    transform: translate(2px, -2px);
+    width: 70px; /* Back to normal */
+    opacity: 0.9;
+  }
+  
+  90% {
+    transform: translate(0, 0);
+    width: 70px;
+    opacity: 1;
+  }
+  
+  100% {
+    transform: translate(0, 0);
+    width: 70px;
+    opacity: 1;
+  }
+}
+
+@keyframes glitch2 {
+  0% {
+    opacity: 1;
+    width: 150px;
+  }
+  
+  15% {
+    opacity: 0.6;
+    width: 145px; /* Slightly smaller */
+  }
+
+  30% {
+    opacity: 0.3;
+    width: 155px; /* Slightly larger */
+  }
+
+  45% {
+    opacity: 0.9;
+    width: 150px; /* Back to original */
+  }
+
+  60% {
+    opacity: 0.7;
+    width: 148px; /* Minor width change */
+  }
+
+  75% {
+    opacity: 0.4;
+    width: 153px; /* Minor width change */
+  }
+
+  90% {
+    opacity: 1;
+    width: 150px; /* Reset to original */
+  }
+}
