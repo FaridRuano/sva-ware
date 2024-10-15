@@ -12,7 +12,7 @@ const VerifyEmail = () => {
       if (!token) return
 
       try{
-        const res = await fetch(`/api/auth/verify/${token}`, {
+        await fetch(`/api/auth/verify/${token}`, {
           method: 'POST',
         })
 
@@ -28,10 +28,8 @@ const VerifyEmail = () => {
 
   return (
     <Suspense>
-      <div>
         <h1>Verificando tu correo electrónico...</h1>
         {token || 0}
-      </div>
     </Suspense>
   )
 }
