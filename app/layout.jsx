@@ -1,5 +1,4 @@
 import "@public/styles/globals.scss"
-import { Suspense } from "react";
 
 export const metadata = {
   title: "School of Visual Arts",
@@ -10,9 +9,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <Suspense>
           {children}
-        </Suspense>
       </body>
     </html>
   );
