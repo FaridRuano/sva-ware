@@ -2,7 +2,7 @@
 import { useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 
-const VerifyEmail = () => {
+function Verify(){
   const router = useRouter()
   const searchParams = useSearchParams()
   const token = searchParams.get('token') // Obtén el token de la URL
@@ -26,10 +26,16 @@ const VerifyEmail = () => {
     verifyEmail()
   }, [token])
 
+  return <>
+            <h1>Verificando tu correo electrónico...</h1>
+            {token || 0}
+        </>
+}
+
+const VerifyEmail = () => {
   return (
     <Suspense>
-        <h1>Verificando tu correo electrónico...</h1>
-        {token || 0}
+        <Verify/>
     </Suspense>
   )
 }

@@ -380,8 +380,13 @@ input, select {
         }
       }
       .body{
+        position: absolute;
+        width: 400px;
         font-size: 17px;
-        margin-top: 150px;
+        margin-top: 0;
+        left: 50%;
+        top: 450px;
+        transform: translate(-50%, -50%);
         p{
           font-weight: 400;
         }
