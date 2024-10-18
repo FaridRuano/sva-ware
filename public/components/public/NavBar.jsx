@@ -75,6 +75,7 @@ const NavBar = () => {
         )
     }else{
         return (
+            <>
             <div className='nav-container'>
                 <nav className='public-navbar mobile'>
                     <div className="nav-items">
@@ -83,11 +84,7 @@ const NavBar = () => {
                     <div className="logo-holder">
                         <Image src={NavLogo} width={70} height={'auto'} alt='Visual Arts School Logo'/>
                     </div>
-                    <ul className='nav-items last'>
-                        <li className='sbtn cp-hs'>
-                            Empieza Ya
-                        </li>
-                    </ul>
+                    
                     <ul className={isMenu?'nav-items-dis hidden':'nav-items-dis'}>
                         <li className='nav-item'>
                             ¿Qué aprenderé?
@@ -101,6 +98,10 @@ const NavBar = () => {
                     </ul>
                 </nav>
             </div>
+            <div className='overbtn'>
+                Empieza Ya
+            </div>
+            </>
 
         )
     }
