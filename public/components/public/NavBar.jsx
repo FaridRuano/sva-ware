@@ -28,7 +28,7 @@ const useWindowSize = () => {
     return windowSize
 }
 
-const NavBar = () => {
+const NavBar = ({activeSection}) => {
 
     const size = useWindowSize()
 
@@ -38,6 +38,13 @@ const NavBar = () => {
         setMenu(current => !current)
     }
 
+    const scrollToSection = (id) => {
+        const element = document.getElementById(id)
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' })
+        }
+    }
+
     const [isNearFooter, setIsNearFooter] = useState(false);
 
     useEffect(()=>{
@@ -45,7 +52,7 @@ const NavBar = () => {
             const scrollY = window.scrollY; // How far the user has scrolled
             const windowHeight = window.innerHeight; // Viewport height
             const documentHeight = document.documentElement.scrollHeight; // Full page height
-            const footerHeight = 160; // Height of your footer
+            const footerHeight = 155; // Height of your footer
             const distanceFromBottom = documentHeight - (scrollY + windowHeight)
       
             if (distanceFromBottom <= footerHeight) {
@@ -76,18 +83,18 @@ const NavBar = () => {
                 <nav className='public-navbar'>
 
                     <ul className='nav-items'>
-                        <li className='nav-item'>
+                        <li className={`nav-item ${activeSection === 'skills' ? 'active':''}`} onClick={() => scrollToSection('skills')}>
                             ¿Qué aprenderé?
                         </li>
-                        <li className='nav-item'>
+                        <li className={`nav-item ${activeSection === 'courses' ? 'active':''}`} onClick={() => scrollToSection('courses')}>
                             Cursos
                         </li>
                     </ul>
-                    <div className="logo-holder">
-                        <Image src={NavLogo} width={70} height={'auto'} alt='Visual Arts School Logo'/>
+                    <div className="logo-holder" onClick={() => scrollToSection('intro')}>
+                        <Image src={NavLogo} width={70} height={'auto'} alt='Visual Arts School Logo' />
                     </div>
                     <ul className='nav-items'>
-                        <li className='nav-item'>
+                        <li className={`nav-item ${activeSection === 'about' ? 'active':''}`} onClick={() => scrollToSection('about')}>
                             Acerca de
                         </li>
                         <li className='sbtn cp-hs'>
@@ -103,20 +110,29 @@ const NavBar = () => {
             <div className='nav-container'>
                 <nav className='public-navbar mobile'>
                     <div className="nav-items">
-                        <Image src={Menu} width={40} height={'auto'} alt='Menu' onClick={()=>handleMenu()}/>
+                        <Image src={Menu} width={'auto'} height={20} alt='Menu' onClick={()=>handleMenu()}/>
                     </div>
-                    <div className="logo-holder">
-                        <Image src={NavLogo} width={70} height={'auto'} alt='Visual Arts School Logo'/>
+                    <div className="logo-holder" onClick={() => scrollToSection('intro')}>
+                        <Image src={NavLogo} width={'auto'} height={35} alt='Visual Arts School Logo'/>
                     </div>
                     
                     <ul className={isMenu?'nav-items-dis hidden':'nav-items-dis'}>
-                        <li className='nav-item'>
+                        <li className='nav-item' onClick={() => {
+                            scrollToSection('skills')
+                            handleMenu()
+                            }}>
                             ¿Qué aprenderé?
                         </li>
-                        <li className='nav-item'>
+                        <li className='nav-item' onClick={() => {
+                            scrollToSection('courses')
+                            handleMenu()
+                            }}>
                             Cursos
                         </li>
-                        <li className='nav-item'>
+                        <li className='nav-item' onClick={() => {
+                            scrollToSection('about')
+                            handleMenu()
+                            }}>
                             Acerca de
                         </li>
                     </ul>

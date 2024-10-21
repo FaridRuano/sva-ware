@@ -4,6 +4,10 @@
 
 /* Common */
 
+html {
+  scroll-behavior: smooth;
+}
+
 body{
     margin: 0;
     padding: 0;
@@ -136,18 +140,24 @@ input, select {
                   width: 100%;
               }
           }
+          &.active{
+            &::after{
+                width: 100%;
+            }
+        }
       }
       @media (max-width: 1050px) {
         width: 250px;
       }
   }
   &.mobile{
-    padding: 0 30px;
+    height: 40px;
+    padding: 0 20px;
     min-width: auto;
     max-width: 800px;
     position: relative;
     .nav-items{
-      width: 140px;
+      width: fit-content;
       img{
         cursor: pointer;
       }
@@ -157,7 +167,7 @@ input, select {
     }
     .nav-items-dis{
       position: absolute;
-      top: 70px;
+      top: 40px;
       left: 0;
       width: 100%;
       background-color: $black;
@@ -177,7 +187,6 @@ input, select {
         font-size: $big;
         color: $light;
         font-weight: 500;
-        border-bottom: solid 1px $light;
         cursor: pointer;
       }
       &.hidden{

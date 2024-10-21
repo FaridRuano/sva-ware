@@ -15,7 +15,7 @@ import Twitter from '@public/assets/icons/twitter.webp'
 import Youtube from '@public/assets/icons/youtube.webp'
 import Tiktok from '@public/assets/icons/tiktok.webp'
 import LogoFooter from '@public/assets/icons/logo-footer.webp'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 
 const Home = () => {
@@ -41,7 +41,6 @@ const Home = () => {
 
   const [courseSlider, setCourseSlider] = useState(1)
 
-
   const courses = [
     {id: 1, title: 'Introducción a la Suite de Adobe', descrip: 'Tu viaje empieza aqui, este curso esta diseñado para que cualquier persona desde 0 pueda empezar a utilizar los principales softwares de la Suite de Adobe.'},
     {id: 2, title: 'Creacion de posts mediaticos para redes sociales en Photoshop', descrip: 'Si lo tuyo es el marketing digital, este curso es para ti. Aquí aprenderás a crear diferentes publicaciones combinando técnicas que mezclan el uso de overlays, máscaras, fuentes e imágenes.'},
@@ -64,10 +63,41 @@ const Home = () => {
     }
   }
 
+  /* NavBar */
+
+  const [activeSection, setActiveSection] = useState('intro')
+
+  useEffect(() => {
+    const sections = document.querySelectorAll('section');
+    const options = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.2,
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id)
+        }
+      })
+    }, options)
+
+    sections.forEach((section) => {
+      observer.observe(section)
+    })
+
+    return () => {
+      sections.forEach((section) => {
+        observer.unobserve(section)
+      })
+    }
+  }, [])
+
   return (
     <div className='app'>
-      <NavBar/>
-      <section className='intro'>
+      <NavBar activeSection={activeSection}/>
+      <section className='intro' id='intro'>
         <div className="container">
           <div className="title">
             <div className="asset2"/>
@@ -96,7 +126,7 @@ const Home = () => {
           </div>
         </div>
       </section>
-      <section className="skills">
+      <section className="skills" id='skills'>
         <div className="asset1">
           <Image src={Asset2} width={1392} height={'auto'} alt='Asset'/>
         </div>
@@ -192,7 +222,7 @@ const Home = () => {
         </div>
         <Image src={Asset5} alt='Asset'/>
       </div>
-      <section className="courses">
+      <section className="courses" id='courses'>
         <div className="header">
           <div className='title'>
             <h2>
@@ -247,7 +277,7 @@ const Home = () => {
           <Image src={Asset6} width={1392} height={'auto'} alt='Asset'/>
         </div>
       </section>
-      <section className="about">
+      <section className="about" id='about'>
         <Image className='asset-ov' src={Asset8} width={482} height={'auto'} alt='Asset' id='ass-1'/>
         <Image className='asset-ov' src={Asset9} width={482} height={'auto'} alt='Asset' id='ass-2'/>
         <div className="container">
