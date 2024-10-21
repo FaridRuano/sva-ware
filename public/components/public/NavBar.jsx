@@ -45,7 +45,6 @@ const NavBar = () => {
             const scrollY = window.scrollY; // How far the user has scrolled
             const windowHeight = window.innerHeight; // Viewport height
             const documentHeight = document.documentElement.scrollHeight; // Full page height
-            console.log(scrollY)
             const footerHeight = 160; // Height of your footer
             const distanceFromBottom = documentHeight - (scrollY + windowHeight)
       

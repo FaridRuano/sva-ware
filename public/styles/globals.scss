@@ -1,7 +1,6 @@
 /* Imports */
 @import './_variables.scss';
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Uncial+Antiqua&display=swap');
 
 /* Common */
 
@@ -212,7 +211,7 @@ input, select {
   }
   &.end{
     position: absolute;
-    top: 4016px;
+    top: 4020px;
   }
 }
 
@@ -517,9 +516,6 @@ input, select {
             display: flex;
             flex-direction: column;
             gap: 1rem;
-            h3{
-              font-family: "Uncial Antiqua", system-ui;
-            }
             p{
               font-size: $standar;
             }
@@ -547,8 +543,8 @@ input, select {
         .slide-item{
           width: 380px;
           .info-container{
-            width: 85%;
-            height: 550px;
+            width: 95%;
+            height: 500px;
           }
         }
       }
@@ -692,6 +688,7 @@ input, select {
             display: flex;
             flex-direction: column;
             gap: 1rem;
+            color: $dark;
             p{
               font-size: $standar;
             }
@@ -706,6 +703,7 @@ input, select {
               font-size: $standar;
               font-weight: 700;
               transition: .3s ease-out;
+              color: $dark;
               cursor: pointer;
               &:hover{
                 background-color: $dark;
@@ -922,8 +920,8 @@ input, select {
   }
   @media (max-width: 800px) {
     .asset-ov{
-      width: 150px;
-      transform: translateY(200px);
+      width: 120px;
+      transform: translateY(230px);
     }
     .container{
       width: 400px;
