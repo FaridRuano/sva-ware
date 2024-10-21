@@ -38,6 +38,31 @@ const NavBar = () => {
         setMenu(current => !current)
     }
 
+    const [isNearFooter, setIsNearFooter] = useState(false);
+
+    useEffect(()=>{
+        const handleScroll = () => {
+            const scrollY = window.scrollY; // How far the user has scrolled
+            const windowHeight = window.innerHeight; // Viewport height
+            const documentHeight = document.documentElement.scrollHeight; // Full page height
+            console.log(scrollY)
+            const footerHeight = 160; // Height of your footer
+            const distanceFromBottom = documentHeight - (scrollY + windowHeight)
+      
+            if (distanceFromBottom <= footerHeight) {
+              setIsNearFooter(true)
+            } else {
+              setIsNearFooter(false)
+            }
+          }
+      
+          window.addEventListener('scroll', handleScroll)
+          
+          return () => {
+            window.removeEventListener('scroll', handleScroll)
+          }
+    },[])
+
     if(size.width === undefined){
         return(
             <>
@@ -79,7 +104,7 @@ const NavBar = () => {
             <div className='nav-container'>
                 <nav className='public-navbar mobile'>
                     <div className="nav-items">
-                        <Image src={Menu} width={40} height={'auto'} alt='Menu' onClick={()=>setMenu(current => !current)}/>
+                        <Image src={Menu} width={40} height={'auto'} alt='Menu' onClick={()=>handleMenu()}/>
                     </div>
                     <div className="logo-holder">
                         <Image src={NavLogo} width={70} height={'auto'} alt='Visual Arts School Logo'/>
@@ -98,8 +123,10 @@ const NavBar = () => {
                     </ul>
                 </nav>
             </div>
-            <div className='overbtn'>
-                Empieza Ya
+            <div className={`overbtn ${isNearFooter? 'end':''}`}>
+                <div>
+                    Empieza Ya
+                </div>
             </div>
             </>
 
