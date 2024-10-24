@@ -14,9 +14,9 @@ import Facebook from '@public/assets/icons/facebook.webp'
 import Twitter from '@public/assets/icons/twitter.webp'
 import Youtube from '@public/assets/icons/youtube.webp'
 import Tiktok from '@public/assets/icons/tiktok.webp'
-import LogoFooter from '@public/assets/icons/logo-footer.webp'
 import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
+import FooterHome from '@public/components/public/FooterHome'
 
 const Home = () => {
 
@@ -43,7 +43,7 @@ const Home = () => {
 
   const courses = [
     {id: 1, title: 'Introducción a la Suite de Adobe', descrip: 'Tu viaje empieza aqui, este curso esta diseñado para que cualquier persona desde 0 pueda empezar a utilizar los principales softwares de la Suite de Adobe.'},
-    {id: 2, title: 'Creacion de posts mediaticos para redes sociales en Photoshop', descrip: 'Si lo tuyo es el marketing digital, este curso es para ti. Aquí aprenderás a crear diferentes publicaciones combinando técnicas que mezclan el uso de overlays, máscaras, fuentes e imágenes.'},
+    {id: 2, title: 'Creacion de posts mediáticos para redes sociales en Photoshop', descrip: 'Si lo tuyo es el marketing digital, este curso es para ti. Aquí aprenderás a crear diferentes publicaciones combinando técnicas que mezclan el uso de overlays, máscaras, fuentes e imágenes.'},
     {id: 3, title: 'Edición y composición avanzada con Premiere Pro y After Effects', descrip: 'El workflow perfecto entre dos software que permiten elevar tus posibilidades al momento de editar y componer una pieza audiovisual.'},
     {id: 4, title: 'Efectos visuales mediaticos en After Effects', descrip: 'Empieza a crear tu propio estilo de audiovisuales con After Effects, aprende a realizar distintos efectos que te permitirán crear una entidad en cada una de tus piezas audiovisuales.'},
   ]
@@ -345,14 +345,7 @@ const Home = () => {
           </div>
         </div>
       </section>
-      <section className="footer">
-        <div className="container">
-          <Image src={LogoFooter} width={50} height={'auto'} alt='Logo'/>
-          <span>
-            Copyright © School of Visual Arts 2024 - Todos los derechos reservados
-          </span>
-        </div>
-      </section>
+      <FooterHome/>
     </div>
   )
 }

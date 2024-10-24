@@ -1,3 +1,4 @@
+import CookieBanner from "@public/components/public/CookieBanner";
 import "@public/styles/globals.scss"
 
 export const metadata = {
@@ -9,6 +10,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
+          <CookieBanner/>
           {children}
       </body>
     </html>

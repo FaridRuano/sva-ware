@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react'
 import NavLogo from '@public/assets/icons/logo-navbar.webp'
 import Menu from '@public/assets/icons/menu.webp'
 import Image from 'next/image'
+import { useRouter } from 'next/navigation'
 
 const useWindowSize = () => {
 
@@ -29,6 +30,8 @@ const useWindowSize = () => {
 }
 
 const NavBar = ({activeSection}) => {
+
+    const router = useRouter()
 
     const size = useWindowSize()
 
@@ -97,7 +100,7 @@ const NavBar = ({activeSection}) => {
                         <li className={`nav-item ${activeSection === 'about' ? 'active':''}`} onClick={() => scrollToSection('about')}>
                             Acerca de
                         </li>
-                        <li className='sbtn cp-hs'>
+                        <li className='sbtn cp-hs' onClick={()=>router.push('/login')}>
                             Empieza Ya
                         </li>
                     </ul>

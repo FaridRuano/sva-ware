@@ -32,7 +32,7 @@ li{
   width: fit-content;
 }
 
-input, select {
+input, select, button {
   font-family: "Plus Jakarta Sans", sans-serif;
   -webkit-box-sizing: border-box;
       -moz-box-sizing: border-box;
@@ -88,7 +88,69 @@ input, select {
   }
 }
 
+.loading{
+  animation: loopOpacity 1s infinite;
+}
+
 /* ===================Public=========================== */
+
+/* Cookies Banner */
+
+.cookie-banner{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  margin: 20px;
+  z-index: 11;
+  background-color: $black;
+  border-radius: 20px;
+  width: calc(100% - 40px - 40px);
+  padding: 20px;
+  box-shadow: 4px 4px 4px #00000033;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  animation: inOpacity 1s forwards;
+  p{
+    color: $light;
+    a{
+      color: $light;
+      font-weight: 700;
+    }
+  }
+  .banner-btns{
+    display: flex;
+    gap: 1rem;
+    button{
+      outline: 0;
+      border: none;
+      padding: 10px;
+      border-radius: 20px;
+      font-size: $small;
+      font-weight: 700;
+      background-color: transparent;
+      border: 2px solid $light;
+      color: $light;
+      transition: .3s ease-out;
+      cursor: pointer;
+      &:hover{
+        color: $black;
+        background-color: $light;
+      }
+    }
+  }
+  @media (max-width: 800px) {
+    animation: inBannerMobile 1s forwards;
+    flex-direction: column;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+    bottom: auto;
+  }
+}
+
 /* Navbar */
 .nav-container{
   position: fixed;
@@ -986,6 +1048,307 @@ input, select {
   }
 }
 
+
+/* Login */
+
+.login-page{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  .return-btn{
+    position: absolute;
+    color: $light;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 20px;
+    left: 20px;
+    gap: .4rem;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 20px;
+    transition: .4s;
+    span{
+      font-size: $small;
+    }
+    &:hover{
+      background-color: #000;
+    }
+  }
+  .login-wrap{
+    width: 400px;
+    height: 560px;
+    border: solid 2px $primary-color;
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .login{
+      height: 400px;
+      transform: translateY(-50px);
+      width: fit-content;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      position: relative;
+      .back{
+        position: absolute;
+        top: -5px;
+        left: -35px;
+        display: flex;
+        gap: .4rem;
+        align-items: center;
+        justify-content: center;
+        padding: 7px;
+        border-radius: 20px;
+        cursor: pointer;
+        transition: .3s ease-out;
+        span{
+          font-size: $small;
+          color: $light;
+        }
+        &:hover{
+          background-color: #000;
+        }
+      }
+      .logo{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding:  15px 0;
+      }
+      .step{
+        height: 55px;
+        text-align: center;
+        span{
+          font-size: $standar;
+          font-weight: 600;
+          color: $primary-color;
+        }
+        p{
+          font-size: $small;
+          font-weight: 200;
+          color: $light;
+          max-width: 270px;
+        }
+      }
+      .data-form{
+        width: 100%;
+        .form-input{
+          position: relative;
+          padding: 10px 0 0px 0;
+          .input-field{
+            width: 270px;
+            border: 0;
+            outline: 0;
+            font-size: $standar;
+            color: $light;
+            border-radius: 10px;
+            border: 2px solid $light;
+            padding: 15px;
+            background: transparent;
+            transition: border-color 0.2s;
+            &::placeholder {
+              color: transparent;
+            }
+            &:placeholder-shown ~ .label-field {
+              font-size: $standar;
+              cursor: text;
+              top: 27px;
+              background-color: $black;
+              font-weight: 300;    
+            }
+          }
+          .label-field {
+            background-color: $black;
+            position: absolute;
+            top: 3px;
+            padding: 0 5px;
+            left: 15px;
+            transition: 0.2s;
+            font-size: $small;
+            color: $light;
+            font-weight: 700;    
+          }
+          .input-field:focus {
+            ~ .label-field {
+              position: absolute;
+              top: 3px;
+              display: block;
+              transition: 0.2s;
+              font-size: $small;
+              color: $primary-color;
+              font-weight: 700;    
+            }
+            border-radius: 10px;
+            font-weight: 300;
+            border: 2px solid $primary-color;
+            
+          }
+          /* reset input */
+          .input-field{
+            &:required,&:invalid { box-shadow:none; }
+          }
+          &.err{
+            .input-field{
+              border: 2px solid $err;
+            }
+            .input-field:focus {
+              ~ .label-field {
+                color: $err;
+              }
+              border: 2px solid $err;
+            }
+          }
+        }
+        .form-error{
+          padding: 10px 0 0px 0;
+          display: flex;
+          align-items: center;
+          color: $err;
+          font-size: $xsmall;
+          width: 270px;
+          font-weight: 500;
+          gap: 1rem;
+          animation: inOpacity .2s forwards;
+        }
+        .form-btn{
+          padding: 10px 0 0px 0;
+          .button-field{
+            background-color: $light;
+            color: $black;
+            outline: 0;
+            border: solid 2px $light;
+            font-size: $standar;
+            padding: 15px 0;
+            width: 100%;
+            font-weight: 700;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: .2s ease-out;
+            &:hover{
+              background-color: $white;
+              border: solid 2px $white;
+            }
+            &.dis{
+              opacity: .5;
+              pointer-events: none;
+            }
+          }
+          &.outline{
+            width: 100%;
+            .button-field{
+              color: $light;
+              background-color: transparent;
+            }
+          }
+        }
+      }
+      .separate-o{
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: space-between;
+        height: 40px;
+        color: $light;
+        .line{
+          width: 120px;
+          height: 2px;
+          background-color: $light;
+        }
+      }
+      .forgot{
+        padding: 10px 0;
+        cursor: pointer;
+        opacity: .7;
+        transition: .2s ease-out;
+        text-align: center;
+        max-width: 270px;
+        span{
+          color: $light;
+          font-size: $small;
+          font-weight: 700;
+        }
+        &:hover{
+          opacity: 1;
+        }
+      }
+      .terms{
+        padding: 10px 0;
+        transition: .2s ease-out;
+        text-align: center;
+        max-width: 270px;
+        span{
+          color: $light;
+          font-size: $small;
+          font-weight: 300;
+          cursor: default;
+          a{
+            color: $light;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+
+}
+
+/* Policys Page */
+
+.policy-page{
+  width: 100vw;
+  height: fit-content;
+  background-color: $black;
+  color: $light;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .content-wrap{
+    padding: 50px 100px;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    .return{
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      cursor: pointer;
+      opacity: .7;
+      transition: .2s ease-out;
+      span{
+        font-weight: 700;
+        font-size: $standar;
+        a{
+          color: $light;
+        }
+      }
+      &:hover{
+        opacity: 1;
+      }
+    }
+    h1{
+      color: $primary-color;
+    }
+    a{
+      font-weight: 700;
+      color: $primary-color;
+    }
+    p{
+      font-size: $standar;
+    }
+  }
+  @media (max-width: 700px) {
+    .content-wrap{
+      padding: 50px 50px;
+    }
+  }
+}
+
 /* ===================Animations=========================== */
 
 @keyframes glitch {
@@ -1090,5 +1453,37 @@ input, select {
   90% {
     opacity: 1;
     width: 150px; /* Reset to original */
+  }
+}
+
+@keyframes loopOpacity {
+  0%{
+      opacity: .2;
+  }
+  50%{
+      opacity: .6;
+  }
+  100%{
+      opacity: .2;
+  }
+}
+
+@keyframes inOpacity {
+  0%{
+      opacity: 0;
+  }
+  100%{
+      opacity: 1;
+  }
+}
+
+@keyframes inBannerMobile {
+  0%{
+      opacity: 0;
+      transform: translate(-50%, -100%);
+  }
+  100%{
+      opacity: 1;
+      transform: translate(-50%, -50%);
   }
 }
