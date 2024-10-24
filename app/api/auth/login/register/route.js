@@ -2,6 +2,7 @@ import connectMongoDB from '@libs/mongodb';
 import User from '@models/User';
 import nodemailer from 'nodemailer';
 import { NextResponse } from "next/server"
+import bcrypt from 'bcrypt'
 
 const transporter = nodemailer.createTransport({
     host: process.env.EMAIL_SERVER_HOST,
@@ -32,9 +33,11 @@ export async function POST(request) {
         )
     }
 
+    const hashedPassword = await bcrypt.hash(password, 10);
+
     /* Create User */
 
-    const newUser = await User.create({ name, email, password })
+    const newUser = await User.create({ name, email, password: hashedPassword })
 
     /* Send Email */
 

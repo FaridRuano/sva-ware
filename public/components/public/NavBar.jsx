@@ -142,7 +142,7 @@ const NavBar = ({activeSection}) => {
                 </nav>
             </div>
             <div className={`overbtn ${isNearFooter? 'end':''}`}>
-                <div>
+                <div onClick={()=>router.push('/login')}>
                     Empieza Ya
                 </div>
             </div>

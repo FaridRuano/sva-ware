@@ -79,7 +79,6 @@ const Login = () => {
       if (res?.error) {
         setErrPassword(true);
       }
-      setLoading(false)
     }catch(e){
       console.log(e)
     }

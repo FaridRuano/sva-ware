@@ -4,6 +4,7 @@ import CredentialsProvider from 'next-auth/providers/credentials';
 import User from '@models/User';
 import connectMongoDB from '@libs/mongodb';
 import { MongoDBAdapter } from '@next-auth/mongodb-adapter';
+import bcrypt from 'bcrypt'
 
 const handler = async (req, res) => {
   await connectMongoDB();
@@ -16,10 +17,19 @@ const handler = async (req, res) => {
           email: {label: 'Email', type: 'email'},
           password: {label: 'Password', type: 'password'},
         },
-        async authorize(credentials) {
-          const user = await User.findOne({ email: credentials.email, password: credentials.password })
 
-          if(!user){
+        
+        async authorize(credentials) {
+
+          const user = await User.findOne({ email: credentials.email}).select('+password')
+
+          if (!user) {
+            throw new Error('Invalid credentials');
+          }
+          console.log(user)
+          const isMatch = await bcrypt.compare(credentials.password, user.password)
+
+          if(!isMatch){
             throw new Error('Invalid credentials')
           }
 

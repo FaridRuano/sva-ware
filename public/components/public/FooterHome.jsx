@@ -11,6 +11,11 @@ const FooterHome = () => {
             Copyright © School of Visual Arts 2024 - Todos los derechos reservados
           </span>
         </div>
+        <div className="container">
+          <span>
+            Revisa nuestras políticas <a href='/policy'>aquí.</a>
+          </span>
+        </div>
     </section>
   )
 }
