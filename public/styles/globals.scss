@@ -1520,6 +1520,7 @@ input, select, button {
     padding: 0 5px;
     .client-nav-container{
       .nav-item{
+        min-width: 100px;
         .item{
           span{
             display: none;
@@ -1539,8 +1540,10 @@ input, select, button {
   max-width: 1200px;
   margin: auto;
   align-items: center;
-  justify-content: center;
-  gap: 1rem;
+  justify-content: flex-start;
+  min-height: calc(100vh - 90px);
+  gap: 3rem;
+  padding: 20px 0;
   @media (max-width: 1200px) {
     padding: 20px;
   }
@@ -1564,6 +1567,72 @@ input, select, button {
     height: 80px;
     h1{
       font-size: $xbig;
+    }
+  }
+}
+
+.client-courses{
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 1rem;
+  span{
+    color: $light;
+    font-weight: 600;
+    font-size: $big;
+  }
+  .courses-wrap{
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    .row{
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      .course{
+        width: 24%;
+        height: 240px;
+        min-width: 260px;
+        display: flex;
+        flex-direction: column;
+        cursor: pointer;
+        gap: 1rem;
+        transition: .2s ease-out;
+        .img-holder{
+          background-color: $dark;
+          border-radius: 20px;
+          height: 150px;
+        }
+        .title-holder{
+          color: $primary-color;
+          font-size: $standar;
+        }
+        &:hover{
+          transform: scale(1.05);
+        }
+      }
+    }
+  }
+  @media (max-width: 1100px) {
+    .courses-wrap{
+      .row{
+        flex-wrap: wrap;
+        .course{
+          width: 49%;
+        }
+      }
+    }
+  }
+  @media (max-width: 800px) {
+    .courses-wrap{
+      .row{
+        flex-direction: column;
+        gap: 1rem;
+        .course{
+          width: 100%;
+          height: fit-content;
+        }
+      }
     }
   }
 }

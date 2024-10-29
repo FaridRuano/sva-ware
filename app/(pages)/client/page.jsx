@@ -23,6 +23,55 @@ const Client = () => {
           <section className='home-title'>
             <h1>Bienvenido de vuelta, <br/>continua tus clases</h1>
           </section>
+          <section className="client-courses">
+            <span>
+              Todos los cursos
+            </span>
+            <div className="courses-wrap">
+              <div className="row">
+                <div className="course">
+                  <div className="img-holder">
+
+                  </div>
+                  <div className="title-holder">
+                    <h3>
+                      Introducción a la Suite de Adobe
+                    </h3>
+                  </div>
+                </div>
+                <div className="course">
+                  <div className="img-holder">
+
+                  </div>
+                  <div className="title-holder">
+                    <h3>
+                      Creación de posts mediáticos para redes sociales en Photoshop
+                    </h3>
+                  </div>
+                </div>
+                <div className="course">
+                  <div className="img-holder">
+
+                  </div>
+                  <div className="title-holder">
+                    <h3>
+                      Edición y composición avanzada con Premiere Pro y After Effects
+                    </h3>
+                  </div>
+                </div>
+                <div className="course">
+                  <div className="img-holder">
+
+                  </div>
+                  <div className="title-holder">
+                    <h3>
+                      Efectos visuales mediaticos en After Effects
+                    </h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
       </div>
     )
   }

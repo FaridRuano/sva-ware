@@ -1,5 +1,6 @@
 'use client'
 import NavBar from '@public/components/client/NavBar';
+import FooterHome from '@public/components/public/FooterHome';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
@@ -33,6 +34,7 @@ export default function RootLayout({ children }) {
       <>
       <NavBar/>
       {children}
+      <FooterHome/>
     </>
     )
   }
