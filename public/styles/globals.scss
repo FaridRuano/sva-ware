@@ -1195,6 +1195,7 @@ input, select, button {
               font-weight: 700;    
             }
             border-radius: 10px;
+            font-size: $standar;
             font-weight: 300;
             border: 2px solid $primary-color;
             
@@ -1368,6 +1369,201 @@ input, select, button {
   @media (max-width: 700px) {
     .content-wrap{
       padding: 50px 50px;
+    }
+  }
+}
+
+/* ===================Client=========================== */
+
+/* Navbar */
+
+.client-navbar{
+  padding: 0 30px;
+  height: 50px;
+  background-color: $black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .client-nav-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    .nav-item{
+      min-width: 150px;
+      width: fit-content;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: $light;
+      gap: 2rem;
+      .item{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        font-size: $standar;
+        font-weight: 700;
+        cursor: pointer;
+        position: relative;
+        &::after{
+          content: '';
+          width: 0;
+          height: 2px;
+          background-color: $light;
+          position: absolute;
+          transform-origin: center;
+          bottom: -15px;
+          left: 0;
+          transition: .2s ease-out;
+        }
+        &:hover{
+          &::after{
+            width: 100%;
+          }
+        }
+      }
+      .dropdown{
+        display: flex;
+        gap: 1rem;
+        cursor: pointer;
+        padding: 10px;
+        transition: .2s ease-out;
+        border-radius: 20px;
+        justify-content: flex-end;
+        position: relative;
+        span{
+          font-size: $standar;
+          color: $light;
+          font-weight: 700;
+        }
+        .dropdown-item{
+          opacity: 0;
+          position: absolute;
+          background-color: $primary-color;
+          width: 160px;
+          height: 120px;
+          transition: .3s ease-out;
+          top: 0px;
+          right: 5px;
+          background-color: $black;
+          border: solid 2px $dark;
+          border-radius: 20px 0 20px 20px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          .dropdown-wrap{
+            display: flex;
+            gap: .5rem;
+            flex-direction: column;
+            span{
+              a{
+                color: $light;
+                font-size: $small;
+                font-weight: 300;
+                transition: .2s ease-out;
+                &:hover{
+                  filter: drop-shadow(0 0 4px $light);
+                }
+              }
+              &.logout{
+                a{
+                  color: $err;
+                  font-weight: 500;
+                  &:hover{
+                    filter: drop-shadow(0 0 4px $err);
+                  }
+                }
+              }
+            }
+            .separator{
+              height: 2px;
+              width: 100%;
+              background-color: $dark;
+            }
+          }
+          &:hover{
+            top: 50px;
+            opacity: 1;
+          }
+        }
+        &:hover{
+          background-color: $dark;
+          .dropdown-item{
+            top: 50px;
+            opacity: 1;
+          }
+        }
+      }
+      &.logo{
+        justify-content: flex-start;
+        img{
+          cursor: pointer;
+          border-radius: 50%;
+          padding: 4px ;
+          transition: .2s ease-out;
+          &:hover{
+            background-color: $dark;
+          }
+        }
+      }
+    }
+  }
+  &.loading{
+    .client-nav-container{
+      background-color: $dark;
+      height: 40px;
+      border-radius: 30px;
+    }
+  }
+  @media (max-width: 800px) {
+    padding: 0 5px;
+    .client-nav-container{
+      .nav-item{
+        .item{
+          span{
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+/* Home */
+
+.page-wrap{
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  max-width: 1200px;
+  margin: auto;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  @media (max-width: 1200px) {
+    padding: 20px;
+  }
+}
+
+.home-title{
+  background-image: url('../assets/imgs/client-home-asset.webp');
+  background-size: cover; 
+  background-position: center; 
+  background-repeat: no-repeat; 
+  height: 105px; 
+  display: flex;
+  padding: 20px;  
+  width: calc(100% - 40px);
+  border-radius: 20px 20px 0 0;
+  h1{
+    color: $light;
+    font-size: $xlbig;
+  }
+  @media (max-width: 800px) {
+    height: 80px;
+    h1{
+      font-size: $xbig;
     }
   }
 }

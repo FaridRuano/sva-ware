@@ -6,7 +6,7 @@ import Error from '@public/assets/icons/error.webp'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import axios from 'axios'
-import { signIn } from 'next-auth/react';
+import { signIn, useSession } from 'next-auth/react';
 
 const Login = () => {
 
@@ -26,6 +26,8 @@ const Login = () => {
   const [errEmail, setErrEmail] = useState(false)
   const [errPassword, setErrPassword] = useState(false)
   const [errName, setErrName] = useState(false)
+
+  const { data: session, status } = useSession()
 
   const handleSubmitEmail = async (e) => {
     e.preventDefault()
@@ -70,14 +72,16 @@ const Login = () => {
       setLoading(true)
 
       const res = await signIn('credentials', {
-        redirect: true,
+        redirect: false,
         email,
         password,
-        callbackUrl: '/client',
       })
   
       if (res?.error) {
         setErrPassword(true);
+        setLoading(false)
+      }else{
+        router.push('/client')
       }
     }catch(e){
       console.log(e)
@@ -146,6 +150,8 @@ const Login = () => {
       console.log(e)
     }
   }
+
+
 
   if(loading){
     return (
@@ -363,9 +369,6 @@ const Login = () => {
         </div>
       </div>
     )
-          
-                
-    
   }
 }
 

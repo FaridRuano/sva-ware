@@ -26,7 +26,6 @@ const handler = async (req, res) => {
           if (!user) {
             throw new Error('Invalid credentials');
           }
-          console.log(user)
           const isMatch = await bcrypt.compare(credentials.password, user.password)
 
           if(!isMatch){
