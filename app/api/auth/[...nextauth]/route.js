@@ -21,7 +21,9 @@ const handler = async (req, res) => {
         
         async authorize(credentials) {
 
-          const user = await User.findOne({ email: credentials.email}).select('+password')
+          const user = await User.findOne({ email: credentials.email}).select('+password emailVerified name email')
+
+          console.log(user)
 
           if (!user) {
             throw new Error('Invalid credentials');
@@ -32,7 +34,11 @@ const handler = async (req, res) => {
             throw new Error('Invalid credentials')
           }
 
-          return {email: user.email, name: user.name}
+          return {
+            email: user.email,
+            name: user.name,
+            emailVerified: user.emailVerified,
+          }
         }
       }),
       EmailProvider({
@@ -55,6 +61,24 @@ const handler = async (req, res) => {
     pages: {
       signIn: '/login', 
       verifyRequest: '/auth/verify',
+    },
+    callbacks: {
+      async session({ session, token }) {
+        if (token) {
+          session.user.email = token.email
+          session.user.name = token.name
+          session.user.emailVerified = token.emailVerified
+        }
+        return session;
+      },
+      async jwt({ token, user }) {
+        if (user) {
+          token.email = user.email
+          token.name = user.name
+          token.emailVerified = user.emailVerified
+        }
+        return token;
+      },
     },
   })
 }

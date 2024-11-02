@@ -32,10 +32,12 @@ export default function RootLayout({ children }) {
   }else{
     return (
       <>
-      <NavBar/>
-      {children}
-      <FooterHome/>
-    </>
+        <NavBar/>
+        <div className='page-wrap'>
+          {children}
+        </div>
+        <FooterHome/>
+      </>
     )
   }
 }

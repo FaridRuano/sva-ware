@@ -17,8 +17,11 @@ import Tiktok from '@public/assets/icons/tiktok.webp'
 import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import FooterHome from '@public/components/public/FooterHome'
+import { useRouter } from 'next/navigation'
 
 const Home = () => {
+
+  const router = useRouter()
 
   /*Info Slider */
 
@@ -255,7 +258,7 @@ const Home = () => {
                       </p>
                     </div>
                     <div className="footer-btn">
-                      <button>Empezar</button>
+                      <button onClick={()=> router.push('/login')}>Empezar</button>
                     </div>
                   </div>
                 </div>

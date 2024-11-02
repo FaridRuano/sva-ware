@@ -36,11 +36,11 @@ const NavBar = () => {
         return (
           <div className='client-navbar'>
               <div className="client-nav-container">
-                  <div className="nav-item logo">
+                  <div className="nav-item logo" onClick={()=> router.push('/client')}>
                       <Image src={Logo} width={'auto'} height={30} alt='Logo'/>
                   </div>
                   <div className="nav-item">
-                      <div className="item">
+                      <div className="item" onClick={()=> router.push('/client')}>
                           <Image src={Courses} width={'auto'} height={20} alt='Icon'/>
                           <span>Cursos</span>
                       </div>
@@ -60,13 +60,13 @@ const NavBar = () => {
                           <div className="dropdown-item">
                             <div className="dropdown-wrap">
                                 <span>
-                                    <a>
+                                    <a href='/client/profile'>
                                         Ver mi perfil
                                     </a>
                                 </span>
                                 <span>
-                                    <a>
-                                        Mi sucripción
+                                    <a href='/client/subscription'>
+                                        Unirme a la escuela
                                     </a>
                                 </span>
                                 <div className="separator"/>

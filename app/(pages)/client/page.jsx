@@ -19,17 +19,17 @@ const Client = () => {
     router.push('/login')
   }else{
     return (
-      <div className='page-wrap'>
+      <>
           <section className='home-title'>
             <h1>Bienvenido de vuelta, <br/>continua tus clases</h1>
           </section>
-          <section className="client-courses">
+          <div className="client-courses">
             <span>
               Todos los cursos
             </span>
             <div className="courses-wrap">
               <div className="row">
-                <div className="course">
+                <div className="course" onClick={()=>router.push('/client/introductiontoadobe/1/101')}>
                   <div className="img-holder">
 
                   </div>
@@ -39,17 +39,17 @@ const Client = () => {
                     </h3>
                   </div>
                 </div>
-                <div className="course">
+                <div className="course" onClick={()=>router.push('/client/creatingposts')}>
                   <div className="img-holder">
 
                   </div>
                   <div className="title-holder">
                     <h3>
-                      Creación de posts mediáticos para redes sociales en Photoshop
+                      Creación de posts mediáticos para redes sociales en Photoshop e Ilustrador
                     </h3>
                   </div>
                 </div>
-                <div className="course">
+                <div className="course" onClick={()=>router.push('/client/workflowpremiereproandaftereffects')}>
                   <div className="img-holder">
 
                   </div>
@@ -59,7 +59,7 @@ const Client = () => {
                     </h3>
                   </div>
                 </div>
-                <div className="course">
+                <div className="course" onClick={()=>router.push('/client/visualeffectsinafter')}>
                   <div className="img-holder">
 
                   </div>
@@ -71,8 +71,8 @@ const Client = () => {
                 </div>
               </div>
             </div>
-          </section>
-      </div>
+          </div>
+      </>
     )
   }
 }
