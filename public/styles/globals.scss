@@ -1926,6 +1926,12 @@ input, select, button {
   @media (max-width: 800px) {
     width: auto;
     height: 300px;
+    .sidebar{
+      height: 260px;
+      .items-list{
+        min-height: 180px;
+      }
+    }
   }
 }
 
