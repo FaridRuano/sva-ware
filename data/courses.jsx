@@ -25,6 +25,7 @@ export const courses = {
                         'Las herramientas de Photoshop están agrupadas en la barra de herramientas, desde las de selección y recorte hasta las de dibujo y edición. En esta lección, exploraremos algunas de las herramientas más básicas, como la herramienta de selección rápida, el pincel y la herramienta de texto. Cada una de estas herramientas tiene configuraciones específicas que pueden ajustarse en la barra superior, lo que te permitirá personalizar tus acciones y lograr resultados más precisos en tus ediciones.'
                     ],
                     videoUrl: 'sva-assets/courses/introductiontoadobesuite/cap1lesson1',
+                    driveUrl: 'https://1drv.ms/f/s!AnDyMyvpRABchc5Z7yIGjs_Gok-rTg?e=MxN3Xd'
                 }
             ]
         },
@@ -49,6 +50,7 @@ export const courses = {
                         'Las herramientas de Photoshop están agrupadas en la barra de herramientas, desde las de selección y recorte hasta las de dibujo y edición. En esta lección, exploraremos algunas de las herramientas más básicas, como la herramienta de selección rápida, el pincel y la herramienta de texto. Cada una de estas herramientas tiene configuraciones específicas que pueden ajustarse en la barra superior, lo que te permitirá personalizar tus acciones y lograr resultados más precisos en tus ediciones.'
                     ],
                     videoUrl: 'sva-assets/courses/introductiontoadobesuite/cap2lesson1',
+                    driveUrl: 'https://1drv.ms/f/s!AnDyMyvpRABchc5YDQI5z0qynJBACg?e=ZkCikG'
                 }
             ]
         },

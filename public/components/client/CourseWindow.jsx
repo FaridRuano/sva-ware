@@ -31,7 +31,15 @@ const CourseWindow = ({data, goToNextLesson}) => {
                         ))
                     }
                 </div>
-                
+                {
+                    data.driveUrl && (
+                        <div className="link-wrap">
+                            <p>
+                                Descarga el material de esta leccion <a href={data.driveUrl} target='_blank'>aqui</a>
+                            </p>
+                        </div>
+                    )
+                }
             </div>
         </div>
         <div className="footer-wrap">

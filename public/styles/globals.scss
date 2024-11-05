@@ -1527,6 +1527,7 @@ input, select, button {
   }
   @media (max-width: 800px) {
     padding: 20px 20px 80px 20px;
+    height: fit-content;
   }
 }
 
@@ -1816,6 +1817,10 @@ input, select, button {
   width: 100%;
   height: 100%;
   gap: 1rem;
+  @media (max-width: 800px) {
+    flex-direction: column;
+    height: fit-content;
+  }
 }
 
 .sidebar-container{
@@ -1918,6 +1923,10 @@ input, select, button {
       }
     }
   }
+  @media (max-width: 800px) {
+    width: auto;
+    height: 300px;
+  }
 }
 
 .coursewindow-container{
@@ -1953,6 +1962,18 @@ input, select, button {
           font-size: $standar;
         }
       }
+      .link-wrap{
+        color: $white;
+        font-size: $standar;
+        a{
+          color: $primary-color;
+          font-weight: 700;
+          transition: .3s ease-out;
+          &:hover{
+            filter: drop-shadow(0 0 4px $primary-color);
+          }
+        }
+      }
       .video-wrap{
         width: 100%;
         height: fit-content;
@@ -1980,6 +2001,12 @@ input, select, button {
       &:hover{
         opacity: 1;
       }
+    }
+  }
+  @media (max-width: 800px) {
+    width: auto;
+    .content-wrap{
+      padding: 20px 0;
     }
   }
 }
