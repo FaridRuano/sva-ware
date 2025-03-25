@@ -337,7 +337,7 @@ const Home = () => {
               </div>
               <div className="info bg">
                 <p>
-                  <b>Vamos al grano:</b> no te venderemos una 'promoción' ni te diremos nada engañoso.
+                  <b>Vamos al grano:</b> no te venderemos una &apos;promoción&apos; ni te diremos nada engañoso.
                 </p>
                 <p>
                   Nuestros precios reflejan el verdadero valor del contenido que ofrecemos, manteniendo
