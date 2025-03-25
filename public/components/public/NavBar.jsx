@@ -9,27 +9,27 @@ import { useRouter } from 'next/navigation'
 const useWindowSize = () => {
 
     const [windowSize, setWindowSize] = useState({
-      width: undefined,
-      height: undefined,
+        width: undefined,
+        height: undefined,
     })
-  
+
     useEffect(() => {
-      const handleResize = () => {
-        setWindowSize({
-          width: window.innerWidth,
-          height: window.innerHeight,
-        })
-      }
-  
-      window.addEventListener('resize', handleResize)
-      handleResize()
-      return () => window.removeEventListener('resize', handleResize)
+        const handleResize = () => {
+            setWindowSize({
+                width: window.innerWidth,
+                height: window.innerHeight,
+            })
+        }
+
+        window.addEventListener('resize', handleResize)
+        handleResize()
+        return () => window.removeEventListener('resize', handleResize)
     }, [])
-  
+
     return windowSize
 }
 
-const NavBar = ({activeSection}) => {
+const NavBar = ({ activeSection = null }) => {
 
     const router = useRouter()
 
@@ -44,108 +44,107 @@ const NavBar = ({activeSection}) => {
     const scrollToSection = (id) => {
         const element = document.getElementById(id)
         if (element) {
-          element.scrollIntoView({ behavior: 'smooth' })
+            element.scrollIntoView({ behavior: 'smooth' })
         }
     }
 
-    const [isNearFooter, setIsNearFooter] = useState(false);
+    const sectionTitle = () => {
+        var title = ''
+        switch (activeSection) {
+            case 'learning':
+                title = '¿Qué aprenderé?'
+                break
+            case 'content':
+                title = 'Contenido'
+                break
+            case 'prices':
+                title = 'Precios'
+                break
+            default:
+                title = 'Escuela de Artes Visuales'
+                break
+        }
+        return title
+    }
 
-    useEffect(()=>{
-        const handleScroll = () => {
-            const scrollY = window.scrollY; // How far the user has scrolled
-            const windowHeight = window.innerHeight; // Viewport height
-            const documentHeight = document.documentElement.scrollHeight; // Full page height
-            const footerHeight = 155; // Height of your footer
-            const distanceFromBottom = documentHeight - (scrollY + windowHeight)
-      
-            if (distanceFromBottom <= footerHeight) {
-              setIsNearFooter(true)
-            } else {
-              setIsNearFooter(false)
-            }
-          }
-      
-          window.addEventListener('scroll', handleScroll)
-          
-          return () => {
-            window.removeEventListener('scroll', handleScroll)
-          }
-    },[])
-
-    if(size.width === undefined){
-        return(
+    if (size.width === undefined) {
+        return (
             <>
 
             </>
         )
     }
 
-    if(size.width > 800){
-        return(
+    if (size.width > 800) {
+        return (
             <div className="nav-container">
                 <nav className='public-navbar'>
 
                     <ul className='nav-items'>
-                        <li className={`nav-item ${activeSection === 'skills' ? 'active':''}`} onClick={() => scrollToSection('skills')}>
+                        <li className={`nav-item ${activeSection === 'learning' ? 'active' : ''}`} onClick={() => scrollToSection('learning')}>
                             ¿Qué aprenderé?
                         </li>
-                        <li className={`nav-item ${activeSection === 'courses' ? 'active':''}`} onClick={() => scrollToSection('courses')}>
-                            Cursos
+                        <li className={`nav-item ${activeSection === 'content' ? 'active' : ''}`} onClick={() => scrollToSection('content')}>
+                            Contenido
                         </li>
                     </ul>
                     <div className="logo-holder" onClick={() => scrollToSection('intro')}>
-                        <Image src={NavLogo} width={70} height={'auto'} alt='Visual Arts School Logo' />
+                        <Image src={NavLogo} width={45} height={'auto'} alt='Visual Arts School Logo' />
                     </div>
                     <ul className='nav-items'>
-                        <li className={`nav-item ${activeSection === 'about' ? 'active':''}`} onClick={() => scrollToSection('about')}>
-                            Acerca de
+                        <li className={`nav-item ${activeSection === 'prices' ? 'active' : ''}`} onClick={() => scrollToSection('prices')}>
+                            Precios
                         </li>
-                        <li className='sbtn cp-hs' onClick={()=>router.push('/login')}>
-                            Empieza Ya
+                        <li className='sbtn cp-hs' onClick={() => router.push('/login')}>
+                            Ingresar
                         </li>
                     </ul>
                 </nav>
             </div>
         )
-    }else{
+    } else {
         return (
             <>
-            <div className='nav-container'>
-                <nav className='public-navbar mobile'>
-                    <div className="nav-items">
-                        <Image src={Menu} width={'auto'} height={20} alt='Menu' onClick={()=>handleMenu()}/>
-                    </div>
-                    <div className="logo-holder" onClick={() => scrollToSection('intro')}>
-                        <Image src={NavLogo} width={'auto'} height={35} alt='Visual Arts School Logo'/>
-                    </div>
-                    
-                    <ul className={isMenu?'nav-items-dis hidden':'nav-items-dis'}>
-                        <li className='nav-item' onClick={() => {
-                            scrollToSection('skills')
-                            handleMenu()
+                <div className='nav-container'>
+                    <nav className='public-navbar mobile'>
+                        <div className="nav-items">
+                            <Image src={Menu} width={'auto'} height={15} alt='Menu' onClick={() => handleMenu()} />
+                        </div>
+                        <div className="nav-items">
+                            <div className="nav-item" style={{ opacity: isMenu ? 1 : 0 }}>
+
+                                {sectionTitle()}
+                            </div>
+                        </div>
+                        <div className="logo-holder" onClick={() => scrollToSection('intro')}>
+                            <Image src={NavLogo} width={'auto'} height={28} alt='Visual Arts School Logo' />
+                        </div>
+
+                        <ul className={isMenu ? 'nav-items-dis hidden' : 'nav-items-dis'}>
+                            <li className='nav-item' onClick={() => {
+                                scrollToSection('learning')
+                                handleMenu()
                             }}>
-                            ¿Qué aprenderé?
-                        </li>
-                        <li className='nav-item' onClick={() => {
-                            scrollToSection('courses')
-                            handleMenu()
+                                ¿Qué aprenderé?
+                            </li>
+                            <li className='nav-item' onClick={() => {
+                                scrollToSection('content')
+                                handleMenu()
                             }}>
-                            Cursos
-                        </li>
-                        <li className='nav-item' onClick={() => {
-                            scrollToSection('about')
-                            handleMenu()
+                                Contenido
+                            </li>
+                            <li className='nav-item' onClick={() => {
+                                scrollToSection('prices')
+                                handleMenu()
                             }}>
-                            Acerca de
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-            <div className={`overbtn ${isNearFooter? 'end':''}`}>
-                <div onClick={()=>router.push('/login')}>
-                    Empieza Ya
+                                Precios
+                            </li>
+                            <li className='nav-item' onClick={() => router.push('/login')}>
+                                Ingresar
+                            </li>
+                        </ul>
+                    </nav>
                 </div>
-            </div>
             </>
 
         )

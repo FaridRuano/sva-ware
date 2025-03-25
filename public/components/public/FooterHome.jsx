@@ -8,12 +8,14 @@ const FooterHome = () => {
         <div className="container">
           <Image src={LogoFooter} width={50} height={'auto'} alt='Logo'/>
           <span>
-            Copyright © School of Visual Arts 2024 - Todos los derechos reservados
+            Copyright © School of Visual Arts 2025 - Todos los derechos reservados
           </span>
         </div>
         <div className="container">
           <span>
-            Revisa nuestras políticas <a href='/policy'>aquí.</a>
+            Revisa nuestras políticas de privacidad <a href='/policy'>aquí.</a> 
+            <br/>
+            También revisa los términos de uso <a href='/terms'>aquí.</a>
           </span>
         </div>
     </section>

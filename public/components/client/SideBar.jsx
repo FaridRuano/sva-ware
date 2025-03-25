@@ -12,9 +12,7 @@ const Sidebar = ({ course, title, chapters, activeChapter, activeLesson }) => {
   const handleChapterLink = (id) => {
     return id * 100 + 1
   }
-
-
-
+  console.log(activeChapter)
   return (
     <div className='sidebar-container'>
       <div className="sidebar">
@@ -34,7 +32,7 @@ const Sidebar = ({ course, title, chapters, activeChapter, activeLesson }) => {
                   </span>
                   <div className="arrow-holder">
                     {
-                      activeChapter === chapter._id ? (
+                      parseInt(activeChapter) === chapter._id ? (
                         <Image src={ArrowUp} width={10} height={'auto'} alt='Icon'/>
                       ):(
                         <Image src={ArrowDown} width={10} height={'auto'} alt='Icon'/>
@@ -42,7 +40,7 @@ const Sidebar = ({ course, title, chapters, activeChapter, activeLesson }) => {
                     }
                   </div>
                 </div>
-                <div className="lessons-wrap">
+                <div className={parseInt(activeChapter) === chapter._id ? "lessons-wrap": "lessons-wrap hide"}>
                   {
                     chapter.lessons.map((lesson, id)=>(
                       <div key={id} className={parseInt(activeLesson) === lesson._id ? "lesson active" : "lesson"} onClick={()=>router.push(`/client/${course}/${chapter._id}/${lesson._id}`)}>

@@ -1,355 +1,631 @@
 'use client'
-import NavBar from '@public/components/public/NavBar'
-import Asset1 from '@public/assets/imgs/home-asset.webp'
-import Asset2 from '@public/assets/imgs/home-asset2.webp'
-import Asset3 from '@public/assets/imgs/home-asset3.webp'
-import Asset4 from '@public/assets/imgs/home-asset4.webp'
-import Asset5 from '@public/assets/imgs/home-asset5.webp'
-import Asset6 from '@public/assets/imgs/home-asset6.webp'
-import Asset7 from '@public/assets/imgs/home-asset7.webp'
-import Asset8 from '@public/assets/imgs/home-asset8.webp'
-import Asset9 from '@public/assets/imgs/home-asset9.webp'
-import Instagram from '@public/assets/icons/instagram.webp'
-import Facebook from '@public/assets/icons/facebook.webp'
-import Twitter from '@public/assets/icons/twitter.webp'
-import Youtube from '@public/assets/icons/youtube.webp'
-import Tiktok from '@public/assets/icons/tiktok.webp'
 import React, { useEffect, useState } from 'react'
-import Image from 'next/image'
-import FooterHome from '@public/components/public/FooterHome'
 import { useRouter } from 'next/navigation'
+import FooterHome from "@public/components/public/FooterHome";
+import NavBar from "@public/components/public/NavBar";
+import Image from '@node_modules/next/image';
+import PT2Asset from '@public/assets/imgs/home-pt2-asset.webp'
+import PT2Asset2 from '@public/assets/imgs/home-pt2-asset-2.webp'
+import PT11Asset from '@public/assets/imgs/home-asset7.webp'
+import MuxPlayer from '@node_modules/@mux/mux-player-react';
+import MuxVideo from '@node_modules/@mux/mux-video-react';
 
 const Home = () => {
 
   const router = useRouter()
 
-  /*Info Slider */
+  const [activeSec, setActiveSec] = useState('')
 
-  const [infoSlider, setInfoSlider] = useState(2)
-
-  const activeInfoSlider = () => {
-    switch (infoSlider) {
-      case 1:
-        return 'next';
-      case 2:
-        return '';
-      case 3:
-        return 'prev';
-      default:
-        return '';
-    }
-  }
-
-  /* Courses Slider */
-
-  const [courseSlider, setCourseSlider] = useState(1)
-
-  const courses = [
-    {id: 1, title: 'Introducción a la Suite de Adobe', descrip: 'Tu viaje empieza aqui, este curso esta diseñado para que cualquier persona desde 0 pueda empezar a utilizar los principales softwares de la Suite de Adobe.'},
-    {id: 2, title: 'Creacion de posts mediáticos para redes sociales en Photoshop', descrip: 'Si lo tuyo es el marketing digital, este curso es para ti. Aquí aprenderás a crear diferentes publicaciones combinando técnicas que mezclan el uso de overlays, máscaras, fuentes e imágenes.'},
-    {id: 3, title: 'Edición y composición avanzada con Premiere Pro y After Effects', descrip: 'El workflow perfecto entre dos software que permiten elevar tus posibilidades al momento de editar y componer una pieza audiovisual.'},
-    {id: 4, title: 'Efectos visuales mediaticos en After Effects', descrip: 'Empieza a crear tu propio estilo de audiovisuales con After Effects, aprende a realizar distintos efectos que te permitirán crear una entidad en cada una de tus piezas audiovisuales.'},
-  ]
-
-  const courseSliderCurrent = () => {
-    switch (courseSlider) {
-      case 1:
-        return 'one'
-      case 2:
-        return 'two'
-      case 3:
-        return 'three'
-      case 4:
-        return 'four'
-      default:
-        return 'one'
-    }
-  }
-
-  /* NavBar */
-
-  const [activeSection, setActiveSection] = useState('intro')
+  const sections = ["intro", "learning", "content", "prices"]
 
   useEffect(() => {
-    const sections = document.querySelectorAll('section');
-    const options = {
-      root: null,
-      rootMargin: '0px',
-      threshold: 0.2,
+    const observerOptions = {
+      root: null, // Observa el viewport
+      rootMargin: "0px",
+      threshold: 0.5, // Se activa cuando el 50% de la sección está visible
     };
 
-    const observer = new IntersectionObserver((entries) => {
+    const observerCallback = (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          setActiveSection(entry.target.id)
+          setActiveSec(entry.target.id);
         }
-      })
-    }, options)
+      });
+    };
 
-    sections.forEach((section) => {
-      observer.observe(section)
-    })
+    const observer = new IntersectionObserver(observerCallback, observerOptions)
 
-    return () => {
-      sections.forEach((section) => {
-        observer.unobserve(section)
-      })
-    }
-  }, [])
+    // Observa todas las secciones
+    sections.forEach((id) => {
+      const section = document.getElementById(id)
+      if (section) observer.observe(section)
+    });
+
+    return () => observer.disconnect()
+  }, [sections])
 
   return (
-    <div className='app'>
-      <NavBar activeSection={activeSection}/>
-      <section className='intro' id='intro'>
-        <div className="container">
-          <div className="title">
-            <div className="asset2"/>
-            <div className="asset3"/>
-            <Image className='asset' src={Asset1} width={340} height={'auto'} alt='Asset'/>
-            <div className='asset4'>
-              arte <br/> digital
+    <>
+      <NavBar activeSection={activeSec} />
+      <div className="pages">
+        <div className='home-page'>
+          <section className='home-pt1' id='intro'>
+            <div className="video-background">
+              <MuxVideo
+                playbackId="K1KlYUJdOLUsVLsu4N6I2jRcAcFv4SKsuYwARx00MooU"
+                autoPlay muted loop>
+              </MuxVideo>
             </div>
-            <p>
-              Bienvenido a la
-            </p>
-            <h1>ESCUELA</h1>
-            <div className="sub">
-              <h3>de</h3>
-              <h2>ARTES VISUALES</h2>
+            <div className="signin-btn" onClick={() => router.push('/login')}>
+              <p>
+                Empieza Ya
+              </p>
             </div>
-          </div>
-          <div className="body">
-            <p>
-              Empieza o fortalece tu carrera artística <a>aquí.</a>
-            </p>
-            <p>
-              Desarrolla con nosotros todas las habilidades que necesitas para empezar a plasmar tus ideas
-              en visuales atractivos que todo el mundo podrá ver.
-            </p>
-          </div>
-        </div>
-      </section>
-      <section className="skills" id='skills'>
-        <div className="asset1">
-          <Image src={Asset2} width={1392} height={'auto'} alt='Asset'/>
-        </div>
-        <div className="header">
-          <div className='title'>
-            <h2>
-              Lo que <b>aprenderás</b>
-            </h2>
-          </div>
-        </div>
-        <div className="container">
-          <div className={`slider ${activeInfoSlider()}`}>
-            <div className="slide-item" onClick={()=>setInfoSlider(1)}>
-              <div className="info-container">
-                <div className="text">
-                  <h3>
-                    Herramientas
-                  </h3>
-                  <p>
-                    El principio del arte digital se basa en que esta construido de
-                    la mano de la tecnologia por esto es muy importante conocer
-                    las herramientas de software que nos permiten crear y
-                    hacer realidad cada idea.
-                  </p>
-                  <p>
-                    No necesitas tener un conocimiento previo puedes empezar de 0 y
-                    con cada curso te podrás familiarizar mucho mas
-                    con estas herramientas.
-                  </p>
+            <div className="titles-container">
+              <div className="titles">
+                <h4>Bienvenido a la</h4>
+                <h2>Escuela de</h2>
+                <h1>Artes Visuales</h1>
+              </div>
+              <div className="info">
+                <p>
+                  Aprende nuevas técnicas, habilidades y formas creativas de crear contenido.
+                </p>
+              </div>
+            </div>
+          </section>
+          <section className="home-pt2">
+            <div className="assets-background">
+              <div id="pt2-asset">
+                <Image src={PT2Asset} width={1504} height={'auto'} alt='asset' />
+              </div>
+              <div id="pt2-asset2">
+                <Image src={PT2Asset2} width={215} height={'auto'} alt='asset' />
+              </div>
+            </div>
+            <div className="content-container">
+              <div className="title-pt2">
+                <h1>
+                  No sigas a la multitud
+                </h1>
+                <h2>
+                  crea tu propio <b>camino</b> con tu talento visual.
+                </h2>
+              </div>
+              <div className="separator-0"></div>
+              <div className="info-pt2">
+                <p>
+                  Desarrolla todas las habilidades que necesitas para empezar un
+                  camino propio en el mundo audiovisual, explorando tu creatividad,
+                  dominando las herramientas digitales y llevando tus ideas a la realidad.
+                </p>
+              </div>
+            </div>
+          </section>
+          <section className="home-pt3" id='learning'>
+            <div className="content-container2">
+              <div className="title-pt3">
+                <h1>
+                  ¿Qué aprenderé?
+                </h1>
+              </div>
+              <div className="pt3-containers">
+                <div className="pt3-col">
+                  <MuxVideo
+                    playbackId="Kqt5ki3YSvfrBselh1024haITJbzkQUzZ77027dmav7Zw"
+                    autoPlay muted loop>
+                  </MuxVideo>
                 </div>
-                <div className="video-container">
-                  
+                <div className="pt3-col-bg">
+                  <div className="col-titles">
+                    <h1>Domina los Softwares <b>Creativos</b></h1>
+                    <p>
+                      Para empezar en el mundo audiovisual, necesitas introducirte en las herramientas
+                      que te permitirán plasmar tu creatividad en una pantalla.
+                    </p>
+                    <p>
+                      Aquí aprenderás <b>técnicas y habilidades</b>, además,
+                      recibirás material práctico para que puedas realizar cada ejercicio desde cero.
+                    </p>
+                    <p>
+                      El <b>90%</b> del conocimiento lo recibirás a través de la práctica, ejercicios y desafíos
+                      adicionales que te permitirán desarrollarte de la mejor forma.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="title2-pt3">
+                <h1>
+                  Nosotros vamos más allá
+                </h1>
+              </div>
+              <div className="pt3-containers">
+                <div className="pt3-row explore-btn">
+                  <p>
+                    Descubre los <b>secretos</b> mejor guardados de los efectos visuales y lleva tu creatividad al
+                    siguiente nivel.
+                  </p>
+                  <br />
+                  <p>
+                    <b>Nada de rodeos ni teoría aburrida</b>, aquí vamos directo a lo que realmente
+                    importa: cómo se crean los efectos más impactantes, tanto en diseño como en producción
+                    audiovisual.
+                  </p>
                 </div>
               </div>
             </div>
-            <div className="slide-item" onClick={()=>setInfoSlider(2)}>
+          </section>
+          <section className="home-pt4">
+            <div className="video-background">
+              <MuxVideo
+                playbackId="xz00RZN59TsxMEpQjuv02VhrzxiyI9dxRqZcLjW00NOJzY"
+                autoPlay muted loop>
+              </MuxVideo>
+            </div>
+            <div className="content-container">
               <div className="info-container">
-                <div className="text">
+                <h1 className='pt4-title'>
+                  NO IMPORTA TU NIVEL <br /><b>SI NO TUS GANAS DE APRENDER</b>
+                </h1>
+                <div className="separator-0"></div>
+                <div className="info">
                   <p>
-                    Queremos ser directos: no existe una teoría explícita que
-                    aplique para todo el arte por igual, es imposible intentar
-                    comprender el arte por que cada persona tiene su propio concepto, 
-                    esto lo hace tan especial. Por eso, todas las <b>habilidades y 
-                    técnicas</b> que recibirás serán completamente prácticas y no teorícas. 
+                    Tenemos contenido tanto para principiantes como para quienes ya tienen experiencia,
+                    porque en el mundo creativo siempre hay nuevos efectos y técnicas por descubrir.
+                    <br />
+                    <b>
+                      Nunca lo sabremos todo, pero siempre podemos seguir mejorando.
+                    </b>
                   </p>
-                  <p>
-                    Queremos que desarrolles la capacidad de plasmar y crear cada una 
-                    de tus ideas, sin importar cuán complejas sean.
-                  </p>
-                </div>
-                <div className="video-container">
 
                 </div>
               </div>
             </div>
-            <div className="slide-item" onClick={()=>setInfoSlider(3)}>
-              <div className="info-container">
-                <div className="text">
-                  <h3>
-                    Técnicas
-                  </h3>
+          </section>
+          <section className="home-pt5" id='content'>
+            <div className="content-container">
+              <div className="title-pt3">
+                <h1>
+                  Contenido
+                </h1>
+              </div>
+              <div className="pt5-containers">
+                <div className="pt5-square">
+                  <div className="square-title">
+                    <h1>Workshops</h1>
+                    <p>
+                      Descubre una serie de talleres intensivos diseñados para que practiques
+                      con ejercicios reales y adquieras habilidades de forma dinámica y efectiva.
+                    </p>
+                  </div>
+                  <div className="video-background">
+                    <MuxVideo
+                      playbackId="uif2o4bUYjZ5iAdEtEYF1B2qNCpVXeUeJODaFAaaHOc"
+                      autoPlay muted loop>
+                    </MuxVideo>
+                  </div>
+                </div>
+                <div className="pt5-square">
+                  <div className="square-title">
+                    <h1>Masterclasses</h1>
+                    <p>
+                      Encuentra exactamente lo que necesitas en nuestras masterclasses sobre
+                      técnicas y efectos específicos, donde podrás llevar a cabo justo lo que estabas buscando.
+                    </p>
+                  </div>
+                  <div className="video-background">
+                    <MuxVideo
+                      playbackId="NgNk01lxfl2hI0002VA1mQs5PRy01fmZK02BFthRiPWw02NMs"
+                      autoPlay muted loop>
+                    </MuxVideo>
+                  </div>
+                </div>
+              </div>
+              <div className="pt5-containers">
+                <div className="pt5-square">
+                  <div className="square-title">
+                    <h1>VFX & SFX Assets</h1>
+                    <p>
+                      Mejora tu eficiencia en la edición con nuestros paquetes de recursos, diseñados para
+                      optimizar tu flujo de trabajo y elevar la calidad de tus proyectos visuales.
+                    </p>
+                  </div>
+                  <div className="video-background">
+                    <MuxVideo
+                      playbackId="oTThTZCYHRo02dB1aVeKODizo9V2V3KH02uw88uvBIdwY"
+                      autoPlay muted loop>
+                    </MuxVideo>
+                  </div>
+                </div>
+                <div className="pt5-square">
+                  <div className="square-title">
+                    <h1>Live classes</h1>
+                    <p>
+                      Accede a sesiones en vivo con un artista visual profesional y despeja todas tus dudas o
+                      recibe feedback sobre tus proyectos.
+                    </p>
+                  </div>
+                  <div className="video-background">
+                    <MuxVideo
+                      playbackId="02007oMj01gxsZVMBc01vUCrca00As9JiPbO5llCM00Lonwwc"
+                      autoPlay muted loop>
+                    </MuxVideo>
+                  </div>
+                </div>
+              </div>
+              <div className="title-pt5" onClick={() => router.push('/login')}>
+                <h1>
+                  Ingresa y revisa todo el contenido
+                </h1>
+              </div>
+            </div>
+          </section>
+          <section className="home-pt6">
+            <div className="content-container">
+              <div className="title-pt6">
+                <h1>Contenido <b>NUEVO</b> cada semana</h1>
+              </div>
+              <div className="separator-0"></div>
+              <div className="info">
+                <p>
+                  Todas las semanas habrá nuevo contenido para explorar,
+                  masterclasses y workshops, todo para seguir mejorando tus habilidades.
+                </p>
+              </div>
+              <div className="video-background">
+                <MuxVideo
+                  playbackId="gcMbL018NURKr88ZTl4LoQRGlwsCIEtEeAx9BCFu14Mw"
+                  autoPlay muted loop>
+                </MuxVideo>
+              </div>
+            </div>
+          </section>
+          <section className="home-pt7" id='prices'>
+            <div className="content-container">
+              <div className="title-pt3">
+                <h1>
+                  Precios
+                </h1>
+              </div>
+              <div className="info bg">
+                <p>
+                  <b>Vamos al grano:</b> no te venderemos una 'promoción' ni te diremos nada engañoso.
+                </p>
+                <p>
+                  Nuestros precios reflejan el verdadero valor del contenido que ofrecemos, manteniendo
+                  la accesibilidad para que cualquiera pueda aprender sin barreras.
+                </p>
+              </div>
+
+              <div className="info">
+                <p>
+                  Y estos precios nos permiten seguir creando nuevo contenido de calidad y a
+                  crecer esta comunidad de artistas visuales, <b>somos algo mucho más grande que cursos online.</b>
+
+                </p>
+              </div>
+            </div>
+          </section>
+          <section className="home-pt8">
+            <div className="content-container">
+              <div className="info">
+                <p>
+                  <b>
+                    Puedes comprar unicamente lo que buscas por separado
+                  </b>
+                </p>
+              </div>
+              <div className="cols-container">
+                <div className="col">
+                  <div className="content">
+                    <div className="title">Workshops</div>
+                    <ul className='advantages'>
+                      <li>
+                        <div className="list-0"></div>
+                        <p>
+                          <b>6 horas </b>de contenido audiovisual.
+                        </p>
+                      </li>
+                      <li>
+                        <div className="list-0"></div>
+                        <p>
+                          <b>4-6 horas </b>de actividades prácticas.
+                        </p>
+                      </li>
+                      <li>
+                        <div className="list-0"></div>
+                        <p>
+                          <b>Material </b>para desarrollar cada práctica.
+                        </p>
+                      </li>
+                      <li>
+                        <div className="list-0"></div>
+                        <p>
+                          <b>Acceso </b>de por vida.
+                        </p>
+                      </li>
+                    </ul>
+                    <div className="cost">
+                      <p>desde</p>
+                      <h1>
+                        $44.99
+                      </h1>
+                      <p>USD</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="col">
+                  <div className="content">
+                    <div className="title">Masterclasses</div>
+                    <ul className='advantages'>
+                      <li>
+                        <div className="list-0"></div>
+                        <p>
+                          <b>1-2 horas </b>de contenido audiovisual.
+                        </p>
+                      </li>
+                      <li>
+                        <div className="list-0"></div>
+                        <p>
+                          <b>2-3 horas </b>de actividades prácticas.
+                        </p>
+                      </li>
+                      <li>
+                        <div className="list-0"></div>
+                        <p>
+                          <b>Material </b>para desarrollar cada práctica.
+                        </p>
+                      </li>
+                      <li>
+                        <div className="list-0"></div>
+                        <p>
+                          <b>Acceso </b>de por vida.
+                        </p>
+                      </li>
+                    </ul>
+                    <div className="cost">
+                      <p>desde</p>
+
+                      <h1>
+                        $22.99
+                      </h1>
+                      <p>USD</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="col">
+                  <div className="content">
+                    <div className="title">Resources Packs</div>
+                    <ul className='advantages'>
+                      <li>
+                        <div className="list-0"></div>
+                        <p>
+                          <b>+100 </b>recursos audiovisuales.
+                        </p>
+                      </li>
+                      <li>
+                        <div className="list-0"></div>
+                        <p>
+                          <b>Fácil </b>edición y uso.
+                        </p>
+                      </li>
+                      <li>
+                        <div className="list-0"></div>
+                        <p>
+                          <b>Compatibilidad </b>con todos los softwares.
+                        </p>
+                      </li>
+                      <li>
+                        <div className="list-0"></div>
+                        <p>
+                          <b>Acceso </b>de por vida.
+                        </p>
+                      </li>
+                    </ul>
+                    <div className="cost">
+                      <p>desde</p>
+                      <h1>
+                        $13.99
+                      </h1>
+                      <p>USD</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="title-pt5" onClick={() => router.push('/login')}>
+                <h1>
+                  Explora todo el contenido gratis
+                </h1>
+              </div>
+            </div>
+          </section>
+          <section className="home-pt9">
+            <div className="content-container">
+              <div className="info">
+                <div className='info-col'>
                   <p>
-                    Cada idea es diferente, ninguna se parece, y eso es lo que hace
-                    que el arte sea tan especial. Por eso no intentamos venderte un
-                    método rectilíneo que resolverá todos tus problemas al momento de
-                    crear, porque no existe. 
+                    O puedes unirte a nuestra
                   </p>
+                  <div className='creative'>comunidad creativa</div>
                   <p>
-                    Aquí aprenderás las técnicas que necesitas
-                    entender para poder acercarte al resultado que ideaste en tu mente
-                    y, junto a diferentes procesos creativos, desarrollarás la capacidad
-                    que te permitirá conectar todas las habilidades y llegar a ese
-                    resultado que solo tú tienes en tu mente.
+                    y tener ACCESO TOTAL
                   </p>
                 </div>
-                <div className="video-container">
-                  
+              </div>
+              <div className="separator-0"></div>
+              <div className="content">
+                <div className="advantage">
+                  <div className="separator-1"></div>
+                  <p>
+                    Accede a todo el contenido de nuestra plataforma, antiguo y nuevo.
+                  </p>
+                </div>
+                <div className="advantage">
+                  <div className="separator-1"></div>
+                  <p>
+                    Recibe las últimas novedades y tendencias directamente en tu correo.
+                  </p>
+                </div>
+                <div className="advantage">
+                  <div className="separator-1"></div>
+                  <p>
+                    Conviertete en un miembro de nuestra comunidad y conecta con artistas como tú.
+                  </p>
+                </div>
+                <div className="advantage detail">
+                  <div className="separator-1"></div>
+                  <p>
+                    Obtén acceso directo a un tutor que te guiará en cada paso de tu aprendizaje.
+                  </p>
+                </div>
+                <div className="advantage detail">
+                  <div className="separator-1"></div>
+                  <p>
+                    Aclara todas tus dudas con sesiones en vivo 1 a 1 con un artista profesional.
+                  </p>
+                </div>
+              </div>
+              <div className="video-background">
+                <MuxVideo
+                  playbackId="FZQMlHIaRS1NMkdYodtuydq3Eg02XjP7M7KSZIFJoC4M"
+                  autoPlay muted loop>
+                </MuxVideo>
+              </div>
+            </div>
+          </section>
+          <section className="home-pt10">
+            <div className="content-contianer">
+              <div className="content-row">
+                <div className="col ">
+                  <div className="title">
+                    <h1>
+                      Mensual
+                    </h1>
+                    <p>
+                      Se renueva cada mes
+                    </p>
+                  </div>
+                </div>
+                <div className="col">
+                  <div className="price tier-btn" onClick={() => router.push('/login')}>
+                    <h1>
+                      $29.99
+                    </h1>
+                    <p>USD</p>
+                  </div>
+                </div>
+              </div>
+              <div className="content-row" id='row2'>
+                <div className="col">
+                  <div className="title">
+                    <h1>
+                      Trimestral
+                    </h1>
+                    <p>
+                      Se renueva cada 3 meses
+                    </p>
+                  </div>
+                </div>
+                <div className="col">
+                  <div className="save">
+                    Paga <b>$24.33</b> por mes
+                  </div>
+                  <div className="price tier2-btn" onClick={() => router.push('/login')}>
+                    <h1>
+                      $72.99
+                    </h1>
+                    <p>USD</p>
+                  </div>
+                </div>
+              </div>
+              <div className="content-row" id='row3'>
+                <div className="col">
+                  <div className="title">
+                    <h1>
+                      Semestral
+                    </h1>
+                    <p>
+                      Se renueva cada 6 meses
+                    </p>
+                  </div>
+                </div>
+                <div className="col">
+                  <div className="save">
+                    Paga <b>$21.16</b> por mes
+                  </div>
+                  <div className="price tier3-btn" onClick={() => router.push('/login')}>
+                    <h1>
+                      $126.99
+                    </h1>
+                    <p>USD</p>
+                  </div>
+                </div>
+              </div>
+              <div className="info">
+                <p>
+                  Puedes cancelar en cualquier momento tu suscripción, sin recargos.
+                </p>
+              </div>
+              <div className="footer-sec">
+                <div className="title-pt5" onClick={() => router.push('/login')}>
+                  <h1>
+                    Crear tu cuenta es gratis
+                  </h1>
                 </div>
               </div>
             </div>
-          </div>
+          </section>
+          <section className="home-pt11">
+            <div className="content-container">
+              <div className="title">
+                <h1>¿Quién está detrás de esto?</h1>
+              </div>
+              <div className="separator-0"></div>
+              <div className="ig-id">
+                <div className="img-holder">
+                  <Image src={PT11Asset} width={65} height={'auto'} alt='profile' />
+                </div>
+                <div className="tag-holder">
+                  <a href="https://www.instagram.com/farid.ruano/" target='_blank'>
+                    @farid.ruano
+                  </a>
+                </div>
+              </div>
+              <div className="info">
+                <p>
+                  Soy un artista visual de 23 años con más de 5 años de experiencia en edición de video,
+                  postproducción y diseño gráfico. No estudié en una universidad; soy completamente autodidacta.
+                  A lo largo de mi trayectoria, nadie me ha pedido un título o certificado, porque las
+                  oportunidades que he tenido han sido gracias a la calidad de mi trabajo. Me apasiona
+                  crear piezas audiovisuales disruptivas y visualmente impactantes, siempre imprimiendo
+                  mi toque personal en cada proyecto.
+                </p>
+                <p>
+                  ¿Por qué estoy creando esta plataforma? Porque aprendí, a través de mi propia experiencia,
+                  que no puedo aceptar todos los proyectos que me llegan. No porque no quiera, sino porque
+                  soy solo una persona. No tengo equipo, socios ni compañeros que compartan mi visión creativa
+                  y estilo. Esto me ha puesto en una posición complicada a la hora de trabajar a gran escala.
+                </p>
+                <p>
+                  Además, me di cuenta de que la educación en este campo es limitada y poco accesible. En Latinoamérica,
+                  la educación en arte digital es costosa y, en muchos casos, no ofrece el conocimiento necesario para
+                  empezar. ¿Vale la pena invertir años en una carrera que difícilmente te preparará para la industria?
+                  El mundo avanza rápido, y no estamos para perder el tiempo.
+                </p>
+                <p>
+                  Por eso decidí crear este espacio: para enseñar, aprender y apoyar a quienes quieren dedicarse al
+                  arte digital. Quiero brindar una oportunidad real para que plasmen sus ideas en la pantalla sin
+                  depender de años de estudios en una institución tradicional, sino aprendiendo en el mundo real,
+                  de manera práctica y efectiva.
+                </p>
+              </div>
+            </div>
+          </section>
         </div>
-        <div className="slider-controller">
-          <div className={`controler ${infoSlider === 1 ? ('active'):('')}`} onClick={()=>setInfoSlider(1)}/>
-          <div className={`controler ${infoSlider === 2 ? ('active'):('')}`} onClick={()=>setInfoSlider(2)}/>
-          <div className={`controler ${infoSlider === 3 ? ('active'):('')}`} onClick={()=>setInfoSlider(3)}/>
-        </div>
-      </section>
-      <div className="divider">
-        <Image src={Asset3} alt='Asset'/>
-        <div className="img-holder">
-          <Image className='img' src={Asset4} width={1388} height={'auto'} alt='Asset'/>
-        </div>
-        <Image src={Asset5} alt='Asset'/>
       </div>
-      <section className="courses" id='courses'>
-        <div className="header">
-          <div className='title'>
-            <h2>
-              <b>Cursos</b>
-            </h2>
-          </div>
-        </div>
-        <div className="descrip">
-          <p>
-            Encuentra una amplia variedad de conocimientos en los distintos
-            cursos prácticos y talleres ya disponibles para que puedas empezar hoy mismo.
-          </p>
-        </div>
-        <div className="slider-container">
-          <div className={`slider ${courseSliderCurrent()}`}>
-            {
-              courses.map((course)=> {
-                return(
-                <div className="slider-item" key={course.id}>
-                  <div className="video-holder">
+      <FooterHome />
 
-                  </div>
-                  <div className="info-holder">
-                    <div className="info">
-                      <h3>
-                        {course.title}
-                      </h3>
-                      <p>
-                        {course.descrip}
-                      </p>
-                    </div>
-                    <div className="footer-btn">
-                      <button onClick={()=> router.push('/login')}>Empezar</button>
-                    </div>
-                  </div>
-                </div>
-                )
-              })
-            }
-          </div>
-        </div>
-        <div className="slider-controller">
-          {
-            courses.map((course)=>{
-              return(
-                <div key={course.id} className={`controler ${courseSlider === course.id ? ('active'):('')}`} onClick={()=>setCourseSlider(course.id)}/>
-              )
-            })
-          }
-        </div>
-        <div className="asset2">
-          <Image src={Asset6} width={1392} height={'auto'} alt='Asset'/>
-        </div>
-      </section>
-      <section className="about" id='about'>
-        <Image className='asset-ov' src={Asset8} width={482} height={'auto'} alt='Asset' id='ass-1'/>
-        <Image className='asset-ov' src={Asset9} width={482} height={'auto'} alt='Asset' id='ass-2'/>
-        <div className="container">
-          <div className="title">
-            <h2>
-              Acerca de
-            </h2>
-          </div>
-          <div className="profile">
-            <div className="photo">
-              <Image src={Asset7} width={65} height={'auto'} alt='Profile'/>
-            </div>
-            <div className="name">
-              farid.ruano
-            </div>
-          </div>
-          <div className="descrip">
-            <p>
-              Me considero un artista visual en constante aprendizaje.
-              Llevo 5 años trabajando en la creación de contenido
-              audiovisual para diferentes empresas. He logrado recopilar
-              varias técnicas y estilos que me han permitido crear contenido
-              original para cada empresa con la que he trabajado. Hoy
-              en día, sigo trabajando en la creación audiovisual, pero
-              tengo una inmensa pasión emergente por brindar una mano a 
-              los nuevos artistas que se topan con la fuerte barrera de la
-              educación, especialmente en Latinoamérica, donde es muy difícil
-              tener la oportunidad de aprender habilidades que realmente te
-              sirvan para hacer realidad cada una de nuestras ideas.
-            </p>
-          </div>
-          <div className="links">
-            <div className="social">
-              <div className="name">
-                Conoce más de mi trabajo
-              </div>
-              <div className="link">
-                <a href="https://faridruano.com">
-                  faridruano.com
-                </a>
-              </div>
-            </div>
-            <div className="social">
-              <div className="name">
-                Conoce más de mi vida
-              </div>
-              <div className="socials">
-                <a href="https://x.com/farid__ruano" target='_blank'>
-                  <Image src={Twitter} width={'auto'} height={20} alt='Twitter'/>
-                </a>
-                <a href="https://www.instagram.com/farid.ruano/" target='_blank'>
-                  <Image src={Instagram} width={'auto'} height={20} alt='Instagram'/>
-                </a>
-                <a href="https://www.tiktok.com/@farid.ruano" target='_blank'>
-                  <Image src={Tiktok} width={'auto'} height={20} alt='Tiktok'/>
-                </a>
-                <a href="https://www.facebook.com/withfarid" target='_blank'>
-                  <Image src={Facebook} width={'auto'} height={20} alt='Facebook'/>
-                </a>
-                <a href="https://www.youtube.com/@farid_ruano" target='_blank'>
-                  <Image src={Youtube} width={'auto'} height={20} alt='Youtube'/>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <FooterHome/>
-    </div>
+    </>
   )
 }
 

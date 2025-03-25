@@ -44,7 +44,7 @@ export async function POST(request) {
     const mailOptions = {
         from: process.env.EMAIL_FROM,
         to: email,
-        subject: 'Verifica tu correo',
+        subject: 'Verificación de cuenta - Escuela de Artes Visuales',
         text: `Gracias por registrarte! Por favor verifica tu correo haciendo clic en este enlace: 
         http://localhost:3000/verify?token=${newUser._id}`,
     }

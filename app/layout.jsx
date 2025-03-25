@@ -7,11 +7,14 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+
   return (
     <html lang="en">
       <body>
-          <CookieBanner/>
+        <CookieBanner />
+        <div className='app'>
           {children}
+        </div>
       </body>
     </html>
   );
