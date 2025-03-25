@@ -55,7 +55,7 @@ const Terms = () => {
                     <p>Tenga en cuenta que operamos con una política estricta de no reembolsos. Todas las compras son finales, independientemente del uso del servicio.</p>
 
                     <h2>7. Exoneración de Responsabilidad y Limitaciones de Responsabilidad</h2>
-                    <p>El sitio web y los materiales disponibles en él se proporcionan "tal cual". En la medida permitida por la ley, la Escuela de Artes Visuales no ofrece garantías, explícitas o implícitas, y renuncia a todas las garantías, incluidas las garantías implícitas de comerciabilidad, idoneidad para un propósito particular o no infracción.</p>
+                    <p>El sitio web y los materiales disponibles en él se proporcionan &quot;tal cual&quot;. En la medida permitida por la ley, la Escuela de Artes Visuales no ofrece garantías, explícitas o implícitas, y renuncia a todas las garantías, incluidas las garantías implícitas de comerciabilidad, idoneidad para un propósito particular o no infracción.</p>
                     <p>La Escuela de Artes Visuales no será responsable de ningún daño directo o indirecto derivado del uso o la imposibilidad de uso de este sitio web o los materiales disponibles en él.</p>
 
                     <h2>8. Política de Uso del Contenido</h2>

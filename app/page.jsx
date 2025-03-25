@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import FooterHome from "@public/components/public/FooterHome";
 import NavBar from "@public/components/public/NavBar";
@@ -16,7 +16,7 @@ const Home = () => {
 
   const [activeSec, setActiveSec] = useState('')
 
-  const sections = ["intro", "learning", "content", "prices"]
+  const sections = useMemo(() => ["intro", "learning", "content", "prices"], [])
 
   useEffect(() => {
     const observerOptions = {
@@ -53,7 +53,13 @@ const Home = () => {
             <div className="video-background">
               <MuxVideo
                 playbackId="K1KlYUJdOLUsVLsu4N6I2jRcAcFv4SKsuYwARx00MooU"
-                autoPlay muted loop>
+                autoPlay muted loop
+                hls-config='{
+                  "maxBufferLength": 30,
+                  "maxMaxBufferLength": 60,
+                  "backBufferLength": 15,
+                  "nudgeMaxRetry": 5
+                }'>
               </MuxVideo>
             </div>
             <div className="signin-btn" onClick={() => router.push('/login')}>
@@ -113,7 +119,13 @@ const Home = () => {
                 <div className="pt3-col">
                   <MuxVideo
                     playbackId="Kqt5ki3YSvfrBselh1024haITJbzkQUzZ77027dmav7Zw"
-                    autoPlay muted loop>
+                    autoPlay muted loop
+                    hls-config='{
+                      "maxBufferLength": 30,
+                      "maxMaxBufferLength": 60,
+                      "backBufferLength": 15,
+                      "nudgeMaxRetry": 5
+                    }'>
                   </MuxVideo>
                 </div>
                 <div className="pt3-col-bg">
@@ -159,7 +171,13 @@ const Home = () => {
             <div className="video-background">
               <MuxVideo
                 playbackId="xz00RZN59TsxMEpQjuv02VhrzxiyI9dxRqZcLjW00NOJzY"
-                autoPlay muted loop>
+                autoPlay muted loop
+                hls-config='{
+                  "maxBufferLength": 30,
+                  "maxMaxBufferLength": 60,
+                  "backBufferLength": 15,
+                  "nudgeMaxRetry": 5
+                }'>
               </MuxVideo>
             </div>
             <div className="content-container">
@@ -201,7 +219,13 @@ const Home = () => {
                   <div className="video-background">
                     <MuxVideo
                       playbackId="uif2o4bUYjZ5iAdEtEYF1B2qNCpVXeUeJODaFAaaHOc"
-                      autoPlay muted loop>
+                      autoPlay muted loop
+                      hls-config='{
+                        "maxBufferLength": 30,
+                        "maxMaxBufferLength": 60,
+                        "backBufferLength": 15,
+                        "nudgeMaxRetry": 5
+                      }'>
                     </MuxVideo>
                   </div>
                 </div>
@@ -216,7 +240,13 @@ const Home = () => {
                   <div className="video-background">
                     <MuxVideo
                       playbackId="NgNk01lxfl2hI0002VA1mQs5PRy01fmZK02BFthRiPWw02NMs"
-                      autoPlay muted loop>
+                      autoPlay muted loop
+                      hls-config='{
+                        "maxBufferLength": 30,
+                        "maxMaxBufferLength": 60,
+                        "backBufferLength": 15,
+                        "nudgeMaxRetry": 5
+                      }'>
                     </MuxVideo>
                   </div>
                 </div>
@@ -233,7 +263,13 @@ const Home = () => {
                   <div className="video-background">
                     <MuxVideo
                       playbackId="oTThTZCYHRo02dB1aVeKODizo9V2V3KH02uw88uvBIdwY"
-                      autoPlay muted loop>
+                      autoPlay muted loop
+                      hls-config='{
+                        "maxBufferLength": 30,
+                        "maxMaxBufferLength": 60,
+                        "backBufferLength": 15,
+                        "nudgeMaxRetry": 5
+                      }'>
                     </MuxVideo>
                   </div>
                 </div>
@@ -248,7 +284,13 @@ const Home = () => {
                   <div className="video-background">
                     <MuxVideo
                       playbackId="02007oMj01gxsZVMBc01vUCrca00As9JiPbO5llCM00Lonwwc"
-                      autoPlay muted loop>
+                      autoPlay muted loop
+                      hls-config='{
+                        "maxBufferLength": 30,
+                        "maxMaxBufferLength": 60,
+                        "backBufferLength": 15,
+                        "nudgeMaxRetry": 5
+                      }'>
                     </MuxVideo>
                   </div>
                 </div>
@@ -275,7 +317,13 @@ const Home = () => {
               <div className="video-background">
                 <MuxVideo
                   playbackId="gcMbL018NURKr88ZTl4LoQRGlwsCIEtEeAx9BCFu14Mw"
-                  autoPlay muted loop>
+                  autoPlay muted loop
+                  hls-config='{
+                    "maxBufferLength": 30,
+                    "maxMaxBufferLength": 60,
+                    "backBufferLength": 15,
+                    "nudgeMaxRetry": 5
+                  }'>
                 </MuxVideo>
               </div>
             </div>
@@ -488,7 +536,13 @@ const Home = () => {
               <div className="video-background">
                 <MuxVideo
                   playbackId="FZQMlHIaRS1NMkdYodtuydq3Eg02XjP7M7KSZIFJoC4M"
-                  autoPlay muted loop>
+                  autoPlay muted loop
+                  hls-config='{
+                    "maxBufferLength": 30,
+                    "maxMaxBufferLength": 60,
+                    "backBufferLength": 15,
+                    "nudgeMaxRetry": 5
+                  }'>
                 </MuxVideo>
               </div>
             </div>
