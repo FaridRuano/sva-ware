@@ -52,7 +52,7 @@ const Home = () => {
     const observerOptions = {
       root: null, // Observa el viewport
       rootMargin: "0px",
-      threshold: 0.5, // Se activa cuando el 50% de la sección está visible
+      threshold: 0.3, // Se activa cuando el 50% de la sección está visible
     };
 
     const observerCallback = (entries) => {
