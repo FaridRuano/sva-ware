@@ -213,7 +213,7 @@ const Home = () => {
                   </div>
                   <div className="video-background">
                     <MuxVideo
-                      playbackId="tFb5opzQDdoSeZ57yMDfkkl6i8fAmMP729hH5CY9qeY"
+                      playbackId="rcUn9NDxKO01qMteJf33eqSx0102UdO5sgHoU00tqgjsoGE"
                       autoPlay muted loop
                     >
                     </MuxVideo>
@@ -229,7 +229,7 @@ const Home = () => {
                   </div>
                   <div className="video-background">
                     <MuxVideo
-                      playbackId="3UkySbn2KfgcAKAp01SEQY121OKsVv01LdGUyJEz6ZK8Q"
+                      playbackId="lb00o9UqkHICqatEHtcPTddflFkOZVNuMP5R8SvS4UeU"
                       autoPlay muted loop
                     >
                     </MuxVideo>
@@ -247,7 +247,7 @@ const Home = () => {
                   </div>
                   <div className="video-background">
                     <MuxVideo
-                      playbackId="oIaznY01AfI0000lmp6BuF5Tg7pe3w4oDyUk9CZa00agpUs"
+                      playbackId="WE02Ch02BmB017FRSgOY1CozgfHQUpU0001X024FqgZXnSyqM"
                       autoPlay muted loop
                     >
                     </MuxVideo>
@@ -263,7 +263,7 @@ const Home = () => {
                   </div>
                   <div className="video-background">
                     <MuxVideo
-                      playbackId="gX6XNhwRWVytfDnHz6nD6uI8khFczvfZoBd6GttPqU00"
+                      playbackId="FDRl2uI1fxIfP4mApHztpOoo01SoDVXSngxO00m42E2lM"
                       autoPlay muted loop
                     >
                     </MuxVideo>
