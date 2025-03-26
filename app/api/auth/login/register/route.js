@@ -46,7 +46,7 @@ export async function POST(request) {
         to: email,
         subject: 'Verificación de cuenta - Escuela de Artes Visuales',
         text: `Gracias por registrarte! Por favor verifica tu correo haciendo clic en este enlace: 
-        ${process.env.PUBLIC_API_URL}/login/verify?token=${newUser._id}`,
+        ${process.env.PUBLIC_API_URL}/verify?token=${newUser._id}`,
     }
 
     await transporter.sendMail(mailOptions)
