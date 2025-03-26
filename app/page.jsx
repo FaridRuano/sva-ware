@@ -43,6 +43,16 @@ const Home = () => {
     return () => observer.disconnect()
   }, [sections])
 
+  /* useEffect(() => {
+    const video = document.querySelector('#video-01')
+
+    video.play().then(function () {
+      console.log('Video #1 is playing')
+    }).catch(function (error) {
+      console.log('Video #1 failed')
+    })
+  }, []) */
+
   return (
     <>
       <NavBar activeSection={activeSec} />
@@ -51,9 +61,10 @@ const Home = () => {
           <section className='home-pt1' id='intro'>
             <div className="video-background">
               <MuxVideo
+                id='video-01'
                 playbackId="6j6SgyATd3hKJY01w5J77U4D2GOHDkcrPBMWEetBcWjs"
                 autoPlay muted loop
-                >
+              >
               </MuxVideo>
             </div>
             <div className="signin-btn" onClick={() => router.push('/login')}>
@@ -114,7 +125,7 @@ const Home = () => {
                   <MuxVideo
                     playbackId="Rgu6lcBN5Ej301zl4ZbWTPnD6MOGK9NdpjJzUFv11JFs"
                     autoPlay muted loop
-                    >
+                  >
                   </MuxVideo>
                 </div>
                 <div className="pt3-col-bg">
@@ -161,7 +172,7 @@ const Home = () => {
               <MuxVideo
                 playbackId="jx2UY00D2bwKkH78H4nA2ADNvygXy3zE1PsRdIpTbDws"
                 autoPlay muted loop
-                >
+              >
               </MuxVideo>
             </div>
             <div className="content-container">
@@ -204,7 +215,7 @@ const Home = () => {
                     <MuxVideo
                       playbackId="tFb5opzQDdoSeZ57yMDfkkl6i8fAmMP729hH5CY9qeY"
                       autoPlay muted loop
-                      >
+                    >
                     </MuxVideo>
                   </div>
                 </div>
@@ -220,7 +231,7 @@ const Home = () => {
                     <MuxVideo
                       playbackId="3UkySbn2KfgcAKAp01SEQY121OKsVv01LdGUyJEz6ZK8Q"
                       autoPlay muted loop
-                      >
+                    >
                     </MuxVideo>
                   </div>
                 </div>
@@ -238,7 +249,7 @@ const Home = () => {
                     <MuxVideo
                       playbackId="oIaznY01AfI0000lmp6BuF5Tg7pe3w4oDyUk9CZa00agpUs"
                       autoPlay muted loop
-                      >
+                    >
                     </MuxVideo>
                   </div>
                 </div>
@@ -254,7 +265,7 @@ const Home = () => {
                     <MuxVideo
                       playbackId="gX6XNhwRWVytfDnHz6nD6uI8khFczvfZoBd6GttPqU00"
                       autoPlay muted loop
-                      >
+                    >
                     </MuxVideo>
                   </div>
                 </div>
@@ -282,7 +293,7 @@ const Home = () => {
                 <MuxVideo
                   playbackId="ZYczVJlYGvuOd6rCCEXuQk5xc01NDJ6tioFQfGphivFg"
                   autoPlay muted loop
-                  >
+                >
                 </MuxVideo>
               </div>
             </div>
@@ -496,7 +507,7 @@ const Home = () => {
                 <MuxVideo
                   playbackId="XNiwU1ZurCocOMiyU00rLNlNo00G83y91w0201NHEfUrgUI"
                   autoPlay muted loop
-                  >
+                >
                 </MuxVideo>
               </div>
             </div>
