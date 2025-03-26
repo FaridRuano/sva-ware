@@ -1,14 +1,13 @@
 'use client'
 import React, { useEffect, useMemo, useState } from 'react'
 import { useRouter } from 'next/navigation'
-import FooterHome from "@public/components/public/FooterHome";
-import NavBar from "@public/components/public/NavBar";
-import Image from '@node_modules/next/image';
+import FooterHome from "@public/components/public/FooterHome"
+import NavBar from "@public/components/public/NavBar"
+import Image from '@node_modules/next/image'
 import PT2Asset from '@public/assets/imgs/home-pt2-asset.webp'
 import PT2Asset2 from '@public/assets/imgs/home-pt2-asset-2.webp'
 import PT11Asset from '@public/assets/imgs/home-asset7.webp'
-import MuxPlayer from '@node_modules/@mux/mux-player-react';
-import MuxVideo from '@node_modules/@mux/mux-video-react';
+import MuxVideo from '@node_modules/@mux/mux-video-react'
 
 const Home = () => {
 
