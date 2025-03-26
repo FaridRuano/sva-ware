@@ -20,6 +20,8 @@ export const useIntersectionObserver = (elementId, threshold = 0.5) => {
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
+        }else{
+          setIsVisible(false);
         }
       },
       {
@@ -72,25 +74,25 @@ const Home = () => {
     return () => observer.disconnect()
   }, [sections])
 
-  const isVisiblePt2 = useIntersectionObserver('#home-pt2', .5)
+  const isVisiblePt2 = useIntersectionObserver('#home-pt2', .01)
 
-  const isVisiblePt3 = useIntersectionObserver('#learning', .1)
+  const isVisiblePt3 = useIntersectionObserver('#learning', .01)
 
-  const isVisiblePt4 = useIntersectionObserver('#home-pt4', .1)
+  const isVisiblePt4 = useIntersectionObserver('#home-pt4', .01)
 
-  const isVisiblePt5 = useIntersectionObserver('#content', .1)
+  const isVisiblePt5 = useIntersectionObserver('#content', .01)
 
-  const isVisiblePt6 = useIntersectionObserver('#home-pt6', .1)
+  const isVisiblePt6 = useIntersectionObserver('#home-pt6', .01)
 
-  const isVisiblePt7 = useIntersectionObserver('#prices', .1)
+  const isVisiblePt7 = useIntersectionObserver('#prices', .01)
 
-  const isVisiblePt8 = useIntersectionObserver('#home-pt8', .1)
+  const isVisiblePt8 = useIntersectionObserver('#home-pt8', .01)
 
-  const isVisiblePt9 = useIntersectionObserver('#home-pt9', .1)
+  const isVisiblePt9 = useIntersectionObserver('#home-pt9', .01)
 
-  const isVisiblePt10 = useIntersectionObserver('#home-pt10', .1)
+  const isVisiblePt10 = useIntersectionObserver('#home-pt10', .01)
 
-  const isVisiblePt11 = useIntersectionObserver('#home-pt11', .1)
+  const isVisiblePt11 = useIntersectionObserver('#home-pt11', .01)
 
   const [error, setError] = useState(false)
 
@@ -189,7 +191,10 @@ const Home = () => {
                     <div className="pt3-col">
                       <MuxVideo
                         playbackId="Rgu6lcBN5Ej301zl4ZbWTPnD6MOGK9NdpjJzUFv11JFs"
-                        autoPlay muted loop
+                        autoPlay 
+                        muted
+                        loop
+                        playsInline
                       >
                       </MuxVideo>
                     </div>
@@ -241,7 +246,10 @@ const Home = () => {
                   <div className="video-background">
                     <MuxVideo
                       playbackId="jx2UY00D2bwKkH78H4nA2ADNvygXy3zE1PsRdIpTbDws"
-                      autoPlay muted loop
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
                     >
                     </MuxVideo>
                   </div>
@@ -290,7 +298,10 @@ const Home = () => {
                       <div className="video-background">
                         <MuxVideo
                           playbackId="rcUn9NDxKO01qMteJf33eqSx0102UdO5sgHoU00tqgjsoGE"
-                          autoPlay muted loop
+                          autoPlay
+                          muted
+                          loop
+                          playsInline
                         >
                         </MuxVideo>
                       </div>
@@ -306,7 +317,10 @@ const Home = () => {
                       <div className="video-background">
                         <MuxVideo
                           playbackId="lb00o9UqkHICqatEHtcPTddflFkOZVNuMP5R8SvS4UeU"
-                          autoPlay muted loop
+                          autoPlay
+                          muted
+                          loop
+                          playsInline
                         >
                         </MuxVideo>
                       </div>
@@ -324,7 +338,10 @@ const Home = () => {
                       <div className="video-background">
                         <MuxVideo
                           playbackId="WE02Ch02BmB017FRSgOY1CozgfHQUpU0001X024FqgZXnSyqM"
-                          autoPlay muted loop
+                          autoPlay
+                          muted
+                          loop
+                          playsInline
                         >
                         </MuxVideo>
                       </div>
@@ -340,7 +357,10 @@ const Home = () => {
                       <div className="video-background">
                         <MuxVideo
                           playbackId="FDRl2uI1fxIfP4mApHztpOoo01SoDVXSngxO00m42E2lM"
-                          autoPlay muted loop
+                          autoPlay
+                          muted
+                          loop
+                          playsInline
                         >
                         </MuxVideo>
                       </div>
@@ -372,7 +392,10 @@ const Home = () => {
                   <div className="video-background">
                     <MuxVideo
                       playbackId="ZYczVJlYGvuOd6rCCEXuQk5xc01NDJ6tioFQfGphivFg"
-                      autoPlay muted loop
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
                     >
                     </MuxVideo>
                   </div>
@@ -598,7 +621,10 @@ const Home = () => {
                   <div className="video-background">
                     <MuxVideo
                       playbackId="XNiwU1ZurCocOMiyU00rLNlNo00G83y91w0201NHEfUrgUI"
-                      autoPlay muted loop
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
                     >
                     </MuxVideo>
                   </div>

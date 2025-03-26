@@ -359,6 +359,12 @@ button {
     video {
       height: 100%;
     }
+    @media (min-width: 1800px) {
+      video{
+        width: 100%;
+        height: auto;
+      }
+    }
   }
 }
 
@@ -766,7 +772,7 @@ button {
   width: 100%;
   padding: 100px 0;
   background: linear-gradient(135deg, #121213, #2c2c2c);
-  height: fit-content;
+  min-height: 647px;
   position: relative;
   overflow: hidden;
   display: flex;
@@ -878,6 +884,10 @@ button {
         width: 100%;
       }
     }
+  }
+
+  @media (max-width: 800px) {
+    min-height: 1051px;
   }
 }
 
