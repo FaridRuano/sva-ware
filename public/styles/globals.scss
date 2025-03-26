@@ -1599,6 +1599,7 @@ button {
     display: flex;
     flex-direction: row;
     gap: 1rem;
+    align-items: center;
 
     .logo-container {
       display: flex;
@@ -1608,14 +1609,16 @@ button {
       border: solid 1px rgba($light , .3);
       padding: 20px;
       border-radius: 50%;
-
+      width: 40px;
+      height: 40px;
     }
 
     .msg-container {
       display: flex;
+      height: 80px;
       justify-content: center;
       align-items: center;
-      padding: 20px;
+      padding: 0 20px;
       border-radius: 20px;
       background-color: rgba($bg-comp, .8);
       animation: colorAnimStroke 5s ease infinite;
@@ -1660,11 +1663,13 @@ button {
   }
 
   @media (max-width: 800px) {
-    .msg-container {
-      width: 335px;
+    .verify-container {
 
-      h1 {
-        font-size: 22px;
+      .msg-container {
+        width: 220px;
+        h1 {
+          font-size: 18px;
+        }
       }
     }
 

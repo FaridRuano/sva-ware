@@ -94,20 +94,6 @@ const Home = () => {
 
   const isVisiblePt11 = useIntersectionObserver('#home-pt11', .01)
 
-  const [error, setError] = useState(false)
-
-  useEffect(() => {
-    const video = document.querySelector('#video-01')
-
-    video.play().then(function () {
-      console.log('Video #1 is playing')
-      setError(false)
-    }).catch(function (error) {
-      setError(true)
-      console.log('Video #1 failed')
-    })
-  }, [])
-
   return (
     <>
       <NavBar activeSection={activeSec} />

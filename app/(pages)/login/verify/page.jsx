@@ -16,16 +16,31 @@ function Verify() {
   useEffect(() => {
     const verifyEmail = async () => {
       if (token) {
+
+        const data = {
+          userId: token
+        }
+
         try {
-          await fetch(`/api/auth/verify/${token}`, {
+          const res = await fetch(`/api/auth/verify`, {
             method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
           })
 
-          setSucess(true)
+          const responseData = await res.json()
 
-          setTimeout(() => {
-            router.push('/login')
-          }, 2500)
+          if (responseData.data) {
+            setSucess(true)
+            setTimeout(() => {
+              router.push('/login')
+            }, 2500)
+          } else {
+            setError(true)
+            router.push('/')
+          }
 
         } catch (e) {
           console.log('Error:' + e)
@@ -54,7 +69,7 @@ function Verify() {
           <h1>Verificando tu correo electrónico...</h1>
         </div>
       </div>
-      <div className={`res-container ${err ? 'show' : ''} ${suc ? 'show positive' : ''}` }>
+      <div className={`res-container ${err ? 'show' : ''} ${suc ? 'show positive' : ''}`}>
         {
           err ? (
             <p>
