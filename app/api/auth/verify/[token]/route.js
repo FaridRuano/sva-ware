@@ -19,5 +19,5 @@ export async function POST(request, context) {
         }
     )
     
-    return NextResponse.json({ message: "User updated"}, { status: 200 })
+    return NextResponse.json({ message: "User updated", data: true }, { status: 200 })
 }

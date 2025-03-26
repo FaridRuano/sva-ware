@@ -21,7 +21,7 @@
     "cloudinary-video-player": "^2.1.0",
     "mongoose": "^8.7.1",
     "mux": "^0.0.2",
-    "next": "14.2.15",
+    "next": "^15.2.4",
     "next-auth": "^4.24.8",
     "next-cloudinary": "^6.16.0",
     "nodemailer": "^6.9.15",

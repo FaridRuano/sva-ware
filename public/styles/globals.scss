@@ -359,8 +359,9 @@ button {
     video {
       height: 100%;
     }
+
     @media (min-width: 1800px) {
-      video{
+      video {
         width: 100%;
         height: auto;
       }
@@ -1579,6 +1580,102 @@ button {
 
   @media (max-width: 800px) {
     min-height: 864px;
+  }
+}
+
+/* Verify Page */
+
+.verify-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(135deg, #0e0e0e, #202020);
+  gap: 1rem;
+
+  .verify-container {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+
+    .logo-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: rgba($bg-comp, .8);
+      border: solid 1px rgba($light , .3);
+      padding: 20px;
+      border-radius: 50%;
+
+    }
+
+    .msg-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      border-radius: 20px;
+      background-color: rgba($bg-comp, .8);
+      animation: colorAnimStroke 5s ease infinite;
+
+      h1 {
+        font-size: 20px;
+        text-align: center;
+        animation: colorAnim 5s ease infinite;
+      }
+
+    }
+  }
+
+
+  .res-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 12px;
+    height: 30px;
+    width: 480px;
+    text-align: center;
+    border: solid 1px rgba($light, .3);
+    border-radius: 20px;
+    background-color: rgba($secondary-color, .3);
+    opacity: 0;
+    transition: .3s ease-out;
+
+    &.show {
+      opacity: 1;
+    }
+
+    &.positive {
+      background-color: rgba($primary-color, .3);
+    }
+
+    p {
+      font-size: 14px;
+      color: $light;
+      font-weight: 600;
+    }
+  }
+
+  @media (max-width: 800px) {
+    .msg-container {
+      width: 335px;
+
+      h1 {
+        font-size: 22px;
+      }
+    }
+
+    .res-container {
+      width: 330px;
+
+      p {
+        font-size: 10.5px;
+        font-weight: 400;
+      }
+    }
   }
 }
 
@@ -3192,6 +3289,18 @@ button {
   }
 
   50% {
-    color: #a200ff;
+    color: $secondary-color;
+  }
+}
+
+@keyframes colorAnimStroke {
+
+  0%,
+  100% {
+    border: solid 1px $primary-color;
+  }
+
+  50% {
+    border: solid 1px $secondary-color;
   }
 }
