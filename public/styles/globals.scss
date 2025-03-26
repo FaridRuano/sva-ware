@@ -465,6 +465,7 @@ button {
     height: 100%;
     width: 100%;
     position: absolute;
+    animation: inOpacity 1.5s ease-out forwards;
 
     #pt2-asset {
       position: absolute;
@@ -496,6 +497,7 @@ button {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  animation: inOpacity 2.5s forwards;
 
   @media (max-width: 1000px) {
     max-width: 335px;
@@ -553,7 +555,7 @@ button {
 
 .home-pt3 {
   width: 100%;
-  height: fit-content;
+  min-height: 852px;
   padding: 100px 0;
   background: linear-gradient(135deg, #121213, #2c2c2c);
   display: flex;
@@ -562,6 +564,10 @@ button {
   align-items: center;
   position: relative;
   overflow: hidden;
+
+  @media (max-width: 800px) {
+    min-height: 1526px;
+  }
 }
 
 .content-container2 {
@@ -570,6 +576,7 @@ button {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  animation: inOpacity 1.5s ease-out forwards;
 
   @media (max-width: 800px) {
     max-width: 335px;
@@ -709,8 +716,9 @@ button {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 1;
+    z-index: -1;
     opacity: .4;
+    animation: inOpacity04 1s ease-out forwards;
 
     video {
       height: 100%;
@@ -815,6 +823,7 @@ button {
         z-index: 1;
         opacity: .1;
         transition: .3s ease-out;
+        animation: inOpacity04 1s ease-out forwards;
 
         video {
           height: auto;
@@ -853,7 +862,7 @@ button {
         filter: drop-shadow(0 0 100px rgba($primary-color, .1));
 
         .video-background {
-          opacity: .4;
+          animation: inOpacity04 1s ease-out forwards;
         }
       }
     }
@@ -905,7 +914,7 @@ button {
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: -1;
-    opacity: .4;
+    animation: inOpacity04 1s ease-out forwards;
 
     video {
       height: auto;
@@ -923,8 +932,7 @@ button {
 
 .home-pt7 {
   width: 100%;
-  padding: 100px 0;
-  height: fit-content;
+  height: 535px;
   background: linear-gradient(135deg, #121213, #006b4b);
   overflow: hidden;
   display: flex;
@@ -948,12 +956,16 @@ button {
       border: 1px solid rgba($light , .3);
     }
   }
+
+  @media (max-width: 800px) {
+    height: 635px;
+  }
 }
 
 .home-pt8 {
   width: 100%;
-  padding: 100px 0;
-  height: fit-content;
+  padding: 0 0;
+  min-height: 647px;
   background: linear-gradient(135deg, #121213, #2c2c2c);
   overflow: hidden;
   display: flex;
@@ -1159,6 +1171,11 @@ button {
       filter: drop-shadow(0 0 30px $primary-color);
     }
   }
+
+  @media (max-width: 800px) {
+    padding: 50px 0;
+    min-height: 1051px;
+  }
 }
 
 .home-pt9 {
@@ -1248,7 +1265,7 @@ button {
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: -1;
-    opacity: .4;
+    animation: inOpacity04 1s ease-out forwards;
     width: 100%;
     height: 100%;
     display: flex;
@@ -1266,11 +1283,15 @@ button {
       }
     }
   }
+
+  @media (max-width: 800px) {
+    min-height: 650px;
+  }
 }
 
 .home-pt10 {
   width: 100%;
-  height: fit-contentz;
+  min-height: 454px;
   overflow: hidden;
   display: flex;
   justify-content: center;
@@ -1494,7 +1515,7 @@ button {
 
 .home-pt11 {
   width: 100%;
-  height: fit-contentz;
+  min-height: 500px;
   overflow: hidden;
   display: flex;
   justify-content: center;
@@ -1544,6 +1565,10 @@ button {
     font-size: 14px;
     font-weight: 200;
     margin-top: 20px;
+  }
+
+  @media (max-width: 800px) {
+    min-height: 864px;
   }
 }
 
@@ -3040,6 +3065,16 @@ button {
   }
 }
 
+@keyframes inOpacity04 {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: .4;
+  }
+}
+
 @keyframes inBannerMobile {
   0% {
     opacity: 0;
@@ -3140,10 +3175,13 @@ button {
 }
 
 @keyframes colorAnim {
-  0%, 100%{
+
+  0%,
+  100% {
     color: $primary-color;
   }
-  50%{
+
+  50% {
     color: #a200ff;
   }
 }
