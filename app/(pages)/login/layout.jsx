@@ -28,25 +28,26 @@ export default function RootLayout({ children }) {
 
   useEffect(() => {
     const checkUser = async () => {
-      if (status === 'authenticated') {
-        try {
-          const isUser = await verifyUserStillExists(data.user.email)
+      try {
+        const isUser = await verifyUserStillExists(data.user.email)
 
-          if (isUser) {
-            router.push('/client')
-          } else {
-            setLoading(false)
-          }
-        } catch (error) {
-          console.error("Error verificando usuario:", error)
+        if (isUser) {
+          router.push('/client')
+        } else {
           setLoading(false)
         }
-      } else {
-        setLoading(status === 'loading')
+      } catch (error) {
+        console.error("Error verificando usuario:", error)
+        setLoading(false)
       }
     }
 
-    checkUser()
+    if (status === 'authenticated') {
+      checkUser()
+    } else {
+      setLoading(status === 'loading')
+    }
+
   }, [status, router])
 
   if (loading) {
