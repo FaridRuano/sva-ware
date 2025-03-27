@@ -2185,11 +2185,18 @@ button {
         display: flex;
         gap: 1rem;
         cursor: pointer;
-        padding: 10px;
+        padding: 10px 13px;
+        max-width: 122px;
         transition: .2s ease-out;
         border-radius: 20px;
         justify-content: flex-end;
         position: relative;
+
+        .name-dropdown{
+          max-width: 95px;
+          overflow: hidden;
+          white-space: nowrap;
+        }
 
         span {
           font-size: $standar;
@@ -2292,12 +2299,14 @@ button {
   }
 
   @media (max-width: 800px) {
-    padding: 0 5px;
+    padding: 0 10px;
 
     .client-nav-container {
       .nav-item {
         min-width: 100px;
-
+        .dropdown{
+          margin-right: 8px;
+        }
         .item {
           span {
             display: none;

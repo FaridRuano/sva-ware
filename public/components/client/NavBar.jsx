@@ -86,9 +86,11 @@ const NavBar = () => {
                     </div>
                     <div className="nav-item">
                         <div className="dropdown">
-                            <span>
-                                {username}
-                            </span>
+                            <div className="name-dropdown">
+                                <span>
+                                    {username}
+                                </span>
+                            </div>
                             <div className="icon">
                                 <Image src={ArrowDown} width={11} height={'auto'} alt='Icon' />
                             </div>
