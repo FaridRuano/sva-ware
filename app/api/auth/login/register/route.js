@@ -44,17 +44,17 @@ export async function POST(request) {
     const mailOptions = {
         from: process.env.EMAIL_FROM,
         to: email,
-        subject: `'Verificación de cuenta - Escuela de Artes Visuales'`,
+        subject: 'Verificación de cuenta - Escuela de Artes Visuales',
         html: `
             <!DOCTYPE html>
             <html>
                 <head>
                     <style>
                         body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px; }
-                        .header { text-align: center; margin-bottom: 20px; background-color: #161616; color: #00ff95; border-radius: 20px;}
+                        .header { text-align: center; margin-bottom: 20px; background-color:rgb(0, 0, 0); color: #00ff95; border-radius: 20px;}
                         .separator-logo{ height: 20px;}
-                        .logo-container{text-align: center;  height: 80px;}
-                        .logo { max-width: 200px; height: auto; }
+                        .logo-container{text-align: center;  height: 60px;}
+                        .logo { width: auto; height: 60px; }
                         .content { background-color: #f1f1f1; padding: 20px; border-radius: 5px; color: #161616; border-radius: 20px; font-weight: 500;}
                         .button { 
                             display: inline-block; 
@@ -88,7 +88,7 @@ export async function POST(request) {
                     <div class="content">
                         <h2>Verifica tu correo electrónico</h2>
                         <p>¡Gracias por registrarte en la Escuela de Artes Visuales!</p>
-                        <p>${name}, para completar tu registro, por favor verifica tu dirección de
+                        <p><b>${name}</b>, para completar tu registro, por favor verifica tu dirección de
                             correo electrónico haciendo clic en el siguiente botón:</p>
 
                         <p style="text-align: center;">
