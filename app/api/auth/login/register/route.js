@@ -49,7 +49,12 @@ export async function POST(request) {
         ${process.env.PUBLIC_API_URL}/verify?token=${newUser._id}`,
     }
 
-    await transporter.sendMail(mailOptions)
+    try {
+        await transporter.sendMail(mailOptions)
+        console.log('Verification email sent succesfully:', email)
+    } catch (error) {
+        console.error('Error at sending the verification email:', error.message)
+    }
 
     return NextResponse.json({ message: "Data created"}, { status: 200 })
 }

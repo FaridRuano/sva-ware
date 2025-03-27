@@ -46,7 +46,7 @@ const Login = () => {
       try{
         setLoading(true)
 
-        const res = await axios.post(`/api/auth/login/${email}`)
+        const res = await axios.post(`/api/auth/login/email`,{email})
         if(res.data.exists){
           setCurrentStep(1)
         }else{

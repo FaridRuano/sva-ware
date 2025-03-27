@@ -2,18 +2,15 @@ import connectMongoDB from "@libs/mongodb"
 import User from "@models/User"
 import { NextResponse } from "next/server"
 
-export async function POST(request, context) {
-    const { params } = context
+export async function POST(request) {
 
-    if(!params){
-        return NextResponse.json({ message: 'Data not found' }, { status: 404 })
-    }
 
     await connectMongoDB()
 
-    const email = params.email
+    const { email } = await request.json();
+
     try {
-        const user = await User.findOne({email: email})
+        const user = await User.findOne({ email: email })
         if (!user) {
             return NextResponse.json({ exists: false })
         }

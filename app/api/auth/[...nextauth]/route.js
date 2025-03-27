@@ -23,8 +23,6 @@ const handler = async (req, res) => {
 
           const user = await User.findOne({ email: credentials.email}).select('+password emailVerified name email')
 
-          console.log(user)
-
           if (!user) {
             throw new Error('Invalid credentials');
           }
