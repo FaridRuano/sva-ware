@@ -48,7 +48,7 @@ const NavBar = () => {
                     }
 
                 } catch (error) {
-                    console.error("Error verificando usuario:", error)
+                    console.error("Error at verifying user:", error)
                 }
             } else if (status === 'unauthenticated') {
                 router.push('/login')

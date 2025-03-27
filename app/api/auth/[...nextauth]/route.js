@@ -21,7 +21,7 @@ const handler = async (req, res) => {
         
         async authorize(credentials) {
 
-          const user = await User.findOne({ email: credentials.email}).select('+password emailVerified name email')
+          const user = await User.findOne({ email: credentials.email}).select('+password name email')
 
           if (!user) {
             throw new Error('Invalid credentials');
@@ -35,7 +35,6 @@ const handler = async (req, res) => {
           return {
             email: user.email,
             name: user.name,
-            emailVerified: user.emailVerified,
           }
         }
       }),

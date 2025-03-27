@@ -4,7 +4,6 @@ import { NextResponse } from "next/server"
 
 export async function POST(request) {
 
-
     await connectMongoDB()
 
     const { email } = await request.json();
