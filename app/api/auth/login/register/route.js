@@ -44,7 +44,7 @@ export async function POST(request) {
     const mailOptions = {
         from: process.env.EMAIL_FROM,
         to: email,
-        subject: 'Verificación de cuenta - Escuela de Artes Visuales',
+        subject: `'Verificación de cuenta - Escuela de Artes Visuales'`,
         html: `
             <!DOCTYPE html>
             <html>
@@ -88,7 +88,7 @@ export async function POST(request) {
                     <div class="content">
                         <h2>Verifica tu correo electrónico</h2>
                         <p>¡Gracias por registrarte en la Escuela de Artes Visuales!</p>
-                        <p>Para completar tu registro, por favor verifica tu dirección de
+                        <p>${name}, para completar tu registro, por favor verifica tu dirección de
                             correo electrónico haciendo clic en el siguiente botón:</p>
 
                         <p style="text-align: center;">
