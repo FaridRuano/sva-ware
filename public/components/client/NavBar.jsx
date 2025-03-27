@@ -7,6 +7,7 @@ import { signOut, useSession } from 'next-auth/react';
 import Image from 'next/image'
 import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
+import axios from '@node_modules/axios'
 
 const NavBar = () => {
 
@@ -19,10 +20,10 @@ const NavBar = () => {
     const verifyUserStillExists = async (email) => {
         try {
             const res = await axios.post(`/api/auth/login/email`, { email })
+
             if (res.data.exists) {
                 return true
             } else {
-                signOut({ callbackUrl: '/login' })
                 return false
             }
 
@@ -43,7 +44,7 @@ const NavBar = () => {
                         setUsername(session.user.name)
 
                     } else {
-                        router.push('/login')
+                        signOut({ callbackUrl: '/login' })
                     }
 
                 } catch (error) {

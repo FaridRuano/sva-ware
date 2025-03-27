@@ -18,7 +18,6 @@ export default function RootLayout({ children }) {
       if (res.data.exists) {
         return true
       } else {
-        signOut({ callbackUrl: '/login' })
         return false
       }
 
