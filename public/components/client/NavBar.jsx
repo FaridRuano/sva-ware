@@ -75,9 +75,9 @@ const NavBar = () => {
                         <Image src={Logo} width={'auto'} height={30} alt='Logo' />
                     </div>
                     <div className="nav-item">
-                        <div className="item" onClick={() => router.push('/client')}>
+                        <div className="item" onClick={() => router.push('/client/mycourses')}>
                             <Image src={Courses} width={'auto'} height={20} alt='Icon' />
-                            <span>Cursos</span>
+                            <span>Mis cursos</span>
                         </div>
                         <div className="item">
                             <Image src={Blog} width={'auto'} height={20} alt='Icon' />

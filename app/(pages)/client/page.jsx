@@ -1,7 +1,9 @@
 'use client'
 import React, { useEffect } from 'react'
-import { signOut, useSession } from 'next-auth/react';
+import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
+import Image from '@node_modules/next/image';
+import ClientPt1Asset from '@public/assets/imgs/covers/cover-introadobe.jpg'
 
 const Client = () => {
 
@@ -9,70 +11,79 @@ const Client = () => {
 
   const { data: session, status } = useSession()
 
-  useEffect(()=>{
+  useEffect(() => {
 
   }, [session, router])
 
   if (status === 'loading') {
     return <p>Loading...</p>
-  }else if(status === 'unauthenticated'){
+  } else if (status === 'unauthenticated') {
     router.push('/login')
-  }else{
+  } else {
     return (
-      <>
-          <section className='home-title'>
-            <h1>Bienvenido de vuelta, <br/>continua tus clases</h1>
-          </section>
-          <div className="client-courses">
+      <div className="client-content-container">
+        <div className="page-header">
+          <div className="title-container">
             <span>
-              Todos los cursos
+              Explora todo el contenido
             </span>
-            <div className="courses-wrap">
-              <div className="row">
-                <div className="course" onClick={()=>router.push('/client/introductiontoadobe/1/101')}>
-                  <div className="img-holder">
-
-                  </div>
-                  <div className="title-holder">
-                    <h3>
-                      Introducción a la Suite de Adobe
-                    </h3>
-                  </div>
-                </div>
-                <div className="course" onClick={()=>router.push('/client/creatingposts')}>
-                  <div className="img-holder">
-
-                  </div>
-                  <div className="title-holder">
-                    <h3>
-                      Creación de posts mediáticos para redes sociales en Photoshop e Ilustrador
-                    </h3>
-                  </div>
-                </div>
-                <div className="course" onClick={()=>router.push('/client/workflowpremiereproandaftereffects')}>
-                  <div className="img-holder">
-
-                  </div>
-                  <div className="title-holder">
-                    <h3>
-                      Edición y composición avanzada con Premiere Pro y After Effects
-                    </h3>
+          </div>
+        </div>
+        <div className="page-separator">
+          <div className="subtitle-container">
+            <span>
+              Nuevo
+            </span>
+          </div>
+        </div>
+        <section className="client-pt1">
+          <div className="feature-container">
+            <div className="feature-img">
+              <Image src={ClientPt1Asset} width={800} height={'auto'} alt='Course' />
+            </div>
+            <div className="feature-details">
+              <div className="details-row">
+                <div className="details-type">
+                  <div className="type-container">
+                    <span>
+                      Curso
+                    </span>
                   </div>
                 </div>
-                <div className="course" onClick={()=>router.push('/client/visualeffectsinafter')}>
-                  <div className="img-holder">
-
+                <div className="details-title">
+                  <h1>
+                    Introducción a la Suite de Adobe
+                  </h1>
+                </div>
+              </div>
+              <div className="details-row">
+                <div className="details-type">
+                  <div className="type-container">
+                    <span>
+                      Dscrp
+                    </span>
                   </div>
-                  <div className="title-holder">
-                    <h3>
-                      Efectos visuales mediaticos en After Effects
-                    </h3>
-                  </div>
+                </div>
+                <div className="details-descrip">
+                  <p>
+                    Un curso creado para todos aquellos que quieren aprender y/o aumentar sus
+                    conocimientos sobre las principales herramientas creativas de la Suite de Adobe
+                    {' ('} Photoshop, Illustrator, Premiere Pro, After Effects {')'}.
+                  </p>
                 </div>
               </div>
             </div>
+            <div className="feature-btns">
+              <div className="feature-btn var">
+                Conocé más
+              </div>
+              <div className="feature-btn">
+                Comprar
+              </div>
+            </div>
           </div>
-      </>
+        </section>
+      </div>
     )
   }
 }
