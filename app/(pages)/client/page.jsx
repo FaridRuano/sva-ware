@@ -38,7 +38,7 @@ const Client = () => {
         </div>
         <section className="client-pt1">
           <div className="feature-container">
-            <div className="feature-img">
+            <div className="feature-img" onClick={()=> router.push('/client/course/introadobe')}>
               <Image src={ClientPt1Asset} width={800} height={'auto'} alt='Course' />
             </div>
             <div className="feature-details">
@@ -66,7 +66,7 @@ const Client = () => {
                 </div>
                 <div className="details-descrip">
                   <p>
-                    Un curso creado para todos aquellos que quieren aprender y/o aumentar sus
+                    Un workshop creado para todos aquellos que quieren aprender y/o aumentar sus
                     conocimientos sobre las principales herramientas creativas de la Suite de Adobe
                     {' ('} Photoshop, Illustrator, Premiere Pro, After Effects {')'}.
                   </p>
@@ -74,7 +74,7 @@ const Client = () => {
               </div>
             </div>
             <div className="feature-btns">
-              <div className="feature-btn var">
+              <div className="feature-btn var" onClick={()=> router.push('/client/course/introadobe')}>
                 Conocé más
               </div>
               <div className="feature-btn">
