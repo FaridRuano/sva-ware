@@ -101,8 +101,9 @@ export async function POST(request) {
             <!DOCTYPE html>
             <html>
                 <head>
+                    <meta name="color-scheme" content="light">
                     <style>
-                        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px; }
+                        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px; forced-color-adjust: none; -webkit-text-size-adjust: none; }
                         .header { text-align: center; margin-bottom: 20px; background-color:rgb(0, 0, 0); color: #00ff95; border-radius: 20px;}
                         .separator-logo{ height: 20px;}
                         .logo-container{text-align: center;  height: 60px;}
@@ -124,6 +125,14 @@ export async function POST(request) {
                             color: #777; 
                             text-align: center;
                         }
+                            @media (prefers-color-scheme: dark){
+                                body{
+                                }
+                                .button{
+                                    background-color: #00ff95; 
+                                    color: rgb(255, 255, 255) !important; 
+                                }
+                            }
                     </style>
                 </head>
                 <body>
