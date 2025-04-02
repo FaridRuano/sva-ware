@@ -5,10 +5,7 @@ const connectMongoDB = async () => {
         return mongoose.connection.getClient()
     }
 
-    return mongoose.connect(process.env.MONGODB_URI, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-    })
+    return mongoose.connect(process.env.MONGODB_URI)
 }
 
 export default connectMongoDB
