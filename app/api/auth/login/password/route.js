@@ -125,9 +125,11 @@ export async function POST(request) {
                             color: #777; 
                             text-align: center;
                         }
-                            @media (prefers-color-scheme: dark){
+                            @media (prefers-color-scheme: dark) {
                                 body{
+                                    color: #333 !important;
                                 }
+                                .header{ background-color:rgb(0, 0, 0) !important;}
                                 .button{
                                     background-color: #00ff95; 
                                     color: rgb(255, 255, 255) !important; 
