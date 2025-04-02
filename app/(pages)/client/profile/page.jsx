@@ -47,15 +47,15 @@ const Profile = () => {
     const responseConfirmModal = async () => {
         setConfirmModal(false)
         setLoading(true)
-        try{
+        try {
 
             const data = {
                 email: email
             }
 
-            await axios.post('../api/auth/login/password', data)
+            await axios.put('../api/auth/login/password', data)
 
-        }catch(e){
+        } catch (e) {
             /* Handle Error */
         }
         setLoading(false)
@@ -91,16 +91,18 @@ const Profile = () => {
 
     if (loading) {
         return (
-            <div className='profile-wrap loading'>
-                <div className="card">
+            <div className="client-content-container">
+                <div className='profile-wrap loading'>
+                    <div className="card">
 
+                    </div>
                 </div>
             </div>
         )
     } else {
         return (
             <>
-                <ModalInfo mainText={`Te enviamos un correo a ${email} para que puedas realizar el cambio de tu contraseña`} active={infoModal} setActive={handleInfoModal}/>
+                <ModalInfo mainText={`Te enviamos un correo a ${email} para que puedas realizar el cambio de tu contraseña`} active={infoModal} setActive={handleInfoModal} />
                 <ModalConfirm mainText={'¿Estás seguro de que deseas cambiar tu contraseña?'} active={confirmModal} setActive={handleConfirmModal} response={responseConfirmModal} />
                 <div className="client-content-container">
                     <div className="profile-wrap">

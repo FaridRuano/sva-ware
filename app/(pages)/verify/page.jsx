@@ -60,7 +60,7 @@ function Verify() {
   }, [token])
 
   return (
-    <div className="verify-page">
+    <div className="full-page">
       <div className="verify-container">
         <div className="logo-container">
           <Image src={NavLogo} width={40} height={'auto'} alt='Logo' />

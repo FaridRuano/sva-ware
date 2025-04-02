@@ -1583,15 +1583,15 @@ button {
   }
 }
 
-/* Verify Page */
+/* Verify Page - Error Page */
 
-.verify-page {
+.full-page {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100vw;
-  height: 100vh;
+  height: calc(100vh - 50px);
   background: linear-gradient(135deg, #0e0e0e, #202020);
   gap: 1rem;
 
@@ -1632,7 +1632,6 @@ button {
     }
   }
 
-
   .res-container {
     display: flex;
     justify-content: center;
@@ -1659,6 +1658,48 @@ button {
       font-size: 14px;
       color: $light;
       font-weight: 600;
+    }
+  }
+
+  .error-container {
+    padding: 20px;
+    border-radius: 20px;
+    background-color: rgba(#000, .8);
+    color: $light;
+    border: 1px solid rgba($warning-color, .3);
+    box-shadow: 0 0 40px rgba($warning-color, .3);
+  }
+
+  .password-change-container {
+    padding: 20px;
+    border-radius: 20px;
+    min-height: calc(324px - 40px);
+    min-width: calc(312px - 40px);
+    background-color: rgba(#000, .5);
+    border: 1px solid rgba($light , .3);
+
+    h2 {
+      color: $light;
+      font-size: 16px;
+      font-weight: 500;
+    }
+    p{
+      color: $light;
+      font-weight: 200;
+      max-width: 270px;
+      font-size: 14px;
+    }
+
+    .success-msg-change-password{
+      color: $primary-color;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 20px;
+      font-weight: 600;
+      animation: fadeIn 1s forwards;
     }
   }
 
@@ -1860,142 +1901,6 @@ button {
         }
       }
 
-      .data-form {
-        width: 100%;
-
-        .form-input {
-          position: relative;
-          padding: 10px 0 0px 0;
-
-          .input-field {
-            width: 270px;
-            border: 0;
-            outline: 0;
-            font-size: $standar;
-            color: $light;
-            border-radius: 10px;
-            border: 2px solid $light;
-            padding: 15px;
-            background: transparent;
-            transition: border-color 0.2s;
-
-            &::placeholder {
-              color: transparent;
-            }
-
-            &:placeholder-shown~.label-field {
-              font-size: $standar;
-              cursor: text;
-              top: 27px;
-              background-color: $black;
-              font-weight: 300;
-            }
-          }
-
-          .label-field {
-            background-color: $black;
-            position: absolute;
-            top: 3px;
-            padding: 0 5px;
-            left: 15px;
-            transition: 0.2s;
-            font-size: $small;
-            color: $light;
-            font-weight: 700;
-          }
-
-          .input-field:focus {
-            ~.label-field {
-              position: absolute;
-              top: 3px;
-              display: block;
-              transition: 0.2s;
-              font-size: $small;
-              color: $primary-color;
-              font-weight: 700;
-            }
-
-            border-radius: 10px;
-            font-size: $standar;
-            font-weight: 300;
-            border: 2px solid $primary-color;
-
-          }
-
-          /* reset input */
-          .input-field {
-
-            &:required,
-            &:invalid {
-              box-shadow: none;
-            }
-          }
-
-          &.err {
-            .input-field {
-              border: 2px solid $err;
-            }
-
-            .input-field:focus {
-              ~.label-field {
-                color: $err;
-              }
-
-              border: 2px solid $err;
-            }
-          }
-        }
-
-        .form-error {
-          padding: 10px 0 0px 0;
-          display: flex;
-          align-items: center;
-          color: $err;
-          font-size: $xsmall;
-          width: 270px;
-          font-weight: 500;
-          gap: 1rem;
-          animation: inOpacity .2s forwards;
-        }
-
-        .form-btn {
-          padding: 10px 0 0px 0;
-
-          .button-field {
-            background-color: $light;
-            color: $black;
-            outline: 0;
-            border: solid 2px $light;
-            font-size: $standar;
-            padding: 15px 0;
-            width: 100%;
-            font-weight: 700;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: .2s ease-out;
-
-            &:hover {
-              background-color: $white;
-              border: solid 2px $white;
-            }
-
-            &.dis {
-              opacity: .5;
-              pointer-events: none;
-            }
-          }
-
-          &.outline {
-            width: 100%;
-
-            .button-field {
-              color: $light;
-              background-color: transparent;
-            }
-          }
-        }
-      }
-
       .separate-o {
         display: flex;
         width: 100%;
@@ -2051,6 +1956,8 @@ button {
     }
   }
 
+
+
   @media (max-width: 800px) {
     .login-wrap {
       border: 0;
@@ -2063,6 +1970,142 @@ button {
             }
           }
         }
+      }
+    }
+  }
+}
+
+.data-form {
+  width: 100%;
+
+  .form-input {
+    position: relative;
+    padding: 10px 0 0px 0;
+
+    .input-field {
+      width: 270px;
+      border: 0;
+      outline: 0;
+      font-size: $standar;
+      color: $light;
+      border-radius: 10px;
+      border: 2px solid $light;
+      padding: 15px;
+      background: transparent;
+      transition: border-color 0.2s;
+
+      &::placeholder {
+        color: transparent;
+      }
+
+      &:placeholder-shown~.label-field {
+        font-size: $standar;
+        cursor: text;
+        top: 27px;
+        background-color: $black;
+        font-weight: 300;
+      }
+    }
+
+    .label-field {
+      background-color: $black;
+      position: absolute;
+      top: 3px;
+      padding: 0 5px;
+      left: 15px;
+      transition: 0.2s;
+      font-size: $small;
+      color: $light;
+      font-weight: 700;
+    }
+
+    .input-field:focus {
+      ~.label-field {
+        position: absolute;
+        top: 3px;
+        display: block;
+        transition: 0.2s;
+        font-size: $small;
+        color: $primary-color;
+        font-weight: 700;
+      }
+
+      border-radius: 10px;
+      font-size: $standar;
+      font-weight: 300;
+      border: 2px solid $primary-color;
+
+    }
+
+    /* reset input */
+    .input-field {
+
+      &:required,
+      &:invalid {
+        box-shadow: none;
+      }
+    }
+
+    &.err {
+      .input-field {
+        border: 2px solid $err;
+      }
+
+      .input-field:focus {
+        ~.label-field {
+          color: $err;
+        }
+
+        border: 2px solid $err;
+      }
+    }
+  }
+
+  .form-error {
+    padding: 10px 0 0px 0;
+    display: flex;
+    align-items: center;
+    color: $err !important;
+    font-size: $xsmall;
+    width: 270px;
+    font-weight: 500 !important;
+    gap: 1rem;
+    animation: inOpacity .2s forwards;
+  }
+
+  .form-btn {
+    padding: 10px 0 0px 0;
+
+    .button-field {
+      background-color: $light;
+      color: $black;
+      outline: 0;
+      border: solid 2px $light;
+      font-size: $standar;
+      padding: 15px 0;
+      width: 100%;
+      font-weight: 700;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: .2s ease-out;
+
+      &:hover {
+        background-color: $white;
+        border: solid 2px $white;
+      }
+
+      &.dis {
+        opacity: .5;
+        pointer-events: none;
+      }
+    }
+
+    &.outline {
+      width: 100%;
+
+      .button-field {
+        color: $light;
+        background-color: transparent;
       }
     }
   }
@@ -2324,11 +2367,10 @@ button {
 
 .page-wrap {
   width: 100vw;
-  min-height: 100vh;
+  min-height: calc(100vh - 50px);
   display: flex;
   justify-content: center;
   align-items: start;
-  margin-top: 20px;
 }
 
 .client-content-container {
@@ -3619,7 +3661,7 @@ button {
   }
 }
 
-.modal-container{
+.modal-container {
   z-index: 11;
   background-color: rgba($bg-comp, .8);
   width: 100vw;
@@ -3631,7 +3673,8 @@ button {
   justify-content: center;
   align-items: center;
   animation: fadeIn .5s forwards;
-  .modal-warp{
+
+  .modal-warp {
     width: 315px;
     height: fit-content;
     padding: 20px;
@@ -3643,18 +3686,22 @@ button {
     gap: 1rem;
     box-shadow: 0 0 40px #000;
     animation: scaleUp .5s forwards;
-    .warp-header{
+
+    .warp-header {
       color: $light;
-      h4{
+
+      h4 {
         margin: 0;
       }
     }
-    .warp-options{
+
+    .warp-options {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 1rem;
-      .option-modal{
+
+      .option-modal {
         width: 50%;
         background-color: $light;
         font-size: 15px;
@@ -3667,16 +3714,17 @@ button {
         cursor: pointer;
         transition: .3s ease-out;
 
-        &.confirm{
+        &.confirm {
           color: $light;
           background-color: $primary-color;
         }
-        &.cancel{
+
+        &.cancel {
           color: $light;
           background-color: $cancel-color;
         }
 
-        &:hover{
+        &:hover {
           transform: scale(1.02);
         }
       }
@@ -3975,10 +4023,11 @@ button {
 }
 
 @keyframes scaleUp {
-  0%{
+  0% {
     transform: scale(0);
   }
-  100%{
+
+  100% {
     transform: scale(1);
   }
 }

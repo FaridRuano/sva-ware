@@ -2,6 +2,52 @@ import connectMongoDB from '@libs/mongodb'
 import User from '@models/User'
 import { NextResponse } from "next/server"
 import transporter from '@libs/mailer'
+import bcrypt from 'bcrypt'
+import mongoose from 'mongoose'
+
+export async function GET(request) {
+
+    await connectMongoDB()
+
+    const url = request.nextUrl
+
+    const id = url.searchParams.get('id')
+
+    if (!id) {
+        return NextResponse.json(
+            {
+                message: 'Token not found',
+                error: true
+            },
+            { status: 200 },
+        )
+    }
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+        return NextResponse.json(
+            {
+                message: 'Token not valid',
+                error: true
+            },
+            { status: 200 }
+        )
+    }
+
+    const user = await User.findById(id)
+
+    if (user) {
+        return NextResponse.json(
+            { message: 'User found', error: false },
+            { status: 200 }
+        )
+    } else {
+        return NextResponse.json(
+            { error: 'User not found.', error: true },
+            { status: 200 }
+        )
+    }
+
+}
 
 export async function POST(request) {
     const { email } = await request.json()
@@ -72,12 +118,12 @@ export async function POST(request) {
                         <p><b>${user.name}</b>, para completar este proceso, por favor haz clic en el siguiente botón:</p>
 
                         <p style="text-align: center;">
-                        <a href="${process.env.PUBLIC_API_URL}/client/changepassword?token=${user._id}"
+                        <a href="${process.env.PUBLIC_API_URL}/client/profile/changepassword?token=${user._id}"
                             class="button">Cambiar Contraseña</a>
                         </p>
 
                         <p>Si el botón no funciona, copia y pega el siguiente enlace en tu navegador:</p>
-                        <p><small>${process.env.PUBLIC_API_URL}/client/changepassword?token=${user._id}</small></p>
+                        <p><small>${process.env.PUBLIC_API_URL}/client/profile/changepassword?token=${user._id}</small></p>
                     </div>
 
                     <div class="footer">
@@ -96,5 +142,62 @@ export async function POST(request) {
         console.error('Error at sending the change password:', error.message)
     }
 
-    return NextResponse.json({ message: "Data created" }, { status: 200 })
+    return NextResponse.json({ message: "Email sent" }, { status: 200 })
+}
+
+export async function PUT(request) {
+
+    try {
+
+        const { id, newpassword } = await request.json()
+
+        if (!id) {
+            return NextResponse.json(
+                {
+                    message: 'Token not found',
+                    error: true
+                },
+                { status: 200 },
+            )
+        }
+
+        if (!mongoose.Types.ObjectId.isValid(id)) {
+            return NextResponse.json(
+                {
+                    message: 'Token not valid',
+                    error: true
+                },
+                { status: 200 }
+            )
+        }
+
+        const user = await User.findById(id)
+
+        if (!user) {
+            return NextResponse.json(
+                {
+                    message: 'User not found',
+                    error: true
+                },
+                { status: 200 }
+            );
+        }
+
+        const hashedPassword = await bcrypt.hash(newpassword, 10)
+
+        user.password = hashedPassword
+
+        await user.save()
+
+        return NextResponse.json(
+            { message: "Password updated successfully", error: false },
+            { status: 200 }
+        )
+
+    } catch (error) {
+        return NextResponse.json(
+            { message: 'Server Error', error: true },
+            { status: 500 }
+        );
+    }
 }
