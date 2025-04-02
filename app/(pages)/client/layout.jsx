@@ -21,12 +21,15 @@ export default function RootLayout({ children }) {
           setLoading(false)
         }
       }
-  }, [status, router])
+  }, [status])
 
   if(loading){
     return (
       <>
-
+        <NavBar className='loading'/>
+        <div className='page-wrap loading'>
+        </div>
+        <FooterHome/>
       </>
     )
   }else{
