@@ -53,7 +53,7 @@ const Profile = () => {
                 email: email
             }
 
-            await axios.put('../api/auth/login/password', data)
+            await axios.post('../api/auth/login/password', data)
 
         } catch (e) {
             /* Handle Error */
