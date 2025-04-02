@@ -64,7 +64,7 @@ function FormPassword() {
             setLoading(true)
             try {
                 const data = {
-                    id: token,
+                    token: token,
                     newpassword: newpassword,
                 }
 
@@ -106,7 +106,7 @@ function FormPassword() {
             if (token) {
 
                 try {
-                    const res = await axios(`/api/auth/login/password?id=${token}`)
+                    const res = await axios(`/api/auth/login/password?token=${token}`)
 
                     setLoading(false)
                     if (res.data.error) {

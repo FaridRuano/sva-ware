@@ -4,6 +4,7 @@ import { NextResponse } from "next/server"
 import transporter from '@libs/mailer'
 import bcrypt from 'bcrypt'
 import mongoose from 'mongoose'
+import ActionToken from '@models/ActionToken'
 
 export async function GET(request) {
 
@@ -11,41 +12,54 @@ export async function GET(request) {
 
     const url = request.nextUrl
 
-    const id = url.searchParams.get('id')
+    const tokenSent = url.searchParams.get('token')
 
-    if (!id) {
+    // Verificar que se haya enviado un token
+    if (!tokenSent) {
         return NextResponse.json(
-            {
-                message: 'Token not found',
-                error: true
-            },
-            { status: 200 },
-        )
-    }
-
-    if (!mongoose.Types.ObjectId.isValid(id)) {
-        return NextResponse.json(
-            {
-                message: 'Token not valid',
-                error: true
-            },
+            { message: 'No token provided', error: true },
             { status: 200 }
         )
     }
 
-    const user = await User.findById(id)
-
-    if (user) {
+    // Validar formato del token si es necesario (en este caso, ObjectId)
+    if (!mongoose.Types.ObjectId.isValid(tokenSent)) {
         return NextResponse.json(
-            { message: 'User found', error: false },
-            { status: 200 }
-        )
-    } else {
-        return NextResponse.json(
-            { error: 'User not found.', error: true },
+            { message: 'Invalid token format', error: true },
             { status: 200 }
         )
     }
+
+    const token = await ActionToken.findById(tokenSent)
+
+    // Si no se encuentra el token en la base de datos
+    if (!token) {
+        return NextResponse.json(
+            { message: 'Token not found', error: true },
+            { status: 200 }
+        )
+    }
+
+    // Comprobar que el token no haya expirado
+    if (new Date() > token.expireAt) {
+        return NextResponse.json(
+            { message: 'Token expired', error: true },
+            { status: 200 }
+        )
+    }
+
+    // Opcional: Verificar que el token no haya sido utilizado
+    if (token.used) {
+        return NextResponse.json(
+            { message: 'Token already used', error: true },
+            { status: 200 }
+        )
+    }
+
+    return NextResponse.json(
+        { message: 'Token found', error: false },
+        { status: 200 }
+    )
 
 }
 
@@ -67,6 +81,17 @@ export async function POST(request) {
             { status: 200 },
         )
     }
+
+    // Crear un nuevo token de acción para restablecer la contraseña
+    const tokenDuration = 10
+
+    const actionToken = await ActionToken.create({
+        user: user._id,
+        action: 'resetPassword',
+        duration: tokenDuration,
+    })
+
+    const userLink = `${process.env.PUBLIC_API_URL}/client/profile/changepassword?token=${actionToken._id}`
 
     const mailOptions = {
         from: process.env.EMAIL_FROM,
@@ -118,12 +143,12 @@ export async function POST(request) {
                         <p><b>${user.name}</b>, para completar este proceso, por favor haz clic en el siguiente botón:</p>
 
                         <p style="text-align: center;">
-                        <a href="${process.env.PUBLIC_API_URL}/client/profile/changepassword?token=${user._id}"
+                        <a href="${userLink}"
                             class="button">Cambiar Contraseña</a>
                         </p>
 
                         <p>Si el botón no funciona, copia y pega el siguiente enlace en tu navegador:</p>
-                        <p><small>${process.env.PUBLIC_API_URL}/client/profile/changepassword?token=${user._id}</small></p>
+                        <p><small>${userLink}</small></p>
                     </div>
 
                     <div class="footer">
@@ -149,19 +174,19 @@ export async function PUT(request) {
 
     try {
 
-        const { id, newpassword } = await request.json()
+        const { token, newpassword } = await request.json()
 
-        if (!id) {
+        if (!token) {
             return NextResponse.json(
                 {
-                    message: 'Token not found',
+                    message: 'No token provided',
                     error: true
                 },
                 { status: 200 },
             )
         }
 
-        if (!mongoose.Types.ObjectId.isValid(id)) {
+        if (!mongoose.Types.ObjectId.isValid(token)) {
             return NextResponse.json(
                 {
                     message: 'Token not valid',
@@ -171,33 +196,58 @@ export async function PUT(request) {
             )
         }
 
-        const user = await User.findById(id)
+        // Buscar el token en la colección ActionToken
+        const tokenDoc = await ActionToken.findById(token);
 
-        if (!user) {
+        if (!tokenDoc) {
             return NextResponse.json(
-                {
-                    message: 'User not found',
-                    error: true
-                },
+                { message: 'Token not found', error: true },
                 { status: 200 }
-            );
+            )
         }
 
+        // Verificar si el token ha expirado
+        if (new Date() > tokenDoc.expireAt) {
+            return NextResponse.json(
+                { message: 'Token expired', error: true },
+                { status: 200 }
+            )
+        }
+
+        // Verificar si el token ya ha sido utilizado
+        if (tokenDoc.used) {
+            return NextResponse.json(
+                { message: 'Token already used', error: true },
+                { status: 200 }
+            )
+        }
+
+        // Obtener el usuario asociado al token
+        const user = await User.findById(tokenDoc.user);
+        if (!user) {
+            return NextResponse.json(
+                { message: 'User not found', error: true },
+                { status: 200 }
+            )
+        }
+
+        // Hashear la nueva contraseña y actualizar el usuario
         const hashedPassword = await bcrypt.hash(newpassword, 10)
-
         user.password = hashedPassword
-
         await user.save()
+
+        // Marcar el token como utilizado
+        tokenDoc.used = true
+        await tokenDoc.save()
 
         return NextResponse.json(
             { message: "Password updated successfully", error: false },
             { status: 200 }
         )
-
     } catch (error) {
         return NextResponse.json(
             { message: 'Server Error', error: true },
-            { status: 500 }
-        );
+            { status: 200 }
+        )
     }
 }
