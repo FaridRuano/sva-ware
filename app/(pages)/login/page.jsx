@@ -76,7 +76,7 @@ const Login = () => {
         email,
         password,
       })
-  
+
       if (res?.error) {
         setErrPassword(true);
         setLoading(false)

@@ -1,13 +1,12 @@
 'use client'
 import Logo from '@public/assets/icons/logo-navbar.webp'
-import Courses from '@public/assets/icons/courses.webp'
-import Blog from '@public/assets/icons/blog.webp'
 import ArrowDown from '@public/assets/icons/arrow-down.webp'
 import { signOut, useSession } from 'next-auth/react';
 import Image from 'next/image'
 import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import axios from '@node_modules/axios'
+import Link from '@node_modules/next/link'
 
 const NavBar = () => {
 
@@ -17,11 +16,18 @@ const NavBar = () => {
 
     const { data: session, status } = useSession()
 
+    const [user, setUser] = useState({
+        subscription: {
+            isActive: false
+        }
+    })
+
     const verifyUserStillExists = async (email) => {
         try {
             const res = await axios.post(`/api/auth/login/email`, { email })
 
             if (res.data.exists) {
+                setUser(res.data.user)
                 return true
             } else {
                 return false
@@ -74,7 +80,7 @@ const NavBar = () => {
                     <div className="nav-item logo" onClick={() => router.push('/client')}>
                         <Image src={Logo} width={'auto'} height={30} alt='Logo' />
                     </div>
-                    <div className="nav-item">
+                    {/* <div className="nav-item">
                         <div className="item" onClick={() => router.push('/client/mycourses')}>
                             <Image src={Courses} width={'auto'} height={20} alt='Icon' />
                             <span>Mis cursos</span>
@@ -83,7 +89,7 @@ const NavBar = () => {
                             <Image src={Blog} width={'auto'} height={20} alt='Icon' />
                             <span>Blog</span>
                         </div>
-                    </div>
+                    </div> */}
                     <div className="nav-item">
                         <div className="dropdown">
                             <div className="name-dropdown">
@@ -97,15 +103,19 @@ const NavBar = () => {
                             <div className="dropdown-item">
                                 <div className="dropdown-wrap">
                                     <span>
-                                        <a href='/client/profile'>
+                                        <Link href={{ pathname: '/client/profile' }}>
                                             Ver mi perfil
-                                        </a>
+                                        </Link>
                                     </span>
-                                    <span>
-                                        <a href='/client/subscription'>
-                                            Unirme a la escuela
-                                        </a>
-                                    </span>
+                                    {
+                                        !user.subscription.isActive && (
+                                            <span>
+                                                <Link href={{ pathname: '/client/profile', query: { openSubsModal: true } }}>
+                                                    Unirme a la escuela
+                                                </Link>
+                                            </span>
+                                        )
+                                    }
                                     <div className="separator" />
                                     <span className='logout' onClick={() => signOut({ callbackUrl: '/' })}>
                                         <a>
@@ -116,8 +126,8 @@ const NavBar = () => {
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
+                </div >
+            </div >
         )
     }
 

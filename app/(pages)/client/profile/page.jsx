@@ -3,21 +3,29 @@ import Image from 'next/image'
 import React, { useEffect, useState } from 'react'
 import ProfileIcon from '@public/assets/icons/profile-asset.webp'
 import SubsIcon from '@public/assets/icons/logo-subs.webp'
+import SubsIcon2 from '@public/assets/icons/logo-footer.webp'
 import { useSession } from 'next-auth/react';
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import axios from '@node_modules/axios'
-import ModalConfirm from '@public/components/shared/ModalConfirm'
-import ModalInfo from '@public/components/shared/ModalInfo'
+import ModalConfirm from '@public/components/client/ModalConfirm'
+import ModalInfo from '@public/components/client/ModalInfo'
+import ModalSubs from '@public/components/client/ModalSubs'
 
 const Profile = () => {
 
     const router = useRouter()
+
+    const searchParams = useSearchParams()
 
     const { data: session, status } = useSession()
 
     const [name, setName] = useState('Student')
     const [email, setEmail] = useState('student@address.com')
     const [verify, setVerify] = useState(false)
+    const [subscription, setSubscription] = useState({
+        isActive: false,
+        type: null
+    })
 
     const [loading, setLoading] = useState(true)
 
@@ -35,6 +43,9 @@ const Profile = () => {
 
     const [confirmModal, setConfirmModal] = useState(false)
     const [infoModal, setInfoModal] = useState(false)
+    const [subsModal, setSubsModal] = useState(false)
+
+    const [infoModalText, setInfoModalText] = useState('')
 
     const handleConfirmModal = () => {
         setConfirmModal(current => !current)
@@ -42,6 +53,10 @@ const Profile = () => {
 
     const handleInfoModal = () => {
         setInfoModal(current => !current)
+    }
+
+    const handleSubsModal = () => {
+        setSubsModal(current => !current)
     }
 
     const responseConfirmModal = async () => {
@@ -53,10 +68,16 @@ const Profile = () => {
                 email: email
             }
 
-            await axios.post('../api/auth/login/password', data)
+            const res = await axios.post('../api/auth/login/password', data)
+
+            if (res.data.error) {
+                setInfoModalText('Lo siento no pudimos completar el proceso, intenta más tarde.')
+            } else {
+                setInfoModalText(`Te enviamos un correo a ${email} para que puedas realizar el cambio de tu contraseña`)
+            }
 
         } catch (e) {
-            /* Handle Error */
+            setInfoModalText('Lo siento no pudimos completar el proceso, intenta más tarde.')
         }
         setLoading(false)
         setInfoModal(true)
@@ -73,6 +94,8 @@ const Profile = () => {
                         setName(isUser.name)
                         setEmail(isUser.email)
                         setVerify(isUser.emailVerified)
+                        setSubscription(isUser.subscription)
+
                     } else {
                         console.log("Error with server (404)")
                     }
@@ -89,6 +112,14 @@ const Profile = () => {
         setLoading(false)
     }, [])
 
+    useEffect(() => {
+        const openSubsModal = searchParams.get('openSubsModal')
+        if (openSubsModal) {
+            setSubsModal(true)
+            router.replace('/client/profile');
+        }
+    }, [searchParams])
+
     if (loading) {
         return (
             <div className="client-content-container">
@@ -102,7 +133,8 @@ const Profile = () => {
     } else {
         return (
             <>
-                <ModalInfo mainText={`Te enviamos un correo a ${email} para que puedas realizar el cambio de tu contraseña`} active={infoModal} setActive={handleInfoModal} />
+                <ModalInfo mainText={infoModalText} active={infoModal} setActive={handleInfoModal} />
+                <ModalSubs active={subsModal} setActive={handleSubsModal} />
                 <ModalConfirm mainText={'¿Estás seguro de que deseas cambiar tu contraseña?'} active={confirmModal} setActive={handleConfirmModal} response={responseConfirmModal} />
                 <div className="client-content-container">
                     <div className="profile-wrap">
@@ -147,6 +179,65 @@ const Profile = () => {
                                     </button>
                                 </div>
                             </div>
+                        </div>
+                        <div className={`card fit ${subscription.isActive ? 'bg' : ''}`}>
+                            {
+                                subscription.isActive ? (
+                                    <div className="card-wrap act-subs ">
+                                        <div className="name-holder">
+                                            <div className="icon">
+                                                <Image src={SubsIcon2} width={15} height={'auto'} alt='Icon' />
+                                            </div>
+                                            <div className="name">
+                                                <span>Suscripción</span>
+                                            </div>
+                                        </div>
+                                        <div className="separator" />
+                                        <div className="info-holder">
+                                            <div className="info-row">
+                                                <span className='label'>
+                                                    Tipo de Suscripción:
+                                                </span>
+                                                <span className='value'>
+
+                                                </span>
+                                            </div>
+                                            <div className="info-row">
+                                                <span className='label'>
+                                                    Próximo pago:
+                                                </span>
+                                                <span className='value'>
+                                                    
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ) : (
+                                    <div className="card-wrap subs">
+                                        <div className="name-holder">
+                                            <div className="icon">
+                                                <Image src={SubsIcon} width={15} height={'auto'} alt='Icon' />
+                                            </div>
+                                            <div className="name">
+                                                <span>Suscripción</span>
+                                            </div>
+                                        </div>
+                                        <div className="subs-holder">
+                                            <p>
+                                                Actualmente no cuentas con una suscripción activa.
+                                            </p>
+                                            <p>
+                                                Si quieres acceder a todos los beneficios considera en unirte a esta comunidad <b>creativa.</b>
+                                            </p>
+                                        </div>
+                                        <div className="btn-holder primary">
+                                            <button onClick={() => handleSubsModal()}>
+                                                Suscribirme
+                                            </button>
+                                        </div>
+                                    </div>
+                                )
+                            }
                         </div>
                     </div>
                 </div>

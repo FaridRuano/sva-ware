@@ -1,6 +1,6 @@
 // data/courses.js
 export const courses = {
-    introductiontoadobe: {
+    introadobe: {
         title: 'Introducción a la Suite de Adobe',
         description: 'Curso introductorio para conocer las principales herramientas de la Suite de Adobe.',
         chapters: [
@@ -15,7 +15,7 @@ export const courses = {
                             'Adobe Photoshop es una de las herramientas de edición de imágenes más populares y potentes del mundo. Utilizado por diseñadores, fotógrafos, artistas y creadores de contenido, Photoshop permite realizar desde simples retoques hasta complejas composiciones digitales. Su interfaz intuitiva y amplia gama de herramientas lo convierten en una plataforma ideal para aquellos que buscan mejorar sus habilidades en edición de imágenes.',
                             'Entre las funcionalidades de Photoshop se encuentran el ajuste de colores, la corrección de imperfecciones, el uso de capas para trabajar de manera no destructiva y la capacidad de crear efectos especiales. Con esta lección, aprenderás los conceptos básicos para empezar a familiarizarte con la funcionalidad y posibilidades principales que ofrece Photoshop.'
                         ],
-                        videoUrl: 'sva-assets/courses/introductiontoadobesuite/cap1lesson1',
+                        videoUrl: 'jOt00vpSuf008tKf01z58MMD5n00ysTMjizjZHB13002023Hk',
                     },
                     {
                         _id: 102,

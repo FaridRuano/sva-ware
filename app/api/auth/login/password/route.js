@@ -102,6 +102,7 @@ export async function POST(request) {
             <html>
                 <head>
                     <meta name="color-scheme" content="light">
+                    <meta name="supported-color-schemes" content="light">
                     <style>
                         body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px; forced-color-adjust: none; -webkit-text-size-adjust: none; }
                         .header { text-align: center; margin-bottom: 20px; background-color:rgb(0, 0, 0); color: #00ff95; border-radius: 20px;}
@@ -174,11 +175,13 @@ export async function POST(request) {
     try {
         await transporter.sendMail(mailOptions)
         console.log('Change Password email sent succesfully:', email)
+        return NextResponse.json({ message: "Email sent" }, { status: 200 })
+
     } catch (error) {
         console.error('Error at sending the change password:', error.message)
+        return NextResponse.json({ message: "Email not sent", error: true }, { status: 200 })
     }
 
-    return NextResponse.json({ message: "Email sent" }, { status: 200 })
 }
 
 export async function PUT(request) {

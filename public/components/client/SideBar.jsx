@@ -12,7 +12,7 @@ const Sidebar = ({ course, title, chapters, activeChapter, activeLesson }) => {
   const handleChapterLink = (id) => {
     return id * 100 + 1
   }
-  console.log(activeChapter)
+  
   return (
     <div className='sidebar-container'>
       <div className="sidebar">

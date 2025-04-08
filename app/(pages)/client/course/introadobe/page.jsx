@@ -1,11 +1,22 @@
 'use client'
 
+import { useSubscription } from '@libs/useSubscription'
 import MuxPlayer from '@node_modules/@mux/mux-player-react/'
-import Image from '@node_modules/next/image'
-import CheckBox from '@public/components/shared/CheckBox'
-import { useState } from 'react'
+import { useSession } from '@node_modules/next-auth/react'
+import Link from '@node_modules/next/link'
+import { useRouter } from '@node_modules/next/navigation'
+import ModalSubs from '@public/components/client/ModalSubs'
+import { useEffect, useState } from 'react'
 
 const Course = () => {
+
+  const router = useRouter()
+
+  const [loading, setLoading] = useState(true)
+
+  const { data: session } = useSession()
+
+  const { subscription, isLoading, isError } = useSubscription(session.user.email)
 
   const [isPlaying, setIsPlaying] = useState(false)
 
@@ -15,7 +26,6 @@ const Course = () => {
     switch (infoOption) {
       case 1:
         return (
-
           <div className="info-display">
             <div className="course-descrip">
               <h2>¿De qué trata este Workshop?</h2>
@@ -287,131 +297,173 @@ const Course = () => {
     }
   }
 
+  /* Subscription Modal */
+
+  const [subsModal, setSubsModal] = useState(false)
+
+  const handleSubsModal = () => {
+    setSubsModal(current => !current)
+  }
+
+  useEffect(() => {
+    if (isLoading) {
+      setLoading(true)
+    } else {
+      setLoading(false)
+    }
+  }, [isLoading])
+
+  if (loading) {
+    return (
+      <div className="client-content-container loading">
+      </div>
+    )
+  }
 
   return (
-    <div className="client-content-container">
-      <div className="course-tags">
-        <div className="course-tag">
-          WORKSHOP
+    <>
+      <ModalSubs active={subsModal} setActive={handleSubsModal} />
+      <div className="client-content-container">
+        <div className="course-tags">
+          <div className="course-tag">
+            WORKSHOP
+          </div>
+          <div className="course-tag purple">
+            aftereffects
+          </div>
+          <div className="course-tag blue">
+            photoshop
+          </div>
+          <div className="course-tag orange">
+            illustrator
+          </div>
+          <div className="course-tag purple">
+            premiere pro
+          </div>
         </div>
-        <div className="course-tag purple">
-          aftereffects
+        <div className="course-title">
+          <h1>
+            Introducción a la Suite de Adobe
+          </h1>
         </div>
-        <div className="course-tag blue">
-          photoshop
+        <div className="course-shortdescrip">
+          <p>
+            Un workshop creado para todos aquellos que quieren aprender y/o aumentar sus
+            conocimientos sobre las principales herramientas creativas de la Suite de Adobe
+            {' ('} Photoshop, Illustrator, Premiere Pro, After Effects {')'}.
+          </p>
         </div>
-        <div className="course-tag orange">
-          illustrator
+        <div className={`course-video ${isPlaying ? 'video-playing' : ''}`}>
+          <MuxPlayer
+            onPlay={() => setIsPlaying(true)}
+            onPause={() => setIsPlaying(false)}
+            minResolution='1080p'
+            loading="viewport"
+            poster='https://visualartsschool.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fcover-introadobe.72c0d920.jpg&w=828&q=75'
+            playbackId="6j6SgyATd3hKJY01w5J77U4D2GOHDkcrPBMWEetBcWjs"
+            accent-color="#09e199"
+          />
         </div>
-        <div className="course-tag purple">
-          premiere pro
-        </div>
-      </div>
-      <div className="course-title">
-        <h1>
-          Introducción a la Suite de Adobe
-        </h1>
-      </div>
-      <div className="course-shortdescrip">
-        <p>
-          Un workshop creado para todos aquellos que quieren aprender y/o aumentar sus
-          conocimientos sobre las principales herramientas creativas de la Suite de Adobe
-          {' ('} Photoshop, Illustrator, Premiere Pro, After Effects {')'}.
-        </p>
-      </div>
-      <div className={`course-video ${isPlaying ? 'video-playing' : ''}`}>
-        <MuxPlayer
-          onPlay={() => setIsPlaying(true)}
-          onPause={() => setIsPlaying(false)}
-          minResolution='1080p'
-          loading="viewport"
-          poster='https://visualartsschool.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fcover-introadobe.72c0d920.jpg&w=828&q=75'
-          playbackId="6j6SgyATd3hKJY01w5J77U4D2GOHDkcrPBMWEetBcWjs"
-          accent-color="#09e199"
-        />
-      </div>
 
-      <div className="info-displayer">
-        <div className={`option ${infoOption === 1 ? 'active' : ''}`} onClick={() => setInfoOption(1)}>
-          Introducción
+        <div className="info-displayer">
+          <div className={`option ${infoOption === 1 ? 'active' : ''}`} onClick={() => setInfoOption(1)}>
+            Introducción
+          </div>
+          <div className={`option ${infoOption === 2 ? 'active' : ''}`} onClick={() => setInfoOption(2)}>
+            Temario
+          </div>
         </div>
-        <div className={`option ${infoOption === 2 ? 'active' : ''}`} onClick={() => setInfoOption(2)}>
-          Temario
-        </div>
-      </div>
-      {
-        displayInfo()
-      }
-      <div className="course-btns">
-        <div className='option active'>
-          Opciones de compra
-        </div>
-        <div className="btns-row">
-          <div className="btn">
-            <div className="btn-content">
-              <div className="content-header">
-                <h2>Compra directa</h2>
-                <p>
-                  Paga el precio completo por el workshop completo.
-                </p>
+        {
+          displayInfo()
+        }
+
+        {
+          subscription.isActive ? (
+            <div className="course-btns">
+              <div className='option active'>
+                Ya tienes acceso a este workshop
               </div>
-              <div className="content-body">
-                <p>
-                  ¿Qué incluye?
-                </p>
-                <ul>
-                  <li>Acceso de por vida.</li>
-                  <li>Material y recursos.</li>
-                  <li>Actualizaciones futuras.</li>
-                </ul>
-                <div className="price">
-                  <h2>$44.99</h2>
-                  <p>
-                    USD
-                  </p>
+              <div className="btn-access explore" onClick={() => router.push('/client/introadobe/1/101')}>
+                <h2>
+                  Ir al Workshop
+                </h2>
+              </div>
+            </div>
+          ) : (
+            <div className="course-btns">
+              <div className='option active'>
+                Opciones de compra
+              </div>
+              <div className="btns-row">
+                <div className="btn">
+                  <div className="btn-content">
+                    <div className="content-header">
+                      <h2>Compra directa</h2>
+                      <p>
+                        Paga el precio completo por el workshop completo.
+                      </p>
+                    </div>
+                    <div className="content-body">
+                      <p>
+                        ¿Qué incluye?
+                      </p>
+                      <ul>
+                        <li>Acceso de por vida.</li>
+                        <li>Material y recursos.</li>
+                        <li>Actualizaciones futuras.</li>
+                      </ul>
+                      <div className="price">
+                        <h2>$44.99</h2>
+                        <p>
+                          USD
+                        </p>
+                      </div>
+                    </div>
+                    <div className="content-footer">
+                      <div className="pay-btn">
+                        <h2>
+                          Comprar
+                        </h2>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <div className="content-footer">
-                <div className="pay-btn">
-                  <h2>
-                    Comprar
-                  </h2>
+                <div className="btn explore">
+                  <div className="btn-content">
+                    <div className="content-header">
+                      <h2>Únete a la escuela</h2>
+                      <p>
+                        Suscríbete y forma parte de nuestra comunidad.
+                      </p>
+                    </div>
+                    <div className="content-body">
+                      <p>
+                        ¿Qué incluye?
+                      </p>
+                      <ul>
+                        <li>Acceso durante tu membresía.</li>
+                        <li>Material y recursos.</li>
+                        <li>Actualizaciones futuras.</li>
+                        <li>Resuelve tus dudas con sesiones en vivo.</li>
+                        <li>Recibe feedback de tu trabajo.</li>
+                      </ul>
+                    </div>
+                    <div className="content-footer">
+                      <div className="pay-btn" onClick={() => handleSubsModal()}>
+                        <h2>
+                          Explorar planes
+                        </h2>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div className="btn explore">
-            <div className="btn-content">
-              <div className="content-header">
-                <h2>Únete a la escuela</h2>
-                <p>
-                  Suscríbete y forma parte de nuestra comunidad.
-                </p>
-              </div>
-              <div className="content-body">
-                <p>
-                  ¿Qué incluye?
-                </p>
-                <ul>
-                  <li>Acceso durante tu membresía.</li>
-                  <li>Material y recursos.</li>
-                  <li>Actualizaciones futuras.</li>
-                  <li>Resuelve tus dudas con sesiones en vivo.</li>
-                  <li>Recibe feedback de tu trabajo.</li>
-                </ul>
-              </div>
-              <div className="content-footer">
-                <div className="pay-btn">
-                  <h2>
-                    Explorar planes
-                  </h2>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+          )
+        }
       </div>
-    </div>
+    </>
+
   )
 }
 

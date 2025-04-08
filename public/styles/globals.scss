@@ -53,7 +53,6 @@ button {
   overflow-x: hidden;
 }
 
-.pages {}
 
 .cp-hs {
   cursor: pointer;
@@ -1591,7 +1590,7 @@ button {
   justify-content: center;
   align-items: center;
   width: 100vw;
-  height: calc(100vh - 50px);
+  height: calc(100vh);
   background: linear-gradient(135deg, #0e0e0e, #202020);
   gap: 1rem;
 
@@ -1683,14 +1682,15 @@ button {
       font-size: 16px;
       font-weight: 500;
     }
-    p{
+
+    p {
       color: $light;
       font-weight: 200;
       max-width: 270px;
       font-size: 14px;
     }
 
-    .success-msg-change-password{
+    .success-msg-change-password {
       color: $primary-color;
       width: 100%;
       height: 100%;
@@ -1737,23 +1737,22 @@ button {
   border: solid 1px $light;
   cursor: pointer;
   position: relative;
-  filter: drop-shadow(0 0 20px rgba(0, 0, 0, 0.3));
   transition: .3s ease-out;
 
   &::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    width: 90%;
+    height: 80%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     z-index: -1;
     border-radius: 20px;
     background: linear-gradient(135deg, #d60d5a, #7809f7, #1038e7, #0ed89b, #e7520d);
     background-size: 400% 400%;
     animation: gradientAnimation 15s ease infinite;
-    filter: blur(40px);
-    opacity: 0.7;
+    filter: blur(50px);
   }
 
   &:hover {
@@ -2257,7 +2256,8 @@ button {
           position: absolute;
           background-color: $primary-color;
           width: 160px;
-          height: 120px;
+          height: fit-content;
+          padding: 20px 0;
           transition: .3s ease-out;
           top: 0px;
           right: 5px;
@@ -2270,6 +2270,7 @@ button {
           z-index: 10;
 
           .dropdown-wrap {
+            width: 120px;
             display: flex;
             gap: .5rem;
             flex-direction: column;
@@ -2375,6 +2376,21 @@ button {
 
 .client-content-container {
   width: 800px;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 50px;
+
+  @media (max-width: 800px) {
+    width: calc(100% - 60px);
+    padding: 0 30px;
+  }
+}
+
+.client-courses-container {
+  width: 100%;
+  padding: 40px;
   height: fit-content;
   display: flex;
   flex-direction: column;
@@ -2580,6 +2596,7 @@ button {
 
             p {
               display: -webkit-box;
+              line-clamp: 2;
               -webkit-line-clamp: 2;
               -webkit-box-orient: vertical;
               overflow: hidden;
@@ -2793,6 +2810,23 @@ button {
     margin-bottom: 10px;
   }
 
+  .btn-access {
+    width: 100%;
+    padding: 20px;
+    font-size: 15px;
+    color: $light;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    transition: .3s ease-out;
+
+    &:hover {
+      transform: scale(1.02);
+    }
+  }
+
   .btns-row {
     display: flex;
     flex-direction: row;
@@ -2803,7 +2837,8 @@ button {
     .btn {
       width: 50%;
       height: 300px;
-      background-color: $primary-color;
+      background-color: transparent;
+      border: 1px solid $primary-color;
       border-radius: 20px;
       display: flex;
       justify-content: center;
@@ -2813,7 +2848,7 @@ button {
       .btn-content {
         height: fit-content;
         width: 80%;
-        color: $black;
+        color: $light;
         display: flex;
         flex-direction: column;
         gap: 1rem;
@@ -2826,7 +2861,7 @@ button {
           }
 
           h2 {
-            color: $black;
+            color: $primary-color;
             margin: 0;
           }
         }
@@ -2854,7 +2889,7 @@ button {
             align-items: center;
 
             h2 {
-              color: $black;
+              color: $primary-color;
               margin: 0;
               font-size: 32px;
             }
@@ -2863,6 +2898,7 @@ button {
 
         .content-footer {
           .pay-btn {
+            border: 1px solid $primary-color;
             background-color: $black;
             border-radius: 20px;
             padding: 15px;
@@ -2883,6 +2919,8 @@ button {
             &:hover {
               transform: scale(1.02);
               box-shadow: 0 0 40px rgba($black , .3);
+              background-color: $primary-color;
+              color: $black;
 
             }
 
@@ -2896,35 +2934,31 @@ button {
       }
 
       &.explore {
-        border: 1px solid rgba($light , .5);
-        background: linear-gradient(135deg, #d60d5a, #ae00ff, #10e78d, #01cafc, #e7520d);
-        background-size: 400% 400%;
-        animation: gradientAnimation 15s ease infinite;
-        cursor: pointer;
-        position: relative;
-        filter: drop-shadow(0 0 20px rgba(0, 0, 0, 0.3));
-        transition: .3s ease-out;
-
-        &::before {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          z-index: -1;
-          border-radius: 20px;
-          background: linear-gradient(135deg, #d60d5a, #7809f7, #10e78d, #01cafc, #e7520d);
-          background-size: 400% 400%;
-          animation: gradientAnimation 15s ease infinite;
-          filter: blur(40px);
-          opacity: 0.7;
-        }
 
         .btn-content {
+          h2 {
+            color: $black;
+
+          }
+
+          color: $black;
+
           .content-footer {
             .pay-btn {
-              color: $light;
+              background-color: transparent;
+              border: 1px solid $black;
+
+              h2 {
+                color: $black;
+              }
+
+              &:hover {
+                background-color: $black;
+
+                h2 {
+                  color: $light;
+                }
+              }
             }
           }
         }
@@ -3068,7 +3102,7 @@ button {
 
     .card-wrap {
       width: 260px;
-      height: fit-content;
+      height: 160px;
       display: flex;
       gap: .5rem;
       flex-direction: column;
@@ -3173,39 +3207,98 @@ button {
             color: $light;
           }
         }
-      }
 
-      .subs-holder {
-        border: solid 2px $black;
-        padding: 20px;
-        border-radius: 20px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-
-        span {
-          font-size: $standar;
-        }
-
-        button {
-          width: 300px;
-          background-color: $black;
-          font-size: $standar;
-          font-weight: 700;
-          color: $primary-color;
-          height: 42px;
-          outline: 0;
-          border-radius: 10px;
-          transition: .3s ease-out;
-          cursor: pointer;
-          border: solid 2px $black;
+        &.primary {
+          button {
+            background-color: $primary-color;
+            border: solid 2px $primary-color;
+          }
 
           &:hover {
-            background-color: transparent;
-            color: $black;
+            button {
+              background-color: transparent;
+              border: solid 2px $primary-color;
+              color: $primary-color;
+            }
           }
         }
       }
+
+      &.subs {
+        width: calc(100% - 40px);
+        height: 160px;
+
+        .name-holder {
+          .name {
+            color: $primary-color;
+          }
+
+          .icon {
+            border: solid 1px $primary-color;
+
+          }
+        }
+
+        .subs-holder {
+          p {
+            color: $light;
+            font-size: 15px;
+          }
+        }
+      }
+
+      &.act-subs {
+        width: calc(100% - 40px);
+        height: 160px;
+
+        .name-holder {
+          .name {
+            color: $black;
+          }
+
+          .icon {
+            border: solid 1px $black;
+          }
+        }
+
+        .separator {
+          background-color: $black;
+        }
+
+        .info-holder {
+          display: flex;
+          flex-direction: column;
+          gap: .5rem;
+
+          .info-row {
+            display: flex;
+            gap: 1rem;
+
+            .label {
+              color: $dark;
+              font-size: $small;
+              font-weight: 600;
+            }
+
+            .value {
+              color: $black;
+              font-size: $small;
+              font-weight: 600;
+            }
+          }
+        }
+
+      }
+    }
+
+    &.fit {
+      width: calc(100% - 302px - 1rem);
+      height: 200px;
+
+    }
+
+    &.bg {
+      background-color: $primary-color;
     }
   }
 
@@ -3214,6 +3307,11 @@ button {
 
     .card {
       width: 100%;
+
+      &.fit {
+        width: 100%;
+
+      }
 
       .card-wrap {
         width: 320px;
@@ -3228,11 +3326,6 @@ button {
           height: fit-content;
           gap: 1rem;
         }
-      }
-
-      .subs-holder {
-        flex-direction: column;
-        gap: 1rem;
       }
 
       .name-holder {
@@ -3413,11 +3506,11 @@ button {
     width: 100%;
     justify-content: center;
     align-items: center;
+    margin-top: 20px;
 
     .content {
       height: calc(100% - 40px);
       width: calc(100% - 40px);
-      overflow-y: auto;
       -ms-overflow-style: none;
       /* For Internet Explorer and Edge */
       scrollbar-width: none;
@@ -3459,11 +3552,21 @@ button {
       .video-wrap {
         width: 100%;
         min-height: 500px;
+        border-radius: 10px;
         height: fit-content;
-        overflow: hidden;
         display: flex;
         justify-content: center;
         align-items: center;
+        transition: .3s ease-in-out;
+
+        .video-player {
+          overflow: hidden;
+          border-radius: 10px;
+        }
+
+        &.video-playing {
+          animation: auraVideo 4s ease-out infinite;
+        }
       }
     }
   }
@@ -3509,113 +3612,6 @@ button {
         .video-wrap {
           min-height: 220px;
         }
-      }
-    }
-  }
-}
-
-/* Subscription */
-
-.subs-wrap {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: fit-content;
-  gap: 3rem;
-
-  .titles-wrap {
-    h3 {
-      font-size: $xbig;
-      color: $primary-color;
-      font-weight: 700;
-    }
-
-    p {
-      font-size: $standar;
-      color: $white;
-      font-weight: 300;
-    }
-  }
-
-  .cards-wrap {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    height: fit-content;
-    gap: 1rem;
-    justify-content: center;
-
-    .card {
-      width: calc(33% - 40px);
-      padding: 20px;
-      height: 220px;
-      border-radius: 20px;
-      border: solid 1px $primary-color;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      align-items: center;
-
-      .txt-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: .2rem;
-
-        h2 {
-          font-size: $xbig;
-          color: $primary-color;
-          font-weight: 700;
-        }
-
-        p {
-          color: $white;
-          font-weight: 300;
-          font-size: $standar;
-        }
-
-        h1 {
-          font-size: $xlbig;
-          font-weight: 700;
-          color: $white;
-        }
-
-        h3 {
-          color: $primary-color;
-          font-size: $small;
-          font-weight: 500;
-        }
-      }
-
-      button {
-        outline: 0;
-        border: 0;
-        background-color: $primary-color;
-        width: 100%;
-        border-radius: 20px;
-        padding: 15px 0;
-        font-size: $big;
-        color: $black;
-        font-weight: 700;
-        cursor: pointer;
-        transition: .3s ease-out;
-
-        &:hover {
-          transform: scale(1.02);
-
-        }
-      }
-    }
-  }
-
-  @media (max-width:800px) {
-    gap: 1rem;
-
-    .cards-wrap {
-      flex-direction: column;
-
-      .card {
-        width: calc(100% - 40px);
       }
     }
   }
@@ -3714,6 +3710,10 @@ button {
         cursor: pointer;
         transition: .3s ease-out;
 
+        &.full {
+          width: 100%;
+        }
+
         &.confirm {
           color: $light;
           background-color: $primary-color;
@@ -3729,6 +3729,215 @@ button {
         }
       }
     }
+
+    &.extend {
+      width: 800px;
+      transition: .3s ease-out;
+
+      .content-row {
+        background-color: rgba($bg-comp, .8);
+        width: 800px;
+        height: fit-content;
+        border: solid 1px rgba($light , .3);
+        border-radius: 20px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-bottom: 10px;
+
+        .col {
+          padding: 20px;
+          display: flex;
+          justify-content: start;
+          align-items: start;
+          position: relative;
+
+          .tier-btn {
+            padding: 20px;
+            width: fit-content;
+            border-radius: 20px;
+            color: rgba($light, 1);
+            border: solid 1px $light;
+          }
+
+          .tier2-btn {
+            padding: 20px;
+            background: linear-gradient(135deg, #9809f7, #4500e7);
+            background-size: 200% 200%;
+            animation: gradientAnimation 15s ease infinite;
+            width: fit-content;
+            border-radius: 20px;
+            color: rgba($light, 1);
+            border: solid 1px $light;
+            cursor: pointer;
+            position: relative;
+            filter: drop-shadow(0 0 20px rgba(0, 0, 0, 0.3));
+            transition: .3s ease-out;
+
+            &::before {
+              content: '';
+              position: absolute;
+              top: 0;
+              left: 0;
+              right: 0;
+              bottom: 0;
+              z-index: -1;
+              border-radius: 20px;
+              background: linear-gradient(135deg, #9809f7, #4500e7);
+              background-size: 400% 400%;
+              animation: gradientAnimation 15s ease infinite;
+              filter: blur(20px);
+              opacity: 0.7;
+            }
+          }
+
+          .tier3-btn {
+            padding: 20px;
+            background: linear-gradient(135deg, #09f7c3, #00e787);
+            background-size: 200% 200%;
+            animation: gradientAnimation 15s ease infinite;
+            width: fit-content;
+            border-radius: 20px;
+            color: rgba($light, 1);
+            border: solid 1px $light;
+            cursor: pointer;
+            position: relative;
+            filter: drop-shadow(0 0 20px rgba(0, 0, 0, 0.3));
+            transition: .3s ease-out;
+
+            &::before {
+              content: '';
+              position: absolute;
+              top: 0;
+              left: 0;
+              right: 0;
+              bottom: 0;
+              z-index: -1;
+              border-radius: 20px;
+              background: linear-gradient(135deg, #09f7c3, #00e787);
+              background-size: 400% 400%;
+              animation: gradientAnimation 15s ease infinite;
+              filter: blur(40px);
+              opacity: 0.7;
+            }
+          }
+
+          .title {
+            color: $light;
+
+            h1 {
+              font-size: 30px;
+            }
+
+            p {
+              font-size: 11px;
+            }
+
+            @media (max-width: 1000px) {
+              h1 {
+                font-size: 20px;
+              }
+            }
+          }
+
+        }
+
+        .price {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          gap: .3rem;
+
+          p {
+            font-size: 11px;
+          }
+
+          @media (max-width: 1000px) {
+            h1 {
+              font-size: 18px;
+            }
+          }
+
+        }
+
+        .save {
+          position: absolute;
+          z-index: 1;
+          background-color: rgba($bg-comp, .8);
+          color: $light;
+          padding: 5px;
+          font-size: 10px;
+          border-radius: 10px;
+          border: solid 1px rgba($light , .3);
+          top: 30px;
+          left: 50%;
+          white-space: nowrap;
+          transform: translate(-50%, -90%);
+
+        }
+
+        &#row2 {
+          border: solid 1px rgba(#8400ff, 1);
+          background-color: rgba(#8400ff, .3);
+        }
+
+        &#row3 {
+          border: solid 1px rgba(#00ffaa, 2);
+          background-color: rgba(#00ffaa, .3);
+        }
+
+        transition: .3s ease-out;
+        cursor: pointer;
+
+        &:hover {
+          transform: scale(1.03);
+        }
+
+        @media (max-width: 1000px) {
+          width: 335px;
+        }
+      }
+
+      .info {
+        color: $light;
+        font-size: 10px;
+
+        @media (max-width: 1000px) {
+          width: 335px;
+        }
+      }
+
+      @media (max-width: 1000px) {
+        width: 335px;
+      }
+    }
+  }
+}
+
+.explore {
+  border: 1px solid rgba($light , .5);
+  background: linear-gradient(135deg, #d60d5a, #ae00ff, #10e78d, #01cafc, #e7520d);
+  background-size: 400% 400%;
+  animation: gradientAnimation 15s ease infinite;
+  cursor: pointer;
+  position: relative;
+  transition: .3s ease-out;
+
+  &::before {
+    content: '';
+    position: absolute;
+    width: 90%;
+    height: 90%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    border-radius: 20px;
+    background: linear-gradient(135deg, #d60d5a, #7809f7, #10e78d, #01cafc, #e7520d);
+    background-size: 400% 400%;
+    animation: gradientAnimation 15s ease infinite;
+    filter: blur(50px);
+    opacity: 0.7;
   }
 }
 

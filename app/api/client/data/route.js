@@ -12,7 +12,7 @@ export async function GET(request) {
     const email = url.searchParams.get('email')
 
     try {
-        const user = await User.findOne({ email: email }).select('_id email name emailVerified')
+        const user = await User.findOne({ email: email }).select('_id email name emailVerified subscription')
 
         if (!user) {
             return NextResponse.json({ exists: false })

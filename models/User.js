@@ -19,6 +19,17 @@ const UserSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  subscription: {
+    isActive: {
+      type: Boolean,
+      default: false,
+    },
+    subType: {
+      type: String,
+      enum: ['monthly', 'quarterly', 'biannual', 'annual'],
+      default: null,
+    }
+  },
 }, {
   timestamps: true
 }
