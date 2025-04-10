@@ -172,14 +172,16 @@ export async function POST(request) {
             `
     }
 
-    try {
-        await transporter.sendMail(mailOptions)
-        console.log('Change Password email sent succesfully:', email)
-        return NextResponse.json({ message: "Email sent" }, { status: 200 })
-
-    } catch (error) {
-        console.error('Error at sending the change password:', error.message)
-        return NextResponse.json({ message: "Email not sent", error: true }, { status: 200 })
+    if (process.env.NODE_ENV === 'development') {
+        return NextResponse.json({ message: "Data created" }, { status: 200 })
+    } else {
+        try {
+            await transporter.sendMail(mailOptions)
+            console.log('Change Password email sent succesfully:', email)
+        } catch (error) {
+            console.error('Error at sending the change password:', error.message)
+        }
+        return NextResponse.json({ message: "Data created" }, { status: 200 })
     }
 
 }

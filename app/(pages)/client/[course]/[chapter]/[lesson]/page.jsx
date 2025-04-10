@@ -24,14 +24,14 @@ const Course = ({ params }) => {
     if (lessonIndex !== -1 && lessonIndex < activeChapterData.lessons.length - 1) {
       // Go to the next lesson in the current chapter
       const nextLessonId = activeChapterData.lessons[lessonIndex + 1]._id;
-      window.location.href = `/client/${course}/${chapter}/${nextLessonId}`;
+      return `/client/${course}/${chapter}/${nextLessonId}`;
     } else if (chapterIndex !== -1 && chapterIndex < courseData.chapters.length - 1) {
       // If no more lessons in current chapter, go to the first lesson of the next chapter
       const nextChapter = courseData.chapters[chapterIndex + 1];
       const firstLessonId = nextChapter.lessons[0]._id;
-      window.location.href = `/client/${course}/${nextChapter._id}/${firstLessonId}`;
+      return `/client/${course}/${nextChapter._id}/${firstLessonId}`;
     } else {
-      alert('This is the last lesson of the course!');
+      return `/client/${course}/1/101`;
     }
   }
 

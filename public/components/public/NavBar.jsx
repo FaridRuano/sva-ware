@@ -5,29 +5,7 @@ import NavLogo from '@public/assets/icons/logo-navbar.webp'
 import Menu from '@public/assets/icons/menu.webp'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
-
-const useWindowSize = () => {
-
-    const [windowSize, setWindowSize] = useState({
-        width: undefined,
-        height: undefined,
-    })
-
-    useEffect(() => {
-        const handleResize = () => {
-            setWindowSize({
-                width: window.innerWidth,
-                height: window.innerHeight,
-            })
-        }
-
-        window.addEventListener('resize', handleResize)
-        handleResize()
-        return () => window.removeEventListener('resize', handleResize)
-    }, [])
-
-    return windowSize
-}
+import { useWindowSize } from '@libs/useWindowsSize'
 
 const NavBar = ({ activeSection = null }) => {
 

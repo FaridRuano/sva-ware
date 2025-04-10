@@ -103,12 +103,16 @@ export async function POST(request) {
             `
     }
 
-    try {
-        await transporter.sendMail(mailOptions)
-        console.log('Verification email sent succesfully:', email)
-    } catch (error) {
-        console.error('Error at sending the verification email:', error.message)
+    if (process.env.NODE_ENV === 'development') {
+        return NextResponse.json({ message: "Data created" }, { status: 200 })
+    } else {
+        try {
+            await transporter.sendMail(mailOptions)
+            console.log('Verification email sent succesfully:', email)
+        } catch (error) {
+            console.error('Error at sending the verification email:', error.message)
+        }
+        return NextResponse.json({ message: "Data created" }, { status: 200 })
     }
 
-    return NextResponse.json({ message: "Data created" }, { status: 200 })
 }

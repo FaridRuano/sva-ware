@@ -2372,6 +2372,10 @@ button {
   display: flex;
   justify-content: center;
   align-items: start;
+
+  &.subscribed {
+    background: linear-gradient(180deg, $black, #000);
+  }
 }
 
 .client-content-container {
@@ -2665,9 +2669,16 @@ button {
   align-items: center;
   border-radius: 20px;
   transition: .3s ease-out;
+  aspect-ratio: 100 / 56.25;
+  background-color: #000;
 
   &.video-playing {
     animation: auraVideo 4s ease-out infinite;
+  }
+
+  &.video-loading {
+    filter: brightness(0);
+    -webkit-filter: brightness(0);
   }
 }
 
@@ -3090,255 +3101,405 @@ button {
   width: 100%;
   height: fit-content;
   gap: 1rem;
+  flex-direction: column;
 
-  .card {
-    width: 300px;
-    height: 200px;
-    border: solid 1px $primary-color;
-    border-radius: 20px;
+  .card-row {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    width: 100%;
+    height: fit-content;
+    gap: 1rem;
 
-    .card-wrap {
-      width: 260px;
-      height: 160px;
+    .card {
+      width: 300px;
+      height: 200px;
+      border: solid 1px $primary-color;
+      border-radius: 20px;
       display: flex;
-      gap: .5rem;
-      flex-direction: column;
-      justify-content: space-between;
+      justify-content: center;
+      align-items: center;
 
-      .name-holder {
+      .card-wrap {
+        width: 260px;
+        height: 160px;
         display: flex;
-        gap: 1rem;
-        align-items: center;
-
-        .icon {
-          width: 25px;
-          height: 25px;
-          border-radius: 25px;
-          border: solid 1px $light;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-
-        .name {
-          color: $light;
-          font-size: $standar;
-          font-weight: 700;
-        }
-      }
-
-      .separator {
-        height: 2px;
-        width: 100%;
-        background-color: $light;
-      }
-
-      .email-holder {
-        display: flex;
+        gap: .5rem;
         flex-direction: column;
-        gap: .3rem;
+        justify-content: space-between;
 
-        .header {
+        .name-holder {
           display: flex;
-          gap: .5rem;
+          gap: 1rem;
           align-items: center;
 
-          .decor {
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background-color: $primary-color;
-
-            &.err {
-              background-color: $err;
-            }
+          .icon {
+            width: 25px;
+            height: 25px;
+            border-radius: 25px;
+            border: solid 1px $light;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: $light;
+            font-weight: 700;
           }
 
-          .email-label {
-            color: $dark;
-            font-size: $small;
-            font-weight: 600;
-          }
-
-          .sucess {
-            font-size: $small;
-            color: $primary-color;
-            font-weight: 600;
-          }
-
-          .err {
-            font-size: $small;
-            color: $err;
-            font-weight: 600;
-          }
-        }
-
-        .body {
-          span {
+          .name {
             color: $light;
             font-size: $standar;
-            font-weight: 500;
-          }
-        }
-      }
-
-      .btn-holder {
-        width: 100%;
-        height: fit-content;
-
-        button {
-          width: 100%;
-          background-color: $light;
-          font-size: $standar;
-          font-weight: 700;
-          color: $black;
-          height: 42px;
-          outline: 0;
-          border-radius: 10px;
-          transition: .3s ease-out;
-          cursor: pointer;
-          border: solid 2px $light;
-
-          &:hover {
-            background-color: transparent;
-            color: $light;
-          }
-        }
-
-        &.primary {
-          button {
-            background-color: $primary-color;
-            border: solid 2px $primary-color;
-          }
-
-          &:hover {
-            button {
-              background-color: transparent;
-              border: solid 2px $primary-color;
-              color: $primary-color;
-            }
-          }
-        }
-      }
-
-      &.subs {
-        width: calc(100% - 40px);
-        height: 160px;
-
-        .name-holder {
-          .name {
-            color: $primary-color;
-          }
-
-          .icon {
-            border: solid 1px $primary-color;
-
-          }
-        }
-
-        .subs-holder {
-          p {
-            color: $light;
-            font-size: 15px;
-          }
-        }
-      }
-
-      &.act-subs {
-        width: calc(100% - 40px);
-        height: 160px;
-
-        .name-holder {
-          .name {
-            color: $black;
-          }
-
-          .icon {
-            border: solid 1px $black;
+            font-weight: 700;
           }
         }
 
         .separator {
-          background-color: $black;
+          height: 2px;
+          width: 100%;
+          background-color: $light;
         }
 
-        .info-holder {
+        .email-holder {
           display: flex;
           flex-direction: column;
-          gap: .5rem;
+          gap: .3rem;
 
-          .info-row {
+          .header {
             display: flex;
-            gap: 1rem;
+            gap: .5rem;
+            align-items: center;
 
-            .label {
+            .decor {
+              width: 6px;
+              height: 6px;
+              border-radius: 50%;
+              background-color: $primary-color;
+
+              &.err {
+                background-color: $err;
+              }
+            }
+
+            .email-label {
               color: $dark;
               font-size: $small;
               font-weight: 600;
             }
 
-            .value {
-              color: $black;
+            .sucess {
               font-size: $small;
+              color: $primary-color;
               font-weight: 600;
+            }
+
+            .err {
+              font-size: $small;
+              color: $err;
+              font-weight: 600;
+            }
+          }
+
+          .body {
+            span {
+              color: $light;
+              font-size: $standar;
+              font-weight: 500;
             }
           }
         }
 
+        .btn-holder {
+          width: 100%;
+          height: fit-content;
+
+          button {
+            width: 100%;
+            background-color: $light;
+            font-size: $standar;
+            font-weight: 700;
+            color: $black;
+            height: 42px;
+            outline: 0;
+            border-radius: 10px;
+            transition: .3s ease-out;
+            cursor: pointer;
+            border: solid 2px $light;
+
+            &:hover {
+              background-color: transparent;
+              color: $light;
+            }
+          }
+
+          &.primary {
+            button {
+              background-color: $primary-color;
+              border: solid 2px $primary-color;
+            }
+
+            &:hover {
+              button {
+                background-color: transparent;
+                border: solid 2px $primary-color;
+                color: $primary-color;
+              }
+            }
+          }
+        }
+
+        .product-holder {
+          color: $dark;
+          font-weight: 700;
+          font-size: 12px;
+
+          .link {
+            color: $light;
+            cursor: pointer;
+            transition: .3s ease-out;
+
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+
+        }
+
+        .content-holder {
+          color: $dark;
+          font-weight: 700;
+          font-size: 12px;
+
+          .content {
+            width: 100%;
+
+            .table-payments {
+              width: 100%;
+              display: flex;
+              flex-direction: column;
+
+              tr {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+              }
+
+              .product {
+                text-align: start;
+                width: 200px;
+
+                &.b {
+                  color: $light;
+                  font-weight: 400;
+                }
+              }
+
+              .date {
+                text-align: start;
+                width: 100px;
+
+                &.b {
+                  font-weight: 400;
+                  color: $light;
+                }
+              }
+
+              .price {
+                text-align: end;
+                width: 50px;
+
+                &.b {
+                  font-weight: 800;
+                  color: $light;
+                }
+              }
+            }
+          }
+        }
+
+        &.subs {
+          width: calc(100% - 40px);
+          height: 160px;
+
+          .name-holder {
+            .name {
+              color: $primary-color;
+            }
+
+            .icon {
+              border: solid 1px $primary-color;
+
+            }
+          }
+
+          .subs-holder {
+            p {
+              color: $light;
+              font-size: 15px;
+            }
+          }
+        }
+
+        &.act-subs {
+          width: calc(100% - 40px);
+          height: 160px;
+
+          .name-holder {
+            .name {
+              color: $black;
+            }
+
+            .icon {
+              border: solid 1px $black;
+            }
+          }
+
+          .separator {
+            background-color: $black;
+          }
+
+          .info-holder {
+            display: flex;
+            flex-direction: column;
+            gap: .5rem;
+
+            .info-row {
+              display: flex;
+              gap: 1rem;
+
+              .label {
+                color: $dark;
+                font-size: $small;
+                font-weight: 600;
+
+                &.neg {
+                  color: rgba($err, 1) !important;
+                }
+
+                &.link {
+                  cursor: pointer;
+                  transition: .3s ease-out;
+                  color: $black;
+                  font-weight: 700;
+
+                  &:hover {
+                    text-decoration: underline;
+                  }
+                }
+              }
+
+              .value {
+                color: $black;
+                font-size: $small;
+                font-weight: 600;
+              }
+            }
+          }
+
+        }
+
+        &.fit {
+          justify-content: start;
+          gap: 1rem;
+          height: fit-content;
+        }
+
       }
-    }
 
-    &.fit {
-      width: calc(100% - 302px - 1rem);
-      height: 200px;
+      &.explore {
+        cursor: default !important;
+      }
 
-    }
+      &.fit {
+        width: calc(100% - 302px - 1rem);
+        height: 200px;
+      }
 
-    &.bg {
-      background-color: $primary-color;
+      &.bg {
+        background: linear-gradient(135deg, $primary-color, $primary-dark);
+      }
+
+      &.full {
+        width: 100%;
+
+        .card-wrap {
+          width: calc(100% - 40px);
+        }
+      }
+
+      &.h-fit {
+        height: fit-content;
+        padding: 20px 0;
+      }
     }
   }
 
   @media (max-width: 1000px) {
     flex-direction: column;
 
-    .card {
-      width: 100%;
+    .card-row {
+      flex-direction: column;
 
-      &.fit {
+      .card {
         width: 100%;
 
-      }
+        &.fit {
+          width: 100%;
 
-      .card-wrap {
-        width: 320px;
-      }
-
-      &.subs {
-        width: 100%;
-        height: fit-content;
+        }
 
         .card-wrap {
-          padding: 30px 0;
+          width: calc(100% - 40px);
+        }
+
+        &.subs {
+          width: 100%;
           height: fit-content;
-          gap: 1rem;
-        }
-      }
 
-      .name-holder {
-        .icon {
-          min-width: 25px;
+          .card-wrap {
+            padding: 30px 0;
+            height: fit-content;
+            gap: 1rem;
+          }
         }
 
-        .name {
-          max-width: 100%;
+        .name-holder {
+          .icon {
+            min-width: 25px;
+          }
+
+          .name {
+            max-width: 100%;
+          }
         }
       }
     }
+
   }
+
+
+}
+
+/* Profile - History Paids */
+
+.return-link {
+  .link {
+    display: flex;
+    flex-direction: row;
+    gap: .5rem;
+    justify-content: start;
+    align-items: center;
+    opacity: .7;
+    transition: .3s ease-out;
+
+    .label {
+      color: $light;
+      font-size: 12px;
+      font-weight: 400;
+    }
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
 }
 
 /* Courses */
@@ -3360,7 +3521,7 @@ button {
   height: 100%;
   max-height: 100%;
   background-color: transparent;
-  border: solid 2px $dark;
+  border: solid 1px $dark;
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -3477,18 +3638,36 @@ button {
       }
     }
   }
+}
 
-  @media (max-width: 800px) {
-    width: auto;
-    height: 300px;
-
-    .sidebar {
-      height: 260px;
-
-      .items-list {
-        min-height: 180px;
-      }
-    }
+.sidebar-container-mobile {
+  width: calc(100% - 40px);
+  height: fit-content;
+  padding: 20px;
+  background-color: transparent;
+  border: solid 1px $dark;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  border-radius: 20px;
+  overflow: hidden;
+  gap: 1rem;
+  .sidebar-title{
+    width: 100%;
+    color: $primary-color;
+    font-size: 15px;
+    font-weight: 700;
+  }
+  .separator{
+    width: 100%;
+    height: 2px;
+    background-color: $primary-color;
+  }
+  .sidebar-current{
+    width: 100%;
+    display: flex;
+    gap: 1rem;
   }
 }
 
@@ -3551,13 +3730,14 @@ button {
 
       .video-wrap {
         width: 100%;
-        min-height: 500px;
+        aspect-ratio: 100 / 56.25;
         border-radius: 10px;
         height: fit-content;
         display: flex;
         justify-content: center;
         align-items: center;
         transition: .3s ease-in-out;
+        background-color: #000;
 
         .video-player {
           overflow: hidden;
@@ -3566,6 +3746,11 @@ button {
 
         &.video-playing {
           animation: auraVideo 4s ease-out infinite;
+        }
+
+        &.video-loading {
+          filter: brightness(0);
+          -webkit-filter: brightness(0);
         }
       }
     }
@@ -3576,12 +3761,12 @@ button {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    color: $primary-color;
     font-size: $standar;
     font-weight: 500;
     padding: 20px;
 
-    a {
+    .next-lesson {
+      color: $primary-color;
       cursor: pointer;
       opacity: .8;
       transition: .1s ease-out;
@@ -3595,9 +3780,7 @@ button {
   @media (max-width: 1000px) {
     .content-wrap {
       .content {
-        .video-wrap {
-          min-height: 350px;
-        }
+        .video-wrap {}
       }
     }
   }
@@ -3606,11 +3789,12 @@ button {
     width: auto;
 
     .content-wrap {
-      padding: 20px 0;
 
       .content {
-        .video-wrap {
-          min-height: 220px;
+        .info-wrap {
+          p {
+            font-size: 12px;
+          }
         }
       }
     }

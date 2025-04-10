@@ -28,8 +28,70 @@ const UserSchema = new mongoose.Schema({
       type: String,
       enum: ['monthly', 'quarterly', 'biannual', 'annual'],
       default: null,
-    }
+    },
+    startDate: {
+      type: Date,
+      default: null,
+    },
+    endDate: {
+      type: Date,
+      default: null,
+    },
+    lastPaymentDate: {
+      type: Date,
+      default: null,
+    },
+    nextPaymentDate: {
+      type: Date,
+      default: null,
+    },
+    paymentMethod: {
+      type: String,
+      default: null,
+    },
   },
+  purchasedProducts: [
+    {
+      product: {
+        type: String,
+        required: true,
+      },
+      purchaseDate: {
+        type: Date,
+        default: Date.now,
+      },
+      price: {
+        type: Number,
+        required: true,
+      },
+      paymentMethod: {
+        type: String,
+        default: null,
+      },
+    }
+  ],
+  paymentHistory: [
+    {
+      product: {
+        type: String,
+        required: true,
+      },
+      amount: {
+        type: Number,
+        required: true,
+      },
+      paymentDate: {
+        type: Date,
+        default: Date.now,
+      },
+      paymentMethod: {
+        type: String,
+      },
+      transactionId: {
+        type: String,
+      },
+    }
+  ]
 }, {
   timestamps: true
 }

@@ -1,10 +1,17 @@
 'use client'
 import React, { useState } from 'react'
 import MuxPlayer from '@node_modules/@mux/mux-player-react';
+import Link from '@node_modules/next/link';
 
 const CourseWindow = ({ data, goToNextLesson }) => {
 
+    const [loading, setLoading] = useState(true)
+
     const [isPlaying, setIsPlaying] = useState(false)
+
+    const handlePlayerReady = () => {
+        setLoading(false)
+    }
 
     return (
         <div className='coursewindow-container'>
@@ -12,15 +19,17 @@ const CourseWindow = ({ data, goToNextLesson }) => {
                 <div className="content">
                     {
                         data.videoUrl && (
-                            <div className={`video-wrap ${isPlaying ? 'video-playing' : ''}`}>
+                            <div className={`video-wrap ${isPlaying ? 'video-playing' : ''} ${loading ? 'video-loading' : ''}`}>
                                 <MuxPlayer
                                     playbackId={data.videoUrl}
                                     loading="viewport"
                                     onPlay={() => setIsPlaying(true)}
                                     onPause={() => setIsPlaying(false)}
-                                    accent-color="#09e199" 
+                                    accent-color="#09e199"
                                     className='video-player'
-                                    poster={`https://image.mux.com/${data.videoUrl}/animated.webp?fit_mode=preserve&start=12.5&end=17.4`}
+                                    poster={data.posterUrl}
+                                    onReady={handlePlayerReady}
+                                    onLoadedData={handlePlayerReady}
                                 >
                                 </MuxPlayer>
                             </div>
@@ -50,9 +59,9 @@ const CourseWindow = ({ data, goToNextLesson }) => {
                 </div>
             </div>
             <div className="footer-wrap">
-                <a onClick={() => goToNextLesson()}>
+                <Link href={{ pathname: goToNextLesson()}} className='next-lesson'>
                     Pasar a la siguiente lección
-                </a>
+                </Link>
             </div>
         </div>
     )

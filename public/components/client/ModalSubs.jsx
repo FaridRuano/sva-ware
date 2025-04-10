@@ -1,6 +1,8 @@
+'use client'
 import React from 'react'
 
 const ModalSubs = ({ active, setActive }) => {
+
 
     if (active) {
         return (
@@ -18,7 +20,7 @@ const ModalSubs = ({ active, setActive }) => {
                             </div>
                         </div>
                         <div className="col">
-                            <div className="price tier-btn" onClick={() => router.push('/login')}>
+                            <div className="price tier-btn">
                                 <h1>
                                     $29.99
                                 </h1>Yo
@@ -41,7 +43,7 @@ const ModalSubs = ({ active, setActive }) => {
                             <div className="save">
                                 Paga <b>$24.33</b> por mes
                             </div>
-                            <div className="price tier2-btn" onClick={() => router.push('/login')}>
+                            <div className="price tier2-btn">
                                 <h1>
                                     $72.99
                                 </h1>
@@ -64,7 +66,7 @@ const ModalSubs = ({ active, setActive }) => {
                             <div className="save">
                                 Paga <b>$21.16</b> por mes
                             </div>
-                            <div className="price tier3-btn" onClick={() => router.push('/login')}>
+                            <div className="price tier3-btn">
                                 <h1>
                                     $126.99
                                 </h1>

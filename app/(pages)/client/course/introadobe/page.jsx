@@ -14,6 +14,8 @@ const Course = () => {
 
   const [loading, setLoading] = useState(true)
 
+  const [loadingVideo, setLoadingVideo] = useState(true)
+
   const { data: session } = useSession()
 
   const { subscription, isLoading, isError } = useSubscription(session.user.email)
@@ -353,7 +355,7 @@ const Course = () => {
             {' ('} Photoshop, Illustrator, Premiere Pro, After Effects {')'}.
           </p>
         </div>
-        <div className={`course-video ${isPlaying ? 'video-playing' : ''}`}>
+        <div className={`course-video ${isPlaying ? 'video-playing' : ''} ${loadingVideo ? 'video-loading' : ''}`}>
           <MuxPlayer
             onPlay={() => setIsPlaying(true)}
             onPause={() => setIsPlaying(false)}
@@ -362,6 +364,8 @@ const Course = () => {
             poster='https://visualartsschool.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fcover-introadobe.72c0d920.jpg&w=828&q=75'
             playbackId="6j6SgyATd3hKJY01w5J77U4D2GOHDkcrPBMWEetBcWjs"
             accent-color="#09e199"
+            onReady={() => setLoadingVideo(false)}
+            onLoadedData={() => setLoadingVideo(false)}
           />
         </div>
 

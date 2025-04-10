@@ -11,17 +11,51 @@ export async function GET(request) {
 
     const email = url.searchParams.get('email')
 
-    try {
-        const user = await User.findOne({ email: email }).select('_id email name emailVerified subscription')
+    const action = url.searchParams.get('action')
 
-        if (!user) {
-            return NextResponse.json({ exists: false })
-        }
+    switch (action) {
+        case 'paids':
+            try {
+                const user = await User.findOne({ email: email }).select('_id email paymentHistory')
 
-        return NextResponse.json({ userData: user })
+                if (!user) {
+                    return NextResponse.json({ exists: false })
+                }
 
-    } catch (error) {
-        console.error('Error fetching user:', error)
-        return NextResponse.json({ message: 'Internal server error' }, { status: 500 })
+                return NextResponse.json({ userData: user })
+
+            } catch (error) {
+                console.error('Error fetching user:', error)
+                return NextResponse.json({ message: 'Internal server error' }, { status: 500 })
+            }
+        case 'profile':
+            try {
+                const user = await User.findOne({ email: email }).select('_id email name emailVerified subscription purchasedProducts')
+
+                if (!user) {
+                    return NextResponse.json({ exists: false })
+                }
+
+                return NextResponse.json({ userData: user })
+
+            } catch (error) {
+                console.error('Error fetching user:', error)
+                return NextResponse.json({ message: 'Internal server error' }, { status: 500 })
+            }
+        default:
+            try {
+                const user = await User.findOne({ email: email }).select('_id email name emailVerified subscription')
+
+                if (!user) {
+                    return NextResponse.json({ exists: false })
+                }
+
+                return NextResponse.json({ userData: user })
+
+            } catch (error) {
+                console.error('Error fetching user:', error)
+                return NextResponse.json({ message: 'Internal server error' }, { status: 500 })
+            }
     }
+
 }
