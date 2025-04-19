@@ -12,6 +12,8 @@ const NavBar = () => {
 
     const router = useRouter()
 
+    const [loading, setLoading] = useState(true)
+
     const [username, setUsername] = useState('Student')
 
     const { data: session, status } = useSession()
@@ -22,12 +24,32 @@ const NavBar = () => {
         }
     })
 
+    const verifySubscription = (date) => {
+        setLoading(true)
+        const currentDate = new Date()
+        const endDate = new Date(date)
+
+        if(currentDate > endDate) {
+            return false
+        }else{
+            return true
+        }
+    }
+
     const verifyUserStillExists = async (email) => {
         try {
+            setLoading(true)
             const res = await axios.post(`/api/auth/login/email`, { email })
 
             if (res.data.exists) {
                 setUser(res.data.user)
+                if(res.data.user.subscription.isActive) {
+                    if(!verifySubscription(res.data.user.subscription.endDate)){
+                        const res2 = await axios.post(`/api/client/subs`, { email, action: 'subexpired' })
+                        setUser(res2.data.userData)
+                    }
+                }
+
                 return true
             } else {
                 return false
@@ -48,7 +70,7 @@ const NavBar = () => {
 
                     if (isUser) {
                         setUsername(session.user.name)
-
+                        setLoading(false)
                     } else {
                         signOut({ callbackUrl: '/login' })
                     }
@@ -65,7 +87,7 @@ const NavBar = () => {
 
     }, [status, router])
 
-    if (status === 'loading') {
+    if (status === 'loading' || loading) {
         return (
             <div className='client-navbar loading'>
                 <div className="client-nav-container">
@@ -75,12 +97,13 @@ const NavBar = () => {
         )
     } else {
         return (
-            <div className='client-navbar'>
-                <div className="client-nav-container">
-                    <div className="nav-item logo" onClick={() => router.push('/client')}>
-                        <Image src={Logo} width={'auto'} height={30} alt='Logo' />
-                    </div>
-                    {/* <div className="nav-item">
+            <>
+                <div className='client-navbar'>
+                    <div className="client-nav-container">
+                        <div className="nav-item logo" onClick={() => router.push('/client')}>
+                            <Image src={Logo} width={'auto'} height={30} alt='Logo' />
+                        </div>
+                        {/* <div className="nav-item">
                         <div className="item" onClick={() => router.push('/client/mycourses')}>
                             <Image src={Courses} width={'auto'} height={20} alt='Icon' />
                             <span>Mis cursos</span>
@@ -90,44 +113,46 @@ const NavBar = () => {
                             <span>Blog</span>
                         </div>
                     </div> */}
-                    <div className="nav-item">
-                        <div className="dropdown">
-                            <div className="name-dropdown">
-                                <span>
-                                    {username}
-                                </span>
-                            </div>
-                            <div className="icon">
-                                <Image src={ArrowDown} width={11} height={'auto'} alt='Icon' />
-                            </div>
-                            <div className="dropdown-item">
-                                <div className="dropdown-wrap">
+                        <div className="nav-item">
+                            <div className="dropdown">
+                                <div className="name-dropdown">
                                     <span>
-                                        <Link href={{ pathname: '/client/profile' }}>
-                                            Ver mi perfil
-                                        </Link>
+                                        {username}
                                     </span>
-                                    {
-                                        !user.subscription.isActive && (
-                                            <span>
-                                                <Link href={{ pathname: '/client/profile', query: { openSubsModal: true } }}>
-                                                    Unirme a la escuela
-                                                </Link>
-                                            </span>
-                                        )
-                                    }
-                                    <div className="separator" />
-                                    <span className='logout' onClick={() => signOut({ callbackUrl: '/' })}>
-                                        <a>
-                                            Cerrar Sesión
-                                        </a>
-                                    </span>
+                                </div>
+                                <div className="icon">
+                                    <Image src={ArrowDown} width={11} height={'auto'} alt='Icon' />
+                                </div>
+                                <div className="dropdown-item">
+                                    <div className="dropdown-wrap">
+                                        <span>
+                                            <Link href={{ pathname: '/client/profile' }}>
+                                                Ver mi perfil
+                                            </Link>
+                                        </span>
+                                        {
+                                            !user.subscription.isActive && (
+                                                <span>
+                                                    <Link href={{ pathname: '/client/profile', query: { openSubsModal: true } }}>
+                                                        Unirme a la escuela
+                                                    </Link>
+                                                </span>
+                                            )
+                                        }
+                                        <div className="separator" />
+                                        <span className='logout' onClick={() => signOut({ callbackUrl: '/' })}>
+                                            <a>
+                                                Cerrar Sesión
+                                            </a>
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div >
                 </div >
-            </div >
+            </>
+
         )
     }
 

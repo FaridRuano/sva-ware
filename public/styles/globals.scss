@@ -21,6 +21,7 @@ ul,
 h1,
 h2,
 h3,
+h4,
 p {
   margin: 0;
   padding: 0;
@@ -2259,7 +2260,7 @@ button {
           height: fit-content;
           padding: 20px 0;
           transition: .3s ease-out;
-          top: 0px;
+          top: -55px;
           right: 5px;
           background-color: $black;
           border: solid 2px $dark;
@@ -2268,6 +2269,7 @@ button {
           justify-content: center;
           align-items: center;
           z-index: 10;
+          transition: .3s ease-out;
 
           .dropdown-wrap {
             width: 120px;
@@ -2363,6 +2365,7 @@ button {
     }
   }
 }
+
 
 /* Page Wrap */
 
@@ -2464,6 +2467,9 @@ button {
 .client-pt1 {
   width: 100%;
   height: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 
   .feature-container {
     display: flex;
@@ -2578,6 +2584,43 @@ button {
     }
   }
 
+  .livesession-container {
+    padding: 20px;
+    border: 1px solid rgba($primary-color, 1);
+    background: linear-gradient(135deg, $primary-color, $primary-dark);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    .info {
+      color: $black;
+      font-size: 12px;
+    }
+
+    .reserve-btn {
+      padding: 8px 12px;
+      background-color: $black;
+      white-space: nowrap;
+      color: $light;
+      font-weight: 600;
+      font-size: 14px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: .3s ease-out;
+
+      span {
+        color: $light;
+      }
+
+      &:hover {
+        box-shadow: 0 0 40px $black;
+        transform: scale(1.02);
+      }
+    }
+  }
+
   @media (max-width: 800px) {
     .feature-container {
       .feature-img {
@@ -2612,7 +2655,7 @@ button {
   }
 }
 
-/* Course Page */
+/* Courses Page */
 
 .course-tags {
   display: flex;
@@ -2984,110 +3027,6 @@ button {
 
         .btn-content {
           width: 85%;
-        }
-      }
-    }
-  }
-}
-
-/* My Courses */
-
-.home-title {
-  background-image: url('../assets/imgs/client-home-asset.webp');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  height: 105px;
-  display: flex;
-  padding: 20px;
-  width: calc(100% - 40px);
-  border-radius: 20px 20px 0 0;
-
-  h1 {
-    color: $light;
-    font-size: $xlbig;
-  }
-
-  @media (max-width: 800px) {
-    height: 80px;
-
-    h1 {
-      font-size: $xbig;
-    }
-  }
-}
-
-.client-courses {
-  display: flex;
-  width: 100%;
-  flex-direction: column;
-  gap: 1rem;
-
-  span {
-    color: $light;
-    font-weight: 600;
-    font-size: $big;
-  }
-
-  .courses-wrap {
-    display: flex;
-    flex-direction: column;
-    gap: .5rem;
-
-    .row {
-      display: flex;
-      justify-content: space-between;
-      width: 100%;
-
-      .course {
-        width: 24%;
-        height: 240px;
-        min-width: 260px;
-        display: flex;
-        flex-direction: column;
-        cursor: pointer;
-        gap: 1rem;
-        transition: .2s ease-out;
-
-        .img-holder {
-          background-color: $dark;
-          border-radius: 20px;
-          height: 150px;
-        }
-
-        .title-holder {
-          color: $primary-color;
-          font-size: $standar;
-        }
-
-        &:hover {
-          transform: scale(1.05);
-        }
-      }
-    }
-  }
-
-  @media (max-width: 1100px) {
-    .courses-wrap {
-      .row {
-        flex-wrap: wrap;
-
-        .course {
-          width: 49%;
-        }
-      }
-    }
-  }
-
-  @media (max-width: 800px) {
-    .courses-wrap {
-      .row {
-        flex-direction: column;
-        gap: 1rem;
-
-        .course {
-          width: 100%;
-          height: fit-content;
         }
       }
     }
@@ -3502,7 +3441,7 @@ button {
 
 }
 
-/* Courses */
+/* Course */
 
 .courses-page {
   display: flex;
@@ -3638,6 +3577,11 @@ button {
       }
     }
   }
+
+  &.full {
+    width: 100%;
+    background-color: rgba($black, .8);
+  }
 }
 
 .sidebar-container-mobile {
@@ -3652,22 +3596,62 @@ button {
   align-items: center;
   border-radius: 20px;
   overflow: hidden;
+  cursor: pointer;
   gap: 1rem;
-  .sidebar-title{
+
+  .sidebar-title {
     width: 100%;
     color: $primary-color;
     font-size: 15px;
     font-weight: 700;
   }
-  .separator{
+
+  .separator {
     width: 100%;
     height: 2px;
     background-color: $primary-color;
   }
-  .sidebar-current{
+
+  .sidebar-current {
     width: 100%;
     display: flex;
-    gap: 1rem;
+    justify-content: space-between;
+    gap: .2rem;
+
+    .chapter {
+      font-size: 14px;
+      width: fit-content;
+      color: $primary-color;
+      font-weight: 500;
+    }
+
+    .lesson {
+      font-size: 14px;
+      width: fit-content;
+      color: $light;
+      font-weight: 400;
+    }
+  }
+}
+
+.sidebar-container-full {
+  position: fixed;
+  background-color: rgba($black, .8);
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  z-index: 11;
+  cursor: pointer;
+  animation: fadeIn .5s forwards;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .content {
+    width: 335px;
+    height: fit-content;
+    animation: scaleUp .5s forwards;
   }
 }
 
@@ -3796,6 +3780,317 @@ button {
             font-size: 12px;
           }
         }
+      }
+    }
+  }
+}
+
+/* LiveClasses Page*/
+
+.live-wrap {
+  width: calc(100% - 40px);
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(135deg, $bg-comp, $bg-stroke);
+  border: 1px solid rgba($light, .2);
+  border-radius: 20px;
+  padding: 20px;
+  transition: .3s ease-out;
+
+  .live-header {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    .title {
+
+      h1 {
+        font-size: 22px;
+        color: $light;
+      }
+    }
+
+    .remaining {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: .5rem;
+      color: $light;
+      border: 1px solid $primary-color;
+      border-radius: 20px;
+      padding: 8px 12px;
+
+      p {
+        color: $primary-color;
+        font-weight: 300;
+        font-size: 15px;
+
+        span {
+          font-weight: 700;
+        }
+      }
+    }
+
+    @media (max-width: 600px) {
+      flex-direction: column;
+      align-items: start;
+      gap: .5rem;
+
+      .title {
+        h1 {
+          font-size: 14px;
+        }
+      }
+
+      .remaining {
+        width: calc(100% - 24px);
+
+        p {
+          font-size: 12px;
+        }
+      }
+    }
+  }
+
+  .live-body {
+    h4 {
+      color: $light;
+      margin-bottom: 10px;
+      &.primary{
+        color: $primary-color;
+      }
+    }
+
+    .form{
+      
+    }
+
+    .descrip {
+      color: $light;
+      font-size: 12px;
+
+    }
+
+    .rules {
+      color: $light;
+
+      ul,
+      li {
+        color: $light;
+        font-size: 12px;
+        list-style: inside;
+        margin: 0;
+      }
+    }
+
+    .reserve-separator {
+      height: 10px;
+      width: 100%;
+    }
+
+    .reserve-button {
+      width: calc(100% - 20px);
+      padding: 10px;
+      background-color: $primary-color;
+      color: $black;
+      font-weight: 600;
+      font-size: 14px;
+      border-radius: 20px;
+      cursor: pointer;
+      text-align: center;
+      transition: .3s ease-out;
+
+      &:hover {
+        box-shadow: 0 0 40px $primary-color;
+        transform: scale(1.02);
+      }
+    }
+  }
+
+  .m-btm {
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba($light , .3);
+  }
+
+  @media (max-width: 800px) {}
+}
+
+.calendar-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+
+  .calendar-row {
+    display: flex;
+    gap: 0.5rem;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+
+  }
+
+  .nav-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba($bg-comp, .8);
+    border: 1px solid rgba($light, .3);
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    color: #333;
+    transition: background-color 0.3s;
+
+    &.nav-button:hover {
+      background-color: rgba($primary-dark, .5);
+    }
+  }
+
+
+  .days-wrapper {
+    display: flex;
+    gap: 1rem;
+    max-width: 500px;
+
+    .day-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 60px;
+      padding: 0.5rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      user-select: none;
+
+      &:hover {
+        background-color: rgba($light , .3);
+        box-shadow: 0 0 20px rgba($black, .8);
+
+      }
+
+      .day-label {
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: $primary-color;
+      }
+
+      .day-number {
+        font-size: 25px;
+        font-weight: bold;
+        color: $light;
+      }
+
+      .month-label {
+        font-size: 0.8rem;
+        color: #999;
+      }
+
+      &.selected {
+        background-color: $primary-color;
+
+        .day-label {
+          color: $black;
+        }
+
+        .day-number {
+          color: $black;
+        }
+
+        .month-label {
+          color: $black;
+        }
+      }
+
+      &.disabled {
+        opacity: .5;
+        cursor: not-allowed;
+
+      }
+    }
+
+  }
+
+  .selected-info {
+    text-align: center;
+    font-size: 14px;
+    color: $light-dark;
+  }
+
+  @media (max-width: 700px) {
+    .calendar-row {
+      gap: 0.4rem;
+      min-width: 330px;
+      justify-content: space-between;
+
+      .days-wrapper {
+        width: 100%;
+        justify-content: space-between;
+        gap: .2rem;
+
+        .day-card {
+          width: 45px;
+          padding: 10px 0;
+
+          .day-label {
+            font-size: 10px;
+          }
+
+          .day-number {
+            font-size: 14px;
+          }
+
+          .month-label {
+            font-size: 10px;
+          }
+        }
+      }
+
+      .nav-button {
+        padding: 7px;
+      }
+    }
+  }
+}
+
+.timepicker-container {
+  margin: 1rem 0;
+  text-align: center;
+
+  .slots-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+
+    .slot-button {
+      padding: 0.5rem;
+      border-radius: 6px;
+      background-color: rgba($bg-comp, .4);
+      outline: none;
+      border: none;
+      cursor: pointer;
+      color: $light;
+      font-size: 14px;
+      font-weight: 700;
+      transition: background 0.2s, border-color 0.3s;
+
+      &:hover {
+        background-color: rgba($dark, .8);
+
+      }
+
+      &.selected {
+        background-color: $primary-color;
+        color: $black;
       }
     }
   }
@@ -4123,6 +4418,11 @@ button {
     filter: blur(50px);
     opacity: 0.7;
   }
+}
+
+.link-general {
+  text-decoration: underline;
+  color: $light;
 }
 
 /* ===================Animations=========================== */

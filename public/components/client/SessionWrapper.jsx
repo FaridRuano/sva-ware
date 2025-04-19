@@ -7,12 +7,16 @@ export default function SessionWrapper({ children }) {
 
     const { subscription, isLoading } = useSubscription(session.user.email)
 
-    if(isLoading){
+    if (isLoading) {
         return (
             <div className="page-wrap loading">
             </div>
         )
     }
 
-    return <div className={`page-wrap ${subscription.isActive ? 'subscribed' : ''}`}>{children}</div>;
+    return (
+        <div className={`page-wrap ${subscription.isActive ? 'subscribed' : ''}`}>
+            {children}
+        </div>
+    )
 }

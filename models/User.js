@@ -49,6 +49,10 @@ const UserSchema = new mongoose.Schema({
       type: String,
       default: null,
     },
+    liveSessions:{
+      type: Number,
+      default: 0,
+    }
   },
   purchasedProducts: [
     {

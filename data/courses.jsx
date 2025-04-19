@@ -11,7 +11,7 @@ export const courses = {
                 lessons: [
                     {
                         _id: 101,
-                        title: 'Introduccion',
+                        title: 'Introducción',
                         content: [
                             'Adobe Photoshop es una de las herramientas de edición de imágenes más populares y potentes del mundo. Utilizado por diseñadores, fotógrafos, artistas y creadores de contenido, Photoshop permite realizar desde simples retoques hasta complejas composiciones digitales. Su interfaz intuitiva y amplia gama de herramientas lo convierten en una plataforma ideal para aquellos que buscan mejorar sus habilidades en edición de imágenes.',
                             'Entre las funcionalidades de Photoshop se encuentran el ajuste de colores, la corrección de imperfecciones, el uso de capas para trabajar de manera no destructiva y la capacidad de crear efectos especiales. Con esta lección, aprenderás los conceptos básicos para empezar a familiarizarte con la funcionalidad y posibilidades principales que ofrece Photoshop.'
@@ -103,7 +103,7 @@ export const courses = {
                 lessons: [
                     {
                         _id: 201,
-                        title: 'Introduccion',
+                        title: 'Introducción',
                         content: [
                             'Illustrator es un software de diseño vectorial, se ha consolidado como una herramienta esencial para artistas, diseñadores gráficos e ilustradores de todo el mundo. A diferencia de los gráficos de mapa de bits, que se basan en píxeles, los gráficos vectoriales se crean a partir de fórmulas matemáticas que permiten ampliar o reducir las ilustraciones sin perder calidad, lo cual es ideal para trabajos que requieren una precisión y versatilidad extraordinarias, como logotipos, ilustraciones, tipografías personalizadas y gráficos complejos. Con una amplia gama de herramientas, Illustrator permite a los usuarios crear desde ilustraciones detalladas hasta diseños para impresión, interfaces digitales y mucho más, destacándose por su capacidad para adaptarse a diversas aplicaciones creativas y profesionales.',
                             'Una de las características más notables de Illustrator es su facilidad para integrarse con otros programas de Adobe, como Photoshop, InDesign y After Effects, lo que permite un flujo de trabajo eficiente y coherente entre diferentes proyectos de diseño. Estas capacidades convierten a Illustrator en una herramienta imprescindible para quienes buscan crear gráficos de alta calidad, ya que no solo ofrece control y flexibilidad, sino que también abre un sinfín de posibilidades creativas en el mundo del diseño digital.'
@@ -196,7 +196,7 @@ export const courses = {
                 lessons: [
                     {
                         _id: 301,
-                        title: 'Introduccion',
+                        title: 'Introducción',
                         content: [
                             'Adobe Premiere Pro es una de las herramientas de edición de video más completas y populares en la industria audiovisual, utilizada tanto por principiantes como por profesionales del cine y la televisión. Este software destaca por su capacidad para manejar proyectos complejos, ofreciendo una interfaz intuitiva y personalizable que se adapta a distintos flujos de trabajo. Al abrir Premiere Pro, los usuarios pueden organizar su espacio de trabajo con paneles como Línea de tiempo, Monitor de programa y Proyecto, lo cual facilita el proceso de edición y la manipulación de clips. Gracias a su integración con otras aplicaciones de Adobe, como After Effects y Photoshop, permite un flujo de trabajo fluido y colaborativo, ideal para proyectos multimedia que requieren una mezcla de animación, gráficos y edición avanzada.',
                             'Las herramientas de Premiere Pro son robustas y permiten realizar ediciones de alta calidad, desde cortes y ajustes básicos hasta efectos y correcciones avanzadas de color. Con la línea de tiempo, los editores pueden organizar clips de video y audio, aplicar transiciones y efectos, y realizar cortes precisos para crear narrativas visuales coherentes y atractivas. Además, la función de Lumetri Color ofrece opciones avanzadas para la corrección y gradación de color, mejorando significativamente la estética del video. Premiere Pro también incluye herramientas de edición de audio y opciones para añadir subtítulos y títulos, facilitando la creación de contenidos accesibles y adaptados a las necesidades del espectador. En conjunto, Premiere Pro es una solución poderosa y versátil para cualquier tipo de proyecto audiovisual, desde videos para redes sociales hasta producciones de alta calidad para cine y televisión.'
@@ -288,7 +288,7 @@ export const courses = {
                 lessons: [
                     {
                         _id: 401,
-                        title: 'Introduccion',
+                        title: 'Introducción',
                         content: [
                             'En esta lección exploraremos qué es After Effects, una poderosa herramienta de Adobe diseñada para la creación y manipulación de efectos visuales, motion graphics y composiciones en video. After Effects se ha consolidado como el estándar de la industria para transformar ideas estáticas en animaciones dinámicas y visualmente impactantes. Su versatilidad permite dar vida a conceptos creativos a través de técnicas de composición, animación digital y procesamiento de imágenes, abriendo un abanico de posibilidades para profesionales del cine, la publicidad y el diseño digital.',
                             'Durante esta primera lección, descubriremos cómo After Effects se emplea para mejorar narrativas visuales y reforzar el mensaje de una producción audiovisual mediante la incorporación de efectos espectaculares y transiciones fluidas. Analizaremos sus aplicaciones en proyectos de distintos ámbitos creativos y profundizaremos en los fundamentos que sustentan su uso, permitiéndote comprender de manera integral el potencial de esta herramienta para transformar ideas en experiencias visuales inolvidables.'

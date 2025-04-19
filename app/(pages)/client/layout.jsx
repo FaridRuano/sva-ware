@@ -22,7 +22,6 @@ export default function RootLayout({ children }) {
       router.push('/login')
     } else {
       if (status === 'loading') {
-        console.log(session, status)
         setLoading(true)
       } else {
         setLoading(false)
