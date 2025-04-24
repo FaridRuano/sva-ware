@@ -3,7 +3,7 @@ import Logo from '@public/assets/icons/logo-navbar.webp'
 import ArrowDown from '@public/assets/icons/arrow-down.webp'
 import { signOut, useSession } from 'next-auth/react';
 import Image from 'next/image'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import axios from '@node_modules/axios'
 import Link from '@node_modules/next/link'
@@ -15,6 +15,9 @@ const NavBar = () => {
     const [loading, setLoading] = useState(true)
 
     const [username, setUsername] = useState('Student')
+
+    const [showDropdown, setShowDropdown] = useState(false)
+    const dropdownRef = useRef(null);
 
     const { data: session, status } = useSession()
 
@@ -29,9 +32,9 @@ const NavBar = () => {
         const currentDate = new Date()
         const endDate = new Date(date)
 
-        if(currentDate > endDate) {
+        if (currentDate > endDate) {
             return false
-        }else{
+        } else {
             return true
         }
     }
@@ -43,8 +46,8 @@ const NavBar = () => {
 
             if (res.data.exists) {
                 setUser(res.data.user)
-                if(res.data.user.subscription.isActive) {
-                    if(!verifySubscription(res.data.user.subscription.endDate)){
+                if (res.data.user.subscription.isActive) {
+                    if (!verifySubscription(res.data.user.subscription.endDate)) {
                         const res2 = await axios.post(`/api/client/subs`, { email, action: 'subexpired' })
                         setUser(res2.data.userData)
                     }
@@ -87,6 +90,20 @@ const NavBar = () => {
 
     }, [status, router])
 
+    useEffect(() => {
+        function handleClickOutside(event) {
+            // Si el click no ocurre dentro de dropdownRef, lo cerramos
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+                setShowDropdown(false);
+            }
+        }
+
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [dropdownRef]);
+
     if (status === 'loading' || loading) {
         return (
             <div className='client-navbar loading'>
@@ -114,7 +131,10 @@ const NavBar = () => {
                         </div>
                     </div> */}
                         <div className="nav-item">
-                            <div className="dropdown">
+                            <div className={`dropdown ${showDropdown ? 'active' : ''}`} onClick={() => {
+                                setShowDropdown(current => !current)
+                            }
+                            }>
                                 <div className="name-dropdown">
                                     <span>
                                         {username}
@@ -123,7 +143,7 @@ const NavBar = () => {
                                 <div className="icon">
                                     <Image src={ArrowDown} width={11} height={'auto'} alt='Icon' />
                                 </div>
-                                <div className="dropdown-item">
+                                <div className='dropdown-item' ref={dropdownRef}>
                                     <div className="dropdown-wrap">
                                         <span>
                                             <Link href={{ pathname: '/client/profile' }}>

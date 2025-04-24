@@ -1,15 +1,18 @@
 'use client'
 import React, { useState, useEffect } from 'react'
-import { 
-  format, 
-  set, 
-  addMinutes, 
-  isBefore, 
-  isEqual, 
+import {
+  format,
+  set,
+  addMinutes,
+  isBefore,
+  isEqual,
   startOfDay,
-  addHours,
+  add,
   isSameDay
 } from 'date-fns'
+import { fromZonedTime, toZonedTime } from '@node_modules/date-fns-tz/dist/cjs';
+
+const TUTOR_TIME_ZONE = 'America/Guayaquil'
 
 /**
  * TimePicker: muestra botones con franjas de 30 minutos para un día dado.
@@ -26,8 +29,13 @@ export default function TimePicker({
   selectedDate,
   onTimeSelect,
   startTime = '10:00',
-  endTime   = '22:00'
+  endTime = '22:00'
 }) {
+
+  const userTimeZone = typeof Intl !== 'undefined'
+    ? Intl.DateTimeFormat().resolvedOptions().timeZone
+    : 'UTC';
+
   const [slots, setSlots] = useState([])
   const [selectedSlot, setSelectedSlot] = useState(null)
 
@@ -37,31 +45,35 @@ export default function TimePicker({
       return
     }
 
-    const base = startOfDay(selectedDate)
-    const [sh, sm] = startTime.split(':').map(Number)
-    const [eh, em] = endTime.split(':').map(Number)
+    // 2. Creamos la "fecha base" en zona del tutor convertida a UTC
+    const dateStr = format(selectedDate, 'yyyy-MM-dd')
+    const baseUtc = fromZonedTime(`${dateStr}T${startTime}:00`, TUTOR_TIME_ZONE)
+    const limitUtc = fromZonedTime(`${dateStr}T${endTime}:00`, TUTOR_TIME_ZONE)
 
-    // Hora mínima permitida:
-    // - Si es hoy, ahora + 4h
-    // - Si es otro día, la hora de inicio normal
+    // 3. Calculamos la hora mínima (hoy+4h) también en UTC
     const now = new Date()
-    const minAllowed = isSameDay(selectedDate, now)
-      ? addHours(now, 4)
-      : set(base, { hours: sh, minutes: sm, seconds: 0, milliseconds: 0 })
+    const minAllowedUtc = isSameDay(selectedDate, now)
+      ? fromZonedTime(add(now, {hours: 4}).toISOString(), TUTOR_TIME_ZONE)  // ahora UTC
+      : baseUtc
 
-    const limit = set(base, { hours: eh, minutes: em, seconds: 0, milliseconds: 0 })
-
+    // 4. Generamos slots en UTC para el tutor
     const generated = []
-    let cursor = set(base, { hours: sh, minutes: sm, seconds: 0, milliseconds: 0 })
+    let cursor = baseUtc
 
-    while (isBefore(cursor, limit) || isEqual(cursor, limit)) {
+    while (isBefore(cursor, limitUtc) || isEqual(cursor, limitUtc)) {
       const end = addMinutes(cursor, 30)
-      // Incluir solo si el inicio está >= minAllowed y el final <= limit
-      if ((isEqual(cursor, minAllowed) || isBefore(minAllowed, cursor)) 
-          && (isBefore(end, addMinutes(limit, 1)))) {
+      const startsAfterMin = isSameDay(selectedDate, now)
+        ? isBefore(minAllowedUtc, cursor) || isEqual(minAllowedUtc, cursor)
+        : true
+
+      if (startsAfterMin && (isBefore(end, addMinutes(limitUtc, 1)))) {
+        // 5. Convertimos cada slot a la hora local del usuario para mostrar
+        const localStart = toZonedTime(cursor, userTimeZone)
+        const localEnd = toZonedTime(end, userTimeZone)
+
         generated.push({
-          value: cursor,
-          label: `${format(cursor, 'HH:mm')} – ${format(end, 'HH:mm')}`
+          value: cursor, // guardamos UTC para enviar al backend
+          label: `${format(localStart, 'HH:mm')} – ${format(localEnd, 'HH:mm')}`
         })
       }
       cursor = end

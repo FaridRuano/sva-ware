@@ -21,7 +21,7 @@ import Image from '@node_modules/next/image'
  */
 export default function HorizontalCalendar({ onDateChange, defaultDate, endDate }) {
 
-    const initialDate = defaultDate ? new Date(defaultDate) : new Date()
+    const initialDate = defaultDate ? new Date(defaultDate) : null
 
     // La semana inicia el lunes
     const [currentWeekStart, setCurrentWeekStart] = useState(
