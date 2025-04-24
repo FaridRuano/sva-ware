@@ -80,6 +80,9 @@ const LiveClasses = () => {
             handleInfoModal()
         } catch (error) {
             console.log(error)
+            setInfoModalText('Hubo un problema, por favor intenta más tarde.')
+            setLoading(false)
+            handleInfoModal()
         }
     }
 
