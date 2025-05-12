@@ -29,8 +29,11 @@ export default function TimePicker({
   selectedDate,
   onTimeSelect,
   startTime = '10:00',
-  endTime = '22:00'
+  endTime = '22:00',
+  reservedSlots = [],
 }) {
+
+  const [loading, setLoading] = useState(true)
 
   const userTimeZone = typeof Intl !== 'undefined'
     ? Intl.DateTimeFormat().resolvedOptions().timeZone
@@ -53,7 +56,7 @@ export default function TimePicker({
     // 3. Calculamos la hora mínima (hoy+4h) también en UTC
     const now = new Date()
     const minAllowedUtc = isSameDay(selectedDate, now)
-      ? fromZonedTime(add(now, {hours: 4}).toISOString(), TUTOR_TIME_ZONE)  // ahora UTC
+      ? fromZonedTime(add(now, { hours: 4 }).toISOString(), TUTOR_TIME_ZONE)  // ahora UTC
       : baseUtc
 
     // 4. Generamos slots en UTC para el tutor
@@ -66,6 +69,9 @@ export default function TimePicker({
         ? isBefore(minAllowedUtc, cursor) || isEqual(minAllowedUtc, cursor)
         : true
 
+      const slotIso = cursor.toISOString()
+      const isTaken = reservedSlots.includes(slotIso)
+
       if (startsAfterMin && (isBefore(end, addMinutes(limitUtc, 1)))) {
         // 5. Convertimos cada slot a la hora local del usuario para mostrar
         const localStart = toZonedTime(cursor, userTimeZone)
@@ -73,7 +79,8 @@ export default function TimePicker({
 
         generated.push({
           value: cursor, // guardamos UTC para enviar al backend
-          label: `${format(localStart, 'HH:mm')} – ${format(localEnd, 'HH:mm')}`
+          label: `${format(localStart, 'HH:mm')} – ${format(localEnd, 'HH:mm')}`,
+          disabled: isTaken
         })
       }
       cursor = end
@@ -81,16 +88,31 @@ export default function TimePicker({
 
     setSlots(generated)
     setSelectedSlot(null)
-  }, [selectedDate, startTime, endTime])
+    setLoading(false)
+  }, [selectedDate, startTime, endTime, reservedSlots])
 
   const handleClick = (slot) => {
-    setSelectedSlot(slot.value)
-    onTimeSelect?.(slot.value)
+    if (!slot.disabled) {
+      setSelectedSlot(slot.value)
+      onTimeSelect?.(slot.value)
+    }
   }
 
   if (!selectedDate) {
     return <></>
   }
+
+
+  if(loading) {
+    return (
+      <div className="timepicker-container">
+        <div className="slots-grid">
+          <p>Cargando...</p>
+        </div>
+      </div>
+    )
+  }
+
 
   return (
     <div className="timepicker-container">
@@ -98,7 +120,9 @@ export default function TimePicker({
         {slots.map((slot) => (
           <button
             key={slot.value.toISOString()}
-            className={`slot-button ${selectedSlot?.toISOString() === slot.value.toISOString() ? 'selected' : ''}`}
+            className={`slot-button 
+              ${slot.disabled ? 'taken' : ''}
+              ${selectedSlot?.toISOString() === slot.value.toISOString() ? 'selected' : ''}`}
             onClick={() => handleClick(slot)}
           >
             {slot.label}

@@ -11,17 +11,27 @@ import React, { useEffect, useState } from 'react'
 import axios from '@node_modules/axios'
 import ModalInfo from '@public/components/client/modals/ModalInfo'
 import ModalBuySessions from '@public/components/client/modals/ModalBuySessions'
+import { useRouter } from '@node_modules/next/navigation'
+import { mutate } from '@node_modules/swr/dist/_internal'
+import { set } from 'mongoose'
 
 const LiveClasses = () => {
+
+    const router = useRouter()
 
     const [loading, setLoading] = useState(true)
 
     const { data: session } = useSession()
 
-    const { subscription, isLoading } = useSubscription(session.user.email)
+    const { subscription, isLoading, mutate } = useSubscription(session.user.email)
+
+    /* Reservations Slots */
+
+    const [reservedSlots, setReservedSlots] = useState([]) // ISO strings
+    const [loadingSlots, setLoadingSlots] = useState(false)
+    const [errorSlots, setErrorSlots] = useState(null)
 
     const [selectedDate, setSelectedDate] = useState(null);
-
     const [selectedTime, setSelectedTime] = useState(null)
 
     const [buyModal, setBuyModal] = useState(false)
@@ -76,6 +86,7 @@ const LiveClasses = () => {
                 var date = format(selectedDate, 'EEEE, d LLLL', { locale: es })
                 setInfoModalText(`Tu sesión para el ${date}, a las ${hour}, fue reservada con éxito.`)
             }
+            mutate()
             setLoading(false)
             handleInfoModal()
         } catch (error) {
@@ -91,7 +102,28 @@ const LiveClasses = () => {
         setSelectedTime(null)
     }
 
+    useEffect(() => {
+        if (!selectedDate) return
+        setLoadingSlots(true)
+        const dateStr = format(selectedDate, 'yyyy-MM-dd')
+        axios.get(`/api/client/reserves?date=${dateStr}`)
+            .then((response) => {
+                if (response.data.slots) {
+                    setReservedSlots(response.data.slots)
+                    setLoadingSlots(false)
+                } else {
+                    setErrorSlots('No se encontraron reservas para esta fecha')
+                    setLoadingSlots(false)
+                }
+            }
+            ).catch((error) => {
+                console.log(error)
+                setErrorSlots('Hubo un problema al recuperar las reservas')
+                setLoadingSlots(false)
+            }
+            ).finally(() => { setLoadingSlots(false) })
 
+    }, [selectedDate])
 
     useEffect(() => {
         if (isLoading) {
@@ -104,8 +136,8 @@ const LiveClasses = () => {
     if (loading) {
         return (
             <div className="client-content-container loading">
-                <div className="live-wrap" />
-                <div className="live-wrap" />
+                <div className="live-wrap min" />
+                <div className="live-wrap min" />
             </div>
         )
     }
@@ -195,8 +227,10 @@ const LiveClasses = () => {
                                         <HorizontalCalendar onDateChange={handleDateChange} endDate={subscription.endDate} />
                                     </div>
                                     <div>
-                                        <TimePicker selectedDate={selectedDate}
+                                        <TimePicker
+                                            selectedDate={selectedDate}
                                             onTimeSelect={(dateTime) => setSelectedTime(dateTime)}
+                                            reservedSlots={reservedSlots}
                                         />
                                     </div>
                                     <div>

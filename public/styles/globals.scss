@@ -3967,6 +3967,10 @@ button {
     border-bottom: 1px solid rgba($light , .3);
   }
 
+  &.min{
+    height: 300px;
+  }
+
   @media (max-width: 800px) {}
 }
 
@@ -4136,6 +4140,12 @@ button {
       &:hover {
         background-color: rgba($dark, .8);
 
+      }
+
+      &.taken {
+        pointer-events: none;
+        background-color: $secondary-color;
+        opacity: .5;
       }
 
       &.selected {

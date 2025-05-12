@@ -5,17 +5,37 @@ import Reservation from "@models/Reservation";
 import transporter from "@libs/mailer";
 import { toZonedTime, } from "@node_modules/date-fns-tz/dist/cjs";
 import { es } from "@node_modules/date-fns/locale";
-import { differenceInBusinessDays } from "@node_modules/date-fns/differenceInBusinessDays";
 import { format } from "@node_modules/date-fns/format";
-import { subMinutes } from "@node_modules/date-fns/subMinutes";
 import { add } from "@node_modules/date-fns/add";
 import { getCalendarClient } from "@libs/google";
 
-function isMoreThanTwoDaysAway(sessionDate) {
-    const laterDate = new Date(sessionDate)
-    const earlierDate = new Date()
+const TUTOR_TIME_ZONE = 'America/Guayaquil'
 
-    return differenceInBusinessDays(laterDate, earlierDate) > 2 ? true : false
+export async function GET(request) {
+    await connectMongoDB()
+
+    const url = request.nextUrl
+
+    const dateStr = url.searchParams.get('date')
+
+    if (!dateStr) {
+        return NextResponse.json({ error: 'Error al recuperar las reservas' }, { status: 200 })
+    }
+
+    const rangeStartUtc = toZonedTime(`${dateStr}T00:00:00`, TUTOR_TIME_ZONE)
+    const rangeEndUtc = toZonedTime(`${dateStr}T23:59:59.999`, TUTOR_TIME_ZONE)
+
+    const reservations = await Reservation.find({
+        start: {
+            $gte: rangeStartUtc,
+            $lt: rangeEndUtc
+        }
+    }).lean()
+
+    const slots = reservations.map(r => r.start.toISOString())
+
+    return NextResponse.json({ slots }, { status: 200 })
+
 }
 
 export async function POST(request) {
