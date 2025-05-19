@@ -3635,7 +3635,6 @@ button {
   top: 0;
   left: 0;
   z-index: 11;
-  cursor: pointer;
   animation: fadeIn .5s forwards;
   display: flex;
   justify-content: center;
@@ -3645,6 +3644,26 @@ button {
     width: 335px;
     height: fit-content;
     animation: scaleUp .5s forwards;
+  }
+}
+
+.sidebar-close{
+  width: 100%;
+  border: 1px solid $primary-dark;
+  color: $light;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 10px 0;
+  border-radius: 20px;
+  margin-top: 20px;
+  cursor: pointer;
+  transition: .3s ease-out;
+  &:hover{
+    background-color: $primary-dark;
+    
   }
 }
 

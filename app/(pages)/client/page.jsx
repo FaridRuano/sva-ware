@@ -100,7 +100,7 @@ const Client = () => {
             </div>
             <div className="feature-btns">
               <div className="feature-btn var" onClick={() => router.push('/client/course/introadobe')}>
-                Conocé más
+                Conoce más
               </div>
               {
                 subscription.isActive ? (

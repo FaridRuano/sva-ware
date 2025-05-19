@@ -2,6 +2,7 @@
 import React, { useState } from 'react'
 import MuxPlayer from '@node_modules/@mux/mux-player-react';
 import Link from '@node_modules/next/link';
+import { useWindowSize } from '@libs/useWindowsSize';
 
 const CourseWindow = ({ data, goToNextLesson }) => {
 
@@ -12,6 +13,9 @@ const CourseWindow = ({ data, goToNextLesson }) => {
     const handlePlayerReady = () => {
         setLoading(false)
     }
+
+    const size = useWindowSize()
+
 
     return (
         <div className='coursewindow-container'>
@@ -27,7 +31,7 @@ const CourseWindow = ({ data, goToNextLesson }) => {
                                     onPause={() => setIsPlaying(false)}
                                     accent-color="#09e199"
                                     className='video-player'
-                                    poster={data.posterUrl}
+                                    poster={size.width > 600 ? data.posterUrl : data.thumbnailUrl}
                                     onReady={handlePlayerReady}
                                     onLoadedData={handlePlayerReady}
                                 >
@@ -59,7 +63,7 @@ const CourseWindow = ({ data, goToNextLesson }) => {
                 </div>
             </div>
             <div className="footer-wrap">
-                <Link href={{ pathname: goToNextLesson()}} className='next-lesson'>
+                <Link href={{ pathname: goToNextLesson() }} className='next-lesson'>
                     Pasar a la siguiente lección
                 </Link>
             </div>

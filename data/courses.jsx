@@ -17,6 +17,7 @@ export const courses = {
                             'Entre las funcionalidades de Photoshop se encuentran el ajuste de colores, la corrección de imperfecciones, el uso de capas para trabajar de manera no destructiva y la capacidad de crear efectos especiales. Con esta lección, aprenderás los conceptos básicos para empezar a familiarizarte con la funcionalidad y posibilidades principales que ofrece Photoshop.'
                         ],
                         videoUrl: 'KLD00mx02MneeQiN5ieTaMsjrWlpSRWAjsRUsMwCIQXGY',
+                        thumbnailUrl: 'https://image.mux.com/KLD00mx02MneeQiN5ieTaMsjrWlpSRWAjsRUsMwCIQXGY/thumbnail.png?fit_mode=preserve&time=16',
                         posterUrl: 'https://image.mux.com/KLD00mx02MneeQiN5ieTaMsjrWlpSRWAjsRUsMwCIQXGY/animated.webp?fit_mode=preserve&start=12.5&end=17.4'
                     },
                     {
@@ -27,6 +28,7 @@ export const courses = {
                             'En la derecha encontramos varios paneles como el de color, el panel de capas entre otros, la barra de herramientas como su nombre lo dice es la barra donde encontramos todas las herramientas con las que Photoshop cuenta, el menu de opciones o propiedades nos permite modificar las propiedades de cada herramienta, y la barra de menú en la parte superior nos permite acceder a todas las opciones de Photoshop.',
                         ],
                         videoUrl: 'At5o01ga7QwsdCKbKCDCdL21m02MRi021hQYvd00SUpPFdU',
+                        thumbnailUrl: 'https://image.mux.com/KLD00mx02MneeQiN5ieTaMsjrWlpSRWAjsRUsMwCIQXGY/thumbnail.png?fit_mode=preserve&time=16',
                         posterUrl: 'https://image.mux.com/At5o01ga7QwsdCKbKCDCdL21m02MRi021hQYvd00SUpPFdU/animated.webp?fit_mode=preserve&start=0&end=4'
                     },
                     {
