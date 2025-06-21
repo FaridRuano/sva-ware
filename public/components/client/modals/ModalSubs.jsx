@@ -1,14 +1,17 @@
 'use client'
+import { useRouter } from '@node_modules/next/navigation'
 import React from 'react'
 
 const ModalSubs = ({ active, setActive }) => {
+
+    const router = useRouter()
 
 
     if (active) {
         return (
             <div className='modal-container' >
                 <div className="modal-warp extend">
-                    <div className="content-row">
+                    <div className="content-row" onClick={() => router.push('/client/payments/single/6833d009384fa4d74446f565')}>
                         <div className="col ">
                             <div className="title">
                                 <h1>
@@ -23,7 +26,7 @@ const ModalSubs = ({ active, setActive }) => {
                             <div className="price tier-btn">
                                 <h1>
                                     $29.99
-                                </h1>Yo
+                                </h1>
                                 <p>USD</p>
                             </div>
                         </div>

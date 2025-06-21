@@ -108,7 +108,7 @@ const Client = () => {
                     Empezar
                   </div>
                 ) : (
-                  <div className="feature-btn">
+                  <div className="feature-btn" onClick={() => router.push('/client/payments/single/6835b3c233e033e24646b523')}>
                     Comprar
                   </div>
                 )

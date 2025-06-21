@@ -424,7 +424,7 @@ const Course = () => {
                       </div>
                     </div>
                     <div className="content-footer">
-                      <div className="pay-btn">
+                      <div className="pay-btn" onClick={() => router.push('/client/payments/single/6835b3c233e033e24646b523')}>
                         <h2>
                           Comprar
                         </h2>

@@ -4,7 +4,7 @@ import { Analytics } from "@vercel/analytics/react"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 
 export const metadata = {
-  title: "School of Visual Arts",
+  title: "Visual Arts School",
   description: "Become a Pro with us",
 };
 

@@ -28,7 +28,7 @@ export const courses = {
                             'En la derecha encontramos varios paneles como el de color, el panel de capas entre otros, la barra de herramientas como su nombre lo dice es la barra donde encontramos todas las herramientas con las que Photoshop cuenta, el menu de opciones o propiedades nos permite modificar las propiedades de cada herramienta, y la barra de menú en la parte superior nos permite acceder a todas las opciones de Photoshop.',
                         ],
                         videoUrl: 'At5o01ga7QwsdCKbKCDCdL21m02MRi021hQYvd00SUpPFdU',
-                        thumbnailUrl: 'https://image.mux.com/KLD00mx02MneeQiN5ieTaMsjrWlpSRWAjsRUsMwCIQXGY/thumbnail.png?fit_mode=preserve&time=16',
+                        thumbnailUrl: 'https://image.mux.com/At5o01ga7QwsdCKbKCDCdL21m02MRi021hQYvd00SUpPFdU/thumbnail.png?fit_mode=preserve&time=2',
                         posterUrl: 'https://image.mux.com/At5o01ga7QwsdCKbKCDCdL21m02MRi021hQYvd00SUpPFdU/animated.webp?fit_mode=preserve&start=0&end=4'
                     },
                     {
@@ -39,6 +39,7 @@ export const courses = {
                             'Por otro lado una máscara también puede actuar como un filtro que permite ocultar o revelar partes específicas de una capa sin alterar o eliminar permanentemente los píxeles. Usar máscaras facilita la creación de composiciones complejas, ya que puedes ajustar con precisión qué partes de una imagen son visibles. El color negro en la máscara oculta los elementos, mientras que el blanco los revela, y los tonos grises permiten crear transparencias. Este sistema es ideal para combinar imágenes, aplicar efectos graduales o corregir errores, ya que siempre puedes modificar la máscara sin afectar la capa original. La combinación de selecciones y máscaras potencia enormemente la creatividad y la flexibilidad en el proceso de edición.'
                         ],
                         videoUrl: 'Qd2Or5LYZMPSMlfKisB8jLocgTFK6hpjD3DXw5QNzF4',
+                        thumbnailUrl: 'https://image.mux.com/Qd2Or5LYZMPSMlfKisB8jLocgTFK6hpjD3DXw5QNzF4/thumbnail.png?fit_mode=preserve&time=2',
                         posterUrl: 'https://image.mux.com/Qd2Or5LYZMPSMlfKisB8jLocgTFK6hpjD3DXw5QNzF4/animated.webp?fit_mode=preserve&start=0&end=4',
                         driveUrl: 'https://1drv.ms/f/c/5c0044e92b33f270/EnDyMyvpRAAggFzcagEAAAABFoVAf4OVzmYsIH6WmHBk_w?e=ZMT37a'
                     },
@@ -50,6 +51,7 @@ export const courses = {
                             'Los efectos aplicados al texto llevan tus diseños al siguiente nivel, aportando creatividad y dinamismo. Desde sombras paralelas, degradados y biseles hasta efectos más complejos como relieves, brillos o texturas, Photoshop te permite transformar texto simple en un elemento destacado dentro de tu composición. Las opciones de estilo de capa son especialmente útiles para aplicar efectos no destructivos que pueden ser modificados en cualquier momento. Ya sea para logotipos, pósters o gráficos web, combinar texto con efectos personalizados es una forma poderosa de capturar la atención del espectador y transmitir tu mensaje de manera visualmente atractiva.'
                         ],
                         videoUrl: 'DNPQdQl6A02d022011xIMLTtjvrM018noOPRkGEi4GMxtWc',
+                        thumbnailUrl: 'https://image.mux.com/DNPQdQl6A02d022011xIMLTtjvrM018noOPRkGEi4GMxtWc/thumbnail.png?fit_mode=preserve&time=3',
                         posterUrl: 'https://image.mux.com/DNPQdQl6A02d022011xIMLTtjvrM018noOPRkGEi4GMxtWc/animated.webp?fit_mode=preserve&start=0&end=4',
                         driveUrl: 'https://1drv.ms/f/c/5c0044e92b33f270/EnDyMyvpRAAggFx-awEAAAAB9OqXeV1jXajC6m71w3Sz7A?e=VWSq2z'
                     },
@@ -72,6 +74,7 @@ export const courses = {
                             'Nuestro objetivo es crear tres diseños distintos que resalten el poder de estas herramientas. Empezaremos con composiciones simples, aplicando selecciones para ajustar elementos, y luego avanzaremos a técnicas más avanzadas como el uso de máscaras de recorte para incrustar imágenes dentro de texto y capas de ajuste para unificar la estética general. Estas habilidades te permitirán explorar nuevas posibilidades creativas y establecer un flujo de trabajo eficiente para tus proyectos futuros en Photoshop.'
                         ],
                         videoUrl: 'LtvvMwtQejaNrbmeq9uQAhrcf9JMH1csb7qlJeFVopE',
+                        thumbnailUrl: 'https://image.mux.com/LtvvMwtQejaNrbmeq9uQAhrcf9JMH1csb7qlJeFVopE/thumbnail.png?fit_mode=preserve&time=2',
                         posterUrl: 'https://image.mux.com/LtvvMwtQejaNrbmeq9uQAhrcf9JMH1csb7qlJeFVopE/animated.webp?fit_mode=preserve&start=0&end=4',
                         driveUrl: 'https://1drv.ms/f/c/5c0044e92b33f270/EqtQzpUd9ZJBg0BTOo-j0YwB1jpH93ml0GP-lQhMR8kuYA?e=8bdGZJ'
                     },
@@ -83,6 +86,7 @@ export const courses = {
                             'Utilizaremos el filtro de Camera Raw para modificar los tonos y la saturación de ciertos colores en específico. Además, usaremos efectos como el resplandor exterior, la sombra interior, entre otros. El objetivo es que puedas entender las técnicas que vamos a utilizar para crear diferentes efectos y componer imágenes de forma creativa en Photoshop.'
                         ],
                         videoUrl: 'epiiwq00BKIRpTZqWrdVgzO006VCD00sYmkd2ZZkgP9yTI',
+                        thumbnailUrl: 'https://image.mux.com/epiiwq00BKIRpTZqWrdVgzO006VCD00sYmkd2ZZkgP9yTI/thumbnail.png?fit_mode=preserve&time=2',
                         posterUrl: 'https://image.mux.com/epiiwq00BKIRpTZqWrdVgzO006VCD00sYmkd2ZZkgP9yTI/animated.webp?fit_mode=preserve&start=0&end=4',
                         driveUrl: 'https://1drv.ms/f/c/5c0044e92b33f270/EsaqWP6OLdhNqNu4UkyLKFoBiKJKmaXVzniZlcUjHAFBmw?e=kbNaWA'
                     },
@@ -94,6 +98,7 @@ export const courses = {
                             'Además, aplicaremos técnicas manuales como el uso de la herramienta Pincel para pintar detalles y resaltar elementos clave, añadiendo un toque personal y dinámico al póster. Aprenderás a equilibrar las luces y sombras en tu diseño, jugar con los contrastes de neón y aplicar ajustes finales que realcen la atmósfera futurista. Esta lección está diseñada para desafiar tu creatividad y enseñarte a dominar herramientas esenciales de Photoshop mientras exploras un estilo visual que combina tecnología y arte.'
                         ],
                         videoUrl: 'qnv8yL7E2tduUZcy43WVZAq00uHt791hKgVz2VCjc01KA',
+                        thumbnailUrl: 'https://image.mux.com/qnv8yL7E2tduUZcy43WVZAq00uHt791hKgVz2VCjc01KA/thumbnail.png?fit_mode=preserve&time=2',
                         posterUrl: 'https://image.mux.com/qnv8yL7E2tduUZcy43WVZAq00uHt791hKgVz2VCjc01KA/animated.webp?fit_mode=preserve&start=0&end=4',
                         driveUrl: 'https://1drv.ms/f/c/5c0044e92b33f270/En8uDO8_AY5AvbmVGRmCPsoBpnMLJaSHFFWsXcrR7S_XvA?e=G1HcBV'
                     },
@@ -111,6 +116,7 @@ export const courses = {
                             'Una de las características más notables de Illustrator es su facilidad para integrarse con otros programas de Adobe, como Photoshop, InDesign y After Effects, lo que permite un flujo de trabajo eficiente y coherente entre diferentes proyectos de diseño. Estas capacidades convierten a Illustrator en una herramienta imprescindible para quienes buscan crear gráficos de alta calidad, ya que no solo ofrece control y flexibilidad, sino que también abre un sinfín de posibilidades creativas en el mundo del diseño digital.'
                         ],
                         videoUrl: 'Q016AB02dH9PaqBisaJc381CPJYWeRBF6jWTROvWDFS6E',
+                        thumbnailUrl: 'https://image.mux.com/Q016AB02dH9PaqBisaJc381CPJYWeRBF6jWTROvWDFS6E/thumbnail.png?fit_mode=preserve&time=11',
                         posterUrl: 'https://image.mux.com/Q016AB02dH9PaqBisaJc381CPJYWeRBF6jWTROvWDFS6E/animated.webp?fit_mode=preserve&start=7.5&end=12',
 
                     },
@@ -122,6 +128,7 @@ export const courses = {
                             'Illustrator cuenta con una amplia gama de herramientas, diseñadas para manejar distintos aspectos del diseño vectorial. Entre las herramientas más usadas están la pluma, que permite crear formas y líneas con precisión; la herramienta de selección, que facilita la manipulación de objetos; y la herramienta de formas, que ofrece figuras básicas como rectángulos, círculos y polígonos. Además, incluye opciones avanzadas de fusión, gradientes, trazados y efectos, lo que permite a los diseñadores crear ilustraciones complejas con texturas y profundidad. También cuenta con funciones de exportación que permiten optimizar gráficos para distintos formatos y medios, como la web o la impresión, haciendo de Illustrator una herramienta esencial en el mundo del diseño gráfico profesional.'
                         ],
                         videoUrl: 'QR4VceEKf69AQMhyqFZXL6O019hT2Bmslc3iGGDm018008',
+                        thumbnailUrl: 'https://image.mux.com/QR4VceEKf69AQMhyqFZXL6O019hT2Bmslc3iGGDm018008/thumbnail.png?fit_mode=preserve&time=2',
                         posterUrl: 'https://image.mux.com/QR4VceEKf69AQMhyqFZXL6O019hT2Bmslc3iGGDm018008/animated.webp?fit_mode=preserve&start=0&end=4',
                     },
                     {
@@ -132,6 +139,7 @@ export const courses = {
                             'También profundizaremos en funciones clave como la opción de Expandir vectores, que nos permitirá transformar trazos en formas editables, y exploraremos las herramientas del Pathfinder para combinar, restar o dividir figuras y crear composiciones únicas. Al final de la sesión, cada estudiante habrá desarrollado una serie de iconos personalizados, aplicando todas estas técnicas para mejorar su destreza en Illustrator y potenciar su creatividad en el diseño digital. ¡Prepárate para dar vida a tus ideas con vectores!'
                         ],
                         videoUrl: 'Hl3w00DnEcfcgLd9m3MjHK4OiSB4UabbcORmYeInZu2g',
+                        thumbnailUrl: 'https://image.mux.com/Hl3w00DnEcfcgLd9m3MjHK4OiSB4UabbcORmYeInZu2g/thumbnail.png?fit_mode=preserve&time=2',
                         posterUrl: 'https://image.mux.com/Hl3w00DnEcfcgLd9m3MjHK4OiSB4UabbcORmYeInZu2g/animated.webp?fit_mode=preserve&start=0&end=4',
                         driveUrl: 'https://1drv.ms/f/c/5c0044e92b33f270/Eve5kFLj0ppGvVmAK0v7ZfwBaQg7oQ22oICIn5labHpRqQ?e=qDikvw'
                     },
@@ -143,6 +151,7 @@ export const courses = {
                             'En el primer ejercicio, trabajaremos paso a paso para comprender el proceso de ilustración digital, organizando nuestras capas y definiendo cada parte de la imagen con precisión. Una vez completado, pasaremos a un segundo ejercicio a modo de reto, en el cual cada estudiante aplicará lo aprendido sin una guía detallada. Aunque en este desafío no se explicará cada paso, sí profundizaremos en el uso de opacidad y degradados, herramientas clave para dar mayor realismo y profundidad a las ilustraciones. Si el primer ejercicio se realizó correctamente, este reto servirá para reforzar la comprensión del flujo de trabajo y fomentar la autonomía en la creación de ilustraciones digitales.'
                         ],
                         videoUrl: 'uVA02V57NyJZJyIfAPD5nT6nRTXZJUnKxWG7DpVsg7lk',
+                        thumbnailUrl: 'https://image.mux.com/uVA02V57NyJZJyIfAPD5nT6nRTXZJUnKxWG7DpVsg7lk/thumbnail.png?fit_mode=preserve&time=2',
                         posterUrl: 'https://image.mux.com/uVA02V57NyJZJyIfAPD5nT6nRTXZJUnKxWG7DpVsg7lk/animated.webp?fit_mode=preserve&start=0&end=4',
                         driveUrl: 'https://1drv.ms/f/c/5c0044e92b33f270/Es3fMSkLrbZDpgCEqEeGcj0BmSGd4P5Ewht7Wnfagf1Xzw?e=8j1duE'
                     },
@@ -154,6 +163,7 @@ export const courses = {
                             'Para enriquecer la composición, revisaremos técnicas esenciales como la creación de reflejos y sombras vectoriales, las cuales se aplicarán estratégicamente en los bordes mediante modos de fusión para dar más profundidad. También exploraremos efectos como el zig-zag, que permitirán añadir dinamismo a ciertos elementos. Además, dominaremos herramientas fundamentales como escalado, rotación y transformaciones básicas, optimizando el posicionamiento y equilibrio dentro del diseño. Estas técnicas nos permitirán desarrollar una pieza visualmente atractiva, ideal para fortalecer la identidad gráfica del restaurante.'
                         ],
                         videoUrl: 'AK3U01OrlavpgdXA4aOkmAkuR3aCMD00GsK01wDD8i7zH4',
+                        thumbnailUrl: 'https://image.mux.com/AK3U01OrlavpgdXA4aOkmAkuR3aCMD00GsK01wDD8i7zH4/thumbnail.png?fit_mode=preserve&time=2',
                         posterUrl: 'https://image.mux.com/AK3U01OrlavpgdXA4aOkmAkuR3aCMD00GsK01wDD8i7zH4/animated.webp?fit_mode=preserve&start=0&end=4',
                         driveUrl: 'https://1drv.ms/f/c/5c0044e92b33f270/EpEhpFHi7sZFojlpsXZFq3gBiGzW9zpc3PeKO2dDnWfFaw?e=K0sgrk'
                     },
@@ -165,6 +175,7 @@ export const courses = {
                             'Además, profundizaremos en otras aplicaciones del Blend Tool, combinándolo con opciones de distorsión para lograr efectos más complejos y personalizados. Finalmente, cerraremos la lección con una introducción a las herramientas 3D de Illustrator, que permitirán agregar profundidad y volumen a los diseños sin salir del entorno vectorial. Estas técnicas abrirán un abanico de posibilidades para crear ilustraciones profesionales con un alto impacto visual.'
                         ],
                         videoUrl: 'XiVqaSmkmQu01H9BtNwOXooeBmGM6NmmiZgYjSCqhWVc',
+                        thumbnailUrl: 'https://image.mux.com/XiVqaSmkmQu01H9BtNwOXooeBmGM6NmmiZgYjSCqhWVc/thumbnail.png?fit_mode=preserve&time=2',
                         posterUrl: 'https://image.mux.com/XiVqaSmkmQu01H9BtNwOXooeBmGM6NmmiZgYjSCqhWVc/animated.webp?fit_mode=preserve&start=0&end=4',
                         driveUrl: 'https://1drv.ms/f/c/5c0044e92b33f270/EttrhlS8tBxGpMbjw0ajhl0BwIYk1DOnlKwgqpQ4ATFp0A?e=SRUexd'
                     },
@@ -177,6 +188,7 @@ export const courses = {
                             'Además, profundizaremos en el uso de Clipping Mask, una herramienta clave para enmascarar y recortar ilustraciones dentro de formas específicas, lo que nos permitirá jugar con la composición de manera más creativa. Finalmente, exploraremos la poderosa Mesh Tool, con la que lograremos transiciones de color suaves y degradados complejos para crear un diseño único y estilizado. Combinando todas estas técnicas, conseguiremos un resultado innovador, ideal para piezas gráficas modernas y llamativas.'
                         ],
                         videoUrl: 'CrDQUlZvgC00b00oMAi9GBnLPExmSY5ccremzCs46wuug',
+                        thumbnailUrl: 'https://image.mux.com/CrDQUlZvgC00b00oMAi9GBnLPExmSY5ccremzCs46wuug/thumbnail.png?fit_mode=preserve&time=2',
                         posterUrl: 'https://image.mux.com/CrDQUlZvgC00b00oMAi9GBnLPExmSY5ccremzCs46wuug/animated.webp?fit_mode=preserve&start=0&end=4',
                         driveUrl: 'https://1drv.ms/f/c/5c0044e92b33f270/Elne_3E47V5Ou3bm--Q_3LoBJlD94N4BZag9ASNjicYZRw?e=LbkqeP'
                     },
@@ -187,6 +199,7 @@ export const courses = {
                             '¡Felicidades! Llegaste hasta aquí y completaste este capítulo de Illustrator. Espero que hayas podido ejecutar con éxito todos los ejercicios hasta ahora. En esta lección, realizaremos un proyecto completo donde aplicaremos las últimas técnicas que te servirán para tener más opciones al diseñar y crear tus propios diseños.',
                         ],
                         videoUrl: '28rxa9Wcop64bfrJE2vSnvCFuRT00xZwD02GorJU4Ze7w',
+                        thumbnailUrl: 'https://image.mux.com/28rxa9Wcop64bfrJE2vSnvCFuRT00xZwD02GorJU4Ze7w/thumbnail.png?fit_mode=preserve&time=2',
                         posterUrl: 'https://image.mux.com/28rxa9Wcop64bfrJE2vSnvCFuRT00xZwD02GorJU4Ze7w/animated.webp?fit_mode=preserve&start=0&end=4',
                         driveUrl: 'https://1drv.ms/f/c/5c0044e92b33f270/EjEXJYAaxtBPnndOj3jqMMwBoKEAMdwEfJBJTzQjk6ZdRA?e=EIpgnQ'
                     },
@@ -204,6 +217,7 @@ export const courses = {
                             'Las herramientas de Premiere Pro son robustas y permiten realizar ediciones de alta calidad, desde cortes y ajustes básicos hasta efectos y correcciones avanzadas de color. Con la línea de tiempo, los editores pueden organizar clips de video y audio, aplicar transiciones y efectos, y realizar cortes precisos para crear narrativas visuales coherentes y atractivas. Además, la función de Lumetri Color ofrece opciones avanzadas para la corrección y gradación de color, mejorando significativamente la estética del video. Premiere Pro también incluye herramientas de edición de audio y opciones para añadir subtítulos y títulos, facilitando la creación de contenidos accesibles y adaptados a las necesidades del espectador. En conjunto, Premiere Pro es una solución poderosa y versátil para cualquier tipo de proyecto audiovisual, desde videos para redes sociales hasta producciones de alta calidad para cine y televisión.'
                         ],
                         videoUrl: 'G1OjwszHANqXVMl8O5EosdtTa008MzYXxWyATaK97XfQ',
+                        thumbnailUrl: 'https://image.mux.com/G1OjwszHANqXVMl8O5EosdtTa008MzYXxWyATaK97XfQ/thumbnail.png?fit_mode=preserve&time=6',
                         posterUrl: 'https://image.mux.com/G1OjwszHANqXVMl8O5EosdtTa008MzYXxWyATaK97XfQ/animated.webp?fit_mode=preserve&start=5&end=8',
                     },
                     {
@@ -214,6 +228,7 @@ export const courses = {
                             'Adobe Premiere Pro cuenta con una amplia gama de herramientas diseñadas para cubrir cada aspecto del proceso de edición de video, desde la organización inicial de clips hasta los retoques finales de color y sonido. Entre las herramientas principales se encuentran la herramienta de Selección, que permite seleccionar y mover clips en la línea de tiempo; la herramienta Cuchilla, utilizada para hacer cortes precisos en los clips; y la herramienta de Desplazamiento, que ajusta la posición de un clip sin afectar el resto del contenido en la línea de tiempo. Premiere también incluye opciones avanzadas como Lumetri Color, para la corrección y gradación de color, y efectos visuales que pueden aplicarse directamente a los clips. Además, las herramientas de audio permiten ajustar niveles, aplicar efectos y realizar mezclas detalladas para conseguir un sonido profesional. La variedad y profundidad de estas herramientas hacen de Premiere Pro una solución integral para editores de todos los niveles, brindando un control completo sobre cada aspecto del video final.',
                         ],
                         videoUrl: 'TiImGFyMgl4tWSA6qFYpDHI137Rcr1fILX8EQyBK54s',
+                        thumbnailUrl: 'https://image.mux.com/TiImGFyMgl4tWSA6qFYpDHI137Rcr1fILX8EQyBK54s/thumbnail.png?fit_mode=preserve&time=2',
                         posterUrl: 'https://image.mux.com/TiImGFyMgl4tWSA6qFYpDHI137Rcr1fILX8EQyBK54s/animated.webp?fit_mode=preserve&start=0&end=4',
                         driveUrl: 'https://1drv.ms/f/c/5c0044e92b33f270/EnDyMyvpRAAggFzzaAEAAAAB-qhIqsgALEBe5G0P7Lgagw?e=617XsM'
                     },
@@ -225,6 +240,7 @@ export const courses = {
                             'Una vez aplicado un efecto, se puede ajustar en el Panel de Control de Efectos. Aquí es posible personalizar las propiedades de cada efecto de manera detallada, como la opacidad, escala, posición y otros parámetros específicos de cada efecto. Este panel también permite animar propiedades a lo largo del tiempo utilizando fotogramas clave, proporcionando control total sobre cómo y cuándo se aplican las modificaciones. Además, el Panel de Control de Efectos permite ver y ajustar las propiedades de cada clip, como el color o la posición, para lograr una edición precisa y profesional.'
                         ],
                         videoUrl: 'owvQ3eNKBqO167bFwNk67vDQfJYeEkph01MnuZ4WrnMs',
+                        thumbnailUrl: 'https://image.mux.com/owvQ3eNKBqO167bFwNk67vDQfJYeEkph01MnuZ4WrnMs/thumbnail.png?fit_mode=preserve&time=2',
                         posterUrl: 'https://image.mux.com/owvQ3eNKBqO167bFwNk67vDQfJYeEkph01MnuZ4WrnMs/animated.webp?fit_mode=preserve&start=0&end=4',
                         driveUrl: 'https://1drv.ms/f/c/5c0044e92b33f270/EnDyMyvpRAAggFwgaQEAAAABEj4Ec0_7SFkIrX7zgB9asg?e=leTfhH'
                     },
@@ -236,6 +252,7 @@ export const courses = {
                             'La herramienta de rectángulo y las máscaras son opciones útiles para crear efectos de recorte y resaltar elementos específicos dentro de un video. La herramienta de rectángulo permite dibujar formas sobre el video que pueden servir como marcos o áreas de resaltado, ideal para enfatizar ciertos detalles visuales o cubrir partes que se desean ocultar. Por otro lado, las máscaras permiten aplicar efectos o transiciones de manera selectiva a ciertas áreas de la imagen, como ajustes de color o desenfoques, dando al editor mayor control creativo. Además, Premiere Pro ofrece la posibilidad de animar estas máscaras para que se muevan o cambien de tamaño durante la reproducción, lo cual permite conseguir efectos dinámicos y visualmente impactantes.'
                         ],
                         videoUrl: 'joGs36eKIPqtH4t3zqa8vSJjtunVxBAwaKHCD00MwJ9c',
+                        thumbnailUrl: 'https://image.mux.com/joGs36eKIPqtH4t3zqa8vSJjtunVxBAwaKHCD00MwJ9c/thumbnail.png?fit_mode=preserve&time=3',
                         posterUrl: 'https://image.mux.com/joGs36eKIPqtH4t3zqa8vSJjtunVxBAwaKHCD00MwJ9c/animated.webp?fit_mode=preserve&start=1&end=5',
                         driveUrl: 'https://1drv.ms/f/c/5c0044e92b33f270/EnDyMyvpRAAggFw9aQEAAAABbkeFy-PthasEYgLm9TwTkQ?e=7RoQLe'
                     },
@@ -247,6 +264,7 @@ export const courses = {
                             'Lumetri Color es una herramienta integrada en Premiere Pro que permite corregir y estilizar el color de los videos de manera profesional. Con funciones como la corrección básica de color, curvas de tono, ruedas de color y ajustes HSL, los editores pueden modificar la exposición, el contraste, la saturación y los tonos para mejorar la calidad visual. Además, ofrece opciones creativas como estilos predefinidos y viñetas para dar un toque cinematográfico o artístico. Es una solución completa para equilibrar el color, resolver problemas de iluminación y crear estéticas visuales únicas en cualquier proyecto audiovisual.'
                         ],
                         videoUrl: '6XGDDe02D2QECXr00GmeW6riXj9hcX3vJfUY01fzIS6XcU',
+                        thumbnailUrl: 'https://image.mux.com/6XGDDe02D2QECXr00GmeW6riXj9hcX3vJfUY01fzIS6XcU/thumbnail.png?fit_mode=preserve&time=3',
                         posterUrl: 'https://image.mux.com/6XGDDe02D2QECXr00GmeW6riXj9hcX3vJfUY01fzIS6XcU/animated.webp?fit_mode=preserve&start=1&end=5',
                         driveUrl: 'https://1drv.ms/f/c/5c0044e92b33f270/EnDyMyvpRAAggFyLaQEAAAAB2x9Mn_mBBru1eOJ75P92Sg?e=7yWeMb'
                     },
@@ -258,6 +276,7 @@ export const courses = {
                             'Por otro lado, los efectos de sonido son esenciales para destacar acciones y añadir realismo a las escenas. Desde el sonido de pasos o puertas que se cierran, hasta explosiones y efectos ambientales, estos detalles ayudan a reforzar la narrativa visual y a captar la atención del público. Para gestionar estos elementos de forma eficiente, Premiere Pro incluye la mezcladora de audio, una herramienta poderosa que permite ajustar niveles, aplicar efectos y mezclar múltiples pistas de audio en tiempo real. Con esta función, los editores tienen un control total sobre el panorama sonoro, logrando que cada pista encuentre su lugar en la mezcla final y entregando un resultado profesional.'
                         ],
                         videoUrl: 'jtf5eb02v4OLsQZwX5Aeiv6PUeookrUxxVowhw9SFdqs',
+                        thumbnailUrl: 'https://image.mux.com/jtf5eb02v4OLsQZwX5Aeiv6PUeookrUxxVowhw9SFdqs/thumbnail.png?fit_mode=preserve&time=3',
                         posterUrl: 'https://image.mux.com/jtf5eb02v4OLsQZwX5Aeiv6PUeookrUxxVowhw9SFdqs/animated.webp?fit_mode=preserve&start=1&end=5',
                         driveUrl: 'https://1drv.ms/f/c/5c0044e92b33f270/EnDyMyvpRAAggFysaQEAAAAB9gjiZ1fTY7lj-AJ551XVbQ?e=DYdea2'
                     },
@@ -269,6 +288,7 @@ export const courses = {
                             'Espero que todos los conocimientos que has recibido en este capítulo te sirvan mucho para empezar tu camino en Premiere Pro. Aún te queda mucho más por recorrer, pero llevas una ventaja muy grande sobre cualquier otro artista que esté empezando en Premiere Pro. Te recomiendo estar atento para seguir aprendiendo más en los próximos cursos, ya que hay mucho más que puedo compartir contigo para mejorar tus habilidades.'
                         ],
                         videoUrl: 'lYKMk8zKwSfVImcg9jaV3PxZbhZQkOK02tL010137TAIC00',
+                        thumbnailUrl: 'https://image.mux.com/lYKMk8zKwSfVImcg9jaV3PxZbhZQkOK02tL010137TAIC00/thumbnail.png?fit_mode=preserve&time=3',
                         posterUrl: 'https://image.mux.com/lYKMk8zKwSfVImcg9jaV3PxZbhZQkOK02tL010137TAIC00/animated.webp?fit_mode=preserve&start=1&end=5',
 
                     },
@@ -279,6 +299,7 @@ export const courses = {
                             '¡Felicidades! Llegaste hasta aqui, completaste este capitulo de Premiere Pro, espero que este curso de introduccion te haya ayudado mucho a entender y empezar a crear con esta maravillosa herramienta, a lo largo del curso dimos un vistazo a varios temas que son muy importantes al momento de empezar a crear videos, aun falta mucho por aprender, pero sin duda ya empezaste con una gran ventaja, y esa era la idea, crear un curso que te permita entender de forma facil como es la edicion de video con esta herramienta.',
                         ],
                         videoUrl: 'usnQHXw6teov7cbtB2GHUqsK01Mtr6uurQKYKKk4IJWA',
+                        thumbnailUrl: 'https://image.mux.com/usnQHXw6teov7cbtB2GHUqsK01Mtr6uurQKYKKk4IJWA/thumbnail.png?fit_mode=preserve&time=3',
                         posterUrl: 'https://image.mux.com/usnQHXw6teov7cbtB2GHUqsK01Mtr6uurQKYKKk4IJWA/animated.webp?fit_mode=preserve&start=1&end=5',
                         driveUrl: 'https://1drv.ms/f/c/5c0044e92b33f270/EnDyMyvpRAAggFyIagEAAAABOiwbtZFgeIKXtMPa2TENow?e=OZjBGQ'
                     },
@@ -296,6 +317,7 @@ export const courses = {
                             'Durante esta primera lección, descubriremos cómo After Effects se emplea para mejorar narrativas visuales y reforzar el mensaje de una producción audiovisual mediante la incorporación de efectos espectaculares y transiciones fluidas. Analizaremos sus aplicaciones en proyectos de distintos ámbitos creativos y profundizaremos en los fundamentos que sustentan su uso, permitiéndote comprender de manera integral el potencial de esta herramienta para transformar ideas en experiencias visuales inolvidables.'
                         ],
                         videoUrl: 'nLHmVd5RoxEBPkb1qIXAEnq4N92pog93X5gD300eTKi00',
+                        thumbnailUrl: 'https://image.mux.com/nLHmVd5RoxEBPkb1qIXAEnq4N92pog93X5gD300eTKi00/thumbnail.png?fit_mode=preserve&time=4',
                         posterUrl: 'https://image.mux.com/nLHmVd5RoxEBPkb1qIXAEnq4N92pog93X5gD300eTKi00/animated.webp?fit_mode=preserve&start=3&end=6',
 
                     },
@@ -307,6 +329,7 @@ export const courses = {
                             'Además, configuraremos After Effects para adaptarlo a nuestras necesidades específicas. Estableceremos parámetros básicos, como la ubicación del autosave para garantizar la seguridad de tus proyectos, y definiremos un proyecto template que agilice el inicio de cada trabajo con ajustes predeterminados óptimos. También instalaremos un plugin fundamental que mejorará y optimizará nuestro workflow de animación, asegurando un entorno de trabajo más eficiente y personalizado para potenciar tu creatividad.'
                         ],
                         videoUrl: 'aPXP6jLhCVI7tk1Cy01a3YCeQcvq02ioY00MJ7Q02xmlm00w',
+                        thumbnailUrl: 'https://image.mux.com/aPXP6jLhCVI7tk1Cy01a3YCeQcvq02ioY00MJ7Q02xmlm00w/thumbnail.png?fit_mode=preserve&time=2',
                         posterUrl: 'https://image.mux.com/aPXP6jLhCVI7tk1Cy01a3YCeQcvq02ioY00MJ7Q02xmlm00w/animated.webp?fit_mode=preserve&start=0&end=4',
                         driveUrl: 'https://1drv.ms/f/c/5c0044e92b33f270/EgOyp4JPQWhLsD8kJAcZMCoBffvtS9c4XeYcaszsRLCkjw?e=E7osou'
                     },
@@ -318,6 +341,7 @@ export const courses = {
                             'Durante la sesión, revisaremos conceptos esenciales como las curvas de animación y las variaciones en la velocidad, analizando cómo pequeñas modificaciones pueden generar grandes diferencias en el comportamiento visual. Esta lección te proporcionará las herramientas necesarias para dominar la sincronización y el detalle en tus composiciones, permitiéndote ajustar cada cambio de forma intuitiva para lograr animaciones impactantes y profesionalmente pulidas.'
                         ],
                         videoUrl: 'wm01x02e00jxbebm1CLtIVlznufMseC5q3gR018xUXzl02Vg',
+                        thumbnailUrl: 'https://image.mux.com/wm01x02e00jxbebm1CLtIVlznufMseC5q3gR018xUXzl02Vg/thumbnail.png?fit_mode=preserve&time=3',
                         posterUrl: 'https://image.mux.com/wm01x02e00jxbebm1CLtIVlznufMseC5q3gR018xUXzl02Vg/animated.webp?fit_mode=preserve&start=0&end=6',
                         driveUrl: 'https://1drv.ms/f/c/5c0044e92b33f270/Ek4poTt7KHFGgHdq8bJOjxABOJ-bsvPz0PSJxzhPEU9v4Q?e=aawZOk'
                     },
@@ -329,6 +353,7 @@ export const courses = {
                             'Durante esta sesión, revisaremos en detalle la organización de las distintas capas y la aplicación de efectos que enriquecen y optimizan nuestros diseños. Mediante ejercicios prácticos, experimentaremos con herramientas y técnicas que nos permitirán crear transiciones fluidas y resultados visualmente atractivos, elevando la calidad y el dinamismo de cada proyecto.'
                         ],
                         videoUrl: 'yct4562JffQGJuwGt9qJygxijyV2V877IxAZuxmp6Hg',
+                        thumbnailUrl: 'https://image.mux.com/yct4562JffQGJuwGt9qJygxijyV2V877IxAZuxmp6Hg/thumbnail.png?fit_mode=preserve&time=3',
                         posterUrl: 'https://image.mux.com/yct4562JffQGJuwGt9qJygxijyV2V877IxAZuxmp6Hg/animated.webp?fit_mode=preserve&start=0&end=6',
                         driveUrl: 'https://1drv.ms/f/c/5c0044e92b33f270/EobjwsAN2JhIsRgeC-X0ZjEBN4n4aBeIWZURgpw0k4cI1g?e=QCyd9e'
                     },
@@ -340,6 +365,7 @@ export const courses = {
                             'Posteriormente, nos centraremos en la aplicación de diversos efectos que enriquecerán el material audiovisual. Experimentaremos con trazos en movimiento, animaciones de texto, cambios de color y glows, entre otros, combinando estas técnicas para crear composiciones de alto impacto y estéticamente cautivadoras. Con estos recursos, aprenderás a transformar una grabación convencional en una pieza visual innovadora y dinámica.'
                         ],
                         videoUrl: '1pGlFKpKijSmp8b6xb013PPdH73i6hAQ3UWt00ZBpeq7M',
+                        thumbnailUrl: 'https://image.mux.com/1pGlFKpKijSmp8b6xb013PPdH73i6hAQ3UWt00ZBpeq7M/thumbnail.png?fit_mode=preserve&time=3',
                         posterUrl: 'https://image.mux.com/yct4562JffQGJuwGt9qJygxijyV2V877IxAZuxmp6Hg/animated.webp?fit_mode=preserve&start=0&end=6',
                         driveUrl: 'https://1drv.ms/f/c/5c0044e92b33f270/EtfVz_UHsDhNsDBf27NtYBABuJSxglQcTWWAnFyUO8Ivlw?e=GOJx8U'
                     },
@@ -351,6 +377,7 @@ export const courses = {
                             'Además, diseñaremos un background dinámico que aportará mayor vitalidad a nuestro video, integrando animaciones que potencien el dinamismo de la composición. Con estos conocimientos, lograrás dominar las técnicas del 3D clásico, permitiéndote crear producciones visualmente impactantes y envolventes, elevando así la narrativa y el atractivo de tus proyectos audiovisuales.'
                         ],
                         videoUrl: 'HhzBA2028YeWtwOawZWP01Lu5MpUCZozBe5IlgqLAT6YQ',
+                        thumbnailUrl: 'https://image.mux.com/HhzBA2028YeWtwOawZWP01Lu5MpUCZozBe5IlgqLAT6YQ/thumbnail.png?fit_mode=preserve&time=3',
                         posterUrl: 'https://image.mux.com/HhzBA2028YeWtwOawZWP01Lu5MpUCZozBe5IlgqLAT6YQ/animated.webp?fit_mode=preserve&start=0&end=6',
                         driveUrl: 'https://1drv.ms/f/c/5c0044e92b33f270/EvO5Vf8EqSdOkxCzX_3hbFYBW9CjA_hf5W1zPEDTAv_tGA?e=aE6VAH'
                     },
@@ -362,6 +389,7 @@ export const courses = {
                             'A continuación, incorporaremos composiciones en 3D junto con diversos assets y elementos, lo que aportará un dinamismo notable a nuestros proyectos. Esta metodología te dotará de las herramientas para fusionar de manera profesional recursos visuales y lograr efectos impresionantes que potencien la narrativa y el impacto visual de tu video.'
                         ],
                         videoUrl: '9qeEXqy8zcVV02gPDoiAdWloNbn5WfzXvCEVXCWBw202w',
+                        thumbnailUrl: 'https://image.mux.com/9qeEXqy8zcVV02gPDoiAdWloNbn5WfzXvCEVXCWBw202w/thumbnail.png?fit_mode=preserve&time=3',
                         posterUrl: 'https://image.mux.com/9qeEXqy8zcVV02gPDoiAdWloNbn5WfzXvCEVXCWBw202w/animated.webp?fit_mode=preserve&start=0&end=6',
                         driveUrl: 'https://1drv.ms/f/c/5c0044e92b33f270/Eptbe5qmtRFBnIXX2yfWh_EBvHYlh03kiiNsclAl2VdvPQ?e=gqcuyS'
                     },
@@ -373,6 +401,7 @@ export const courses = {
                             'Además, exploraremos la integración de sonidos directamente en After Effects y otras animaciones que realzarán el impacto de tu contenido. Con la fusión de estos elementos—textos, transiciones, efectos de fondo y audio—lograrás crear producciones visualmente llamativas, diseñadas para captar la atención y transmitir mensajes de forma efectiva en el entorno digital actual.'
                         ],
                         videoUrl: 'FFDRM8d2VHQCbgny1uUE94CsMddaafOqz9YII5O13Rk',
+                        thumbnailUrl: 'https://image.mux.com/FFDRM8d2VHQCbgny1uUE94CsMddaafOqz9YII5O13Rk/thumbnail.png?fit_mode=preserve&time=3',
                         posterUrl: 'https://image.mux.com/FFDRM8d2VHQCbgny1uUE94CsMddaafOqz9YII5O13Rk/animated.webp?fit_mode=preserve&start=0&end=6',
                         driveUrl: 'https://1drv.ms/f/c/5c0044e92b33f270/Eq49PA4cOGBHjRfUCgg420gB_y-0P3qvVfo6eey0jcJSuw?e=aq7yTl'
                     },

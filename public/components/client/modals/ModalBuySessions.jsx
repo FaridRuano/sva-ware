@@ -68,7 +68,7 @@ const ModalBuySessions = ({ active, setActive }) => {
                             </div>
                             <div className="price tier3-btn">
                                 <h1>
-                                    $126.99
+                                    $31.99
                                 </h1>
                                 <p>USD</p>
                             </div>
