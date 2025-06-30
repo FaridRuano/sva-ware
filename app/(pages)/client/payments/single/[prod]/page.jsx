@@ -108,7 +108,7 @@ const PaymentPage = ({ params }) => {
 
     return (
         <div className="client-payment-container">
-            <div className="back-home">
+            <div className="back-home" onClick={() => window.history.back()}>
                 <Image src={ArrowLeft} width={10} height={'auto'} alt='Arrow Left' />
                 <span>
                     Regresar

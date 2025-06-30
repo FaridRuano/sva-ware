@@ -46,7 +46,9 @@ const CheckoutForm = ({ product, client, clientSecret }) => {
                     // ✅ Compra guardada correctamente, continúa con el flujo
                     setMessage('Pago exitoso!');
                     setInfoModalText('¡Pago exitoso! Tu pago ha sido procesado correctamente.');
-                    handleInfoModal();
+                    handleInfoModal()
+
+                    
 
                     setTimeout(() => {
                         router.push('/client/profile');

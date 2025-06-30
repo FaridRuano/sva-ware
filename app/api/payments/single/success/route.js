@@ -59,6 +59,17 @@ export async function POST(request) {
             createdAt: new Date()
         })
 
+        // Update user purchases
+
+        const newPurchase = {
+            product: product._id, 
+            price: product.price,   
+            paymentMethod: 'stripe',
+        };
+
+        user.purchasedProducts.addToSet(newPurchase);
+        await user.save();
+
         await stripe.paymentIntents.update(paymentIntentId, {
             receipt_email: user.email
         });
