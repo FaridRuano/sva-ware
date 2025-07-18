@@ -1765,170 +1765,6 @@ button {
   }
 }
 
-/* Pay Page */
-
-.client-payment-container {
-  width: 90%;
-  height: fit-content;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  margin-bottom: 50px;
-
-  .back-home {
-    width: fit-content;
-    display: inline-flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-    color: $light;
-    font-weight: 700;
-    font-size: 14px;
-    cursor: pointer;
-    position: relative;
-    transition: .3s ease-out;
-
-    &::after {
-      content: '';
-      width: 0;
-      height: 2px;
-      background-color: $light;
-      position: absolute;
-      bottom: -5px;
-      left: 0;
-      transition: .3s ease-out;
-    }
-
-    &:hover {
-      &::after {
-        width: 100%;
-      }
-    }
-  }
-
-  @media (max-width: 800px) {
-    width: calc(100% - 60px);
-    padding: 0 30px;
-  }
-}
-
-.checkout-page {
-  display: flex;
-  flex-direction: row;
-  gap: 1.5rem;
-
-  .total-info {
-    width: 40%;
-    height: fit-content;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    padding: 20px;
-    color: $light;
-    background-color: rgba($bg-stroke, .4);
-    border-radius: 25px;
-    box-shadow: 0 0 20px rgba($bg-comp, 1);
-
-    .title-total {
-      color: $primary-color;
-      font-size: 15px;
-      font-weight: 300;
-    }
-
-    .product-info {
-      display: flex;
-      flex-direction: column;
-      gap: .5rem;
-
-      .img-holder {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        overflow: hidden;
-        border-radius: 25px;
-        width: 150px;
-        height: 150px;
-      }
-
-      h2 {
-        font-size: 22px;
-      }
-
-      span {
-        color: $primary-color;
-        font-size: 13px;
-        font-weight: 700;
-      }
-
-      .descrip {
-        font-size: 12px;
-        color: $light-dark;
-      }
-
-      .price {
-        font-size: 28px;
-        font-weight: 600;
-      }
-    }
-  }
-
-  .pay-wall {
-    width: 60%;
-    padding: 20px;
-    background-color: rgba($bg-stroke, .4);
-    border-radius: 25px;
-    box-shadow: 0 0 20px rgba($bg-comp, 1);
-  }
-
-  @media (max-width: 800px) {
-    flex-direction: column;
-
-    .total-info {
-      width: calc(100% - 40px);
-    }
-
-    .pay-wall {
-      width: calc(100% - 40px);
-    }
-
-  }
-}
-
-.checkoutform {
-  width: 100%;
-
-  form {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-
-    .btn-pay {
-      border-radius: 8px;
-      padding: 15px;
-      outline: none;
-      border: none;
-      background-color: $light;
-      font-weight: 800;
-      font-size: 15px;
-      cursor: pointer;
-      transition: .3s ease-out;
-
-      &:hover {
-        background-color: rgba($primary-color , 1);
-      }
-    }
-
-    .pay-msg {
-      color: $primary-color;
-      font-weight: 700;
-
-      &.error {
-        color: $err;
-      }
-    }
-  }
-}
 
 /* Footer */
 
@@ -1964,7 +1800,6 @@ button {
     gap: 1rem;
   }
 }
-
 
 /* Login */
 
@@ -2336,6 +2171,135 @@ button {
   }
 }
 
+/* Help Page */
+
+.help-page {
+  width: 100vw;
+  min-height: 100vh;
+  background-color: $black;
+  color: $light;
+  display: flex;
+  align-items: start;
+  justify-content: center;
+
+  .content-wrap {
+    padding: 50px 100px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+
+    .faq-list{
+      display: flex;
+      flex-direction: column;
+      gap: .6rem;
+
+    }
+
+    .help-form-container{
+      margin-top: 50px;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      width: 100%;
+      h2{
+        color: $primary-color;
+      }
+      .help-form{
+        display: flex;
+        flex-direction: column;
+        gap: .5rem;
+        width: 100%;
+        textarea{
+          padding: 10px;
+          border-radius: 10px;
+          border: solid 2px $light;
+          background-color: transparent;
+          color: $light;
+          font-size: $standar;
+          outline: none;
+          transition: border-color .2s;
+          resize: none;
+          &:focus {
+            border-color: $primary-color;
+          }
+        }
+        input{
+          width: 100%;
+          padding: 10px;
+          border-radius: 10px;
+          border: solid 2px $light;
+          background-color: transparent;
+          color: $light;
+          font-size: $standar;
+          outline: none;
+          transition: border-color .2s;
+
+          &:focus {
+            border-color: $primary-color;
+          }
+        }
+
+        button{
+          padding: 10px;
+          background-color: $primary-color;
+          color: $black;
+          border: none;
+          border-radius: 10px;
+          font-size: $standar;
+          font-weight: 700;
+          cursor: pointer;
+          transition: background-color .2s;
+
+          &:hover {
+            background-color: darken($primary-color, 10%);
+          }
+        }
+
+        .form-notes{
+          min-height: 19px;
+        }
+        
+      }
+    }
+
+    .return {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      cursor: pointer;
+      opacity: .7;
+      transition: .2s ease-out;
+
+      span {
+        font-weight: 700;
+        font-size: $standar;
+
+        a {
+          color: $light;
+        }
+      }
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+
+    h1 {
+      color: $primary-color;
+    }
+
+    a {
+      font-weight: 700;
+      color: $primary-color;
+    }
+
+    p {
+      font-size: $standar;
+    }
+  }
+}
+
 /* ===================Client=========================== */
 
 /* Navbar */
@@ -2523,7 +2487,6 @@ button {
     }
   }
 }
-
 
 /* Page Wrap */
 
@@ -4336,6 +4299,172 @@ button {
       &.selected {
         background-color: $primary-color;
         color: $black;
+      }
+    }
+  }
+}
+
+
+/* Pay Page */
+
+.client-payment-container {
+  width: 90%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 50px;
+
+  .back-home {
+    width: fit-content;
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    color: $light;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    position: relative;
+    transition: .3s ease-out;
+
+    &::after {
+      content: '';
+      width: 0;
+      height: 2px;
+      background-color: $light;
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      transition: .3s ease-out;
+    }
+
+    &:hover {
+      &::after {
+        width: 100%;
+      }
+    }
+  }
+
+  @media (max-width: 800px) {
+    width: calc(100% - 60px);
+    padding: 0 30px;
+  }
+}
+
+.checkout-page {
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+
+  .total-info {
+    width: 40%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 20px;
+    color: $light;
+    background-color: rgba($bg-stroke, .4);
+    border-radius: 25px;
+    box-shadow: 0 0 20px rgba($bg-comp, 1);
+
+    .title-total {
+      color: $primary-color;
+      font-size: 15px;
+      font-weight: 300;
+    }
+
+    .product-info {
+      display: flex;
+      flex-direction: column;
+      gap: .5rem;
+
+      .img-holder {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        border-radius: 25px;
+        width: 150px;
+        height: 150px;
+      }
+
+      h2 {
+        font-size: 22px;
+      }
+
+      span {
+        color: $primary-color;
+        font-size: 13px;
+        font-weight: 700;
+      }
+
+      .descrip {
+        font-size: 12px;
+        color: $light-dark;
+      }
+
+      .price {
+        font-size: 28px;
+        font-weight: 600;
+      }
+    }
+  }
+
+  .pay-wall {
+    width: 60%;
+    padding: 20px;
+    background-color: rgba($bg-stroke, .4);
+    border-radius: 25px;
+    box-shadow: 0 0 20px rgba($bg-comp, 1);
+  }
+
+  @media (max-width: 800px) {
+    flex-direction: column;
+
+    .total-info {
+      width: calc(100% - 40px);
+    }
+
+    .pay-wall {
+      width: calc(100% - 40px);
+    }
+
+  }
+}
+
+.checkoutform {
+  width: 100%;
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    .btn-pay {
+      border-radius: 8px;
+      padding: 15px;
+      outline: none;
+      border: none;
+      background-color: $light;
+      font-weight: 800;
+      font-size: 15px;
+      cursor: pointer;
+      transition: .3s ease-out;
+
+      &:hover {
+        background-color: rgba($primary-color , 1);
+      }
+    }
+
+    .pay-msg {
+      color: $primary-color;
+      font-weight: 700;
+
+      &.error {
+        color: $err;
       }
     }
   }

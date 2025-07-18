@@ -163,9 +163,9 @@ export async function POST(request) {
         } else {
             try {
                 await transporter.sendMail(purchaseMail)
-                console.log('Reservation email sent succesfully:', email)
+                console.log('Confirmation purchase email sent succesfully:', email)
             } catch (error) {
-                console.error('Error at sending the reservation email:', error.message)
+                console.error('Error at sending the confirmation purchase email:', error.message)
             }
             return NextResponse.json({ success: true, purchase }, { status: 200 });
 
