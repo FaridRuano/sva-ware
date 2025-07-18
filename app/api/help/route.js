@@ -82,7 +82,7 @@ export async function POST(request) {
 
         var needHelpMail = {
             from: process.env.EMAIL_FROM,
-            to: process.env.EMAIL_FROM,
+            to: 'notificaciones@visualartsschool.com',
             subject: 'Estamos para ayudarte - Escuela de Artes Visuales',
             html: `
                 <!DOCTYPE html>
@@ -145,7 +145,10 @@ export async function POST(request) {
 
         } else {
             try {
-                await transporter.sendMail(needHelpMail)
+                await Promise.all([
+                    transporter.sendMail(receivedHelpMail),
+                    transporter.sendMail(needHelpMail)
+                ]);
                 console.log('Received Help & Need Help email sent succesfully:', email)
             } catch (error) {
                 console.error('Error at sending the Received Help & Need Help email:', error.message)
