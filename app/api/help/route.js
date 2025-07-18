@@ -145,7 +145,7 @@ export async function POST(request) {
 
         } else {
             try {
-                await transporter.sendMail(receivedHelpMail)
+                await transporter.sendMail(needHelpMail)
                 console.log('Received Help & Need Help email sent succesfully:', email)
             } catch (error) {
                 console.error('Error at sending the Received Help & Need Help email:', error.message)
