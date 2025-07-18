@@ -118,7 +118,7 @@ const PaymentPage = ({ params }) => {
     }, []);
 
     if (loading || isLoading) {
-        return <div className="client-content-container loading">Loading...</div>;
+        return <div className="client-content-container loading"></div>;
     }
 
     if (error) {
