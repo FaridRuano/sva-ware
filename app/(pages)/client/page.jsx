@@ -7,6 +7,7 @@ import ClientPt1Asset from '@public/assets/imgs/covers/cover-introadobe.jpg'
 import { useSubscription } from '@libs/useSubscription';
 import Link from '@node_modules/next/link';
 import ModalSubs from '@public/components/client/modals/ModalSubs';
+import axios from '@node_modules/axios';
 
 const Client = () => {
 
@@ -18,6 +19,9 @@ const Client = () => {
 
   const { subscription, isLoading, isError } = useSubscription(session.user.email)
 
+  const [purchasedProducts, setPurchasedProducts] = useState([]);
+  const [loadingPurchases, setLoadingPurchases] = useState(true);
+
   /* Modal Subs */
 
   const [subsModal, setSubsModal] = useState(false)
@@ -25,6 +29,21 @@ const Client = () => {
   const handleSubsModal = () => {
     setSubsModal(current => !current)
   }
+
+  const alreadyPurchased = (productId) => {
+    return purchasedProducts.some(purchase => purchase.product === productId);
+  }
+
+  useEffect(() => {
+    if (!session?.user?.email) return;
+    axios.get(`/api/client/data?email=${session.user.email}&action=purchases`)
+      .then(res => {
+        setPurchasedProducts(res.data?.purchasedProducts || []);
+      })
+      .catch(() => setPurchasedProducts([]))
+      .finally(() => setLoadingPurchases(false));
+  }, []);
+
 
 
   useEffect(() => {
@@ -108,9 +127,16 @@ const Client = () => {
                     Empezar
                   </div>
                 ) : (
+
+                  alreadyPurchased('6835b3c233e033e24646b523') ? (
+                    <div className="feature-btn explore" onClick={() => router.push('/client/introadobe/1/101')}>
+                      Empezar
+                    </div>
+                  ) : (
                   <div className="feature-btn" onClick={() => router.push('/client/payments/single/6835b3c233e033e24646b523')}>
                     Comprar
                   </div>
+                  )
                 )
               }
             </div>

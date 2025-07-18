@@ -13,6 +13,20 @@ export async function GET(request) {
     const action = url.searchParams.get('action')
 
     switch (action) {
+        case 'purchases':
+            try {
+                const user = await User.findOne({ email: email }).select('_id email purchasedProducts')
+
+                if (!user) {
+                    return NextResponse.json({ exists: false })
+                }
+
+                return NextResponse.json({ purchasedProducts: user.purchasedProducts })
+
+            } catch (error) {
+                console.error('Error fetching user:', error)
+                return NextResponse.json({ message: 'Internal server error' }, { status: 500 })
+            }
         case 'paids':
             try {
                 const user = await User.findOne({ email: email }).select('_id email paymentHistory')

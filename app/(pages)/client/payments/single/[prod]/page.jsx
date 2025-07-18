@@ -8,12 +8,15 @@ import axios from 'axios';
 import CheckoutForm from '@public/components/client/stripe/CheckOutForm';
 import Image from '@node_modules/next/image';
 import ArrowLeft from '@public/assets/icons/arrow-left.webp'
+import ModalInfo from '@public/components/client/modals/ModalInfo';
+import { useRouter } from '@node_modules/next/navigation';
 
 const stripeKey = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY;
 const stripePromise = stripeKey ? loadStripe(stripeKey) : Promise.reject("Stripe key missing");
 
 const PaymentPage = ({ params }) => {
 
+    const router = useRouter();
     const [loading, setLoading] = useState(true);
     const [clientSecret, setClientSecret] = useState('');
     const [productInfo, setProductInfo] = useState(null);
@@ -78,20 +81,36 @@ const PaymentPage = ({ params }) => {
             .finally(() => setLoading(false));
     }, [prod]);
 
+
     // Create PaymentIntent only if product exists
     useEffect(() => {
         if (!product || !session?.user?.email) return;
-        axios.post('/api/payments/single', { productId: prod, email: session.user.email })
-            .then(res => {
-                if (res.data && res.data.clientSecret) {
-                    setClientSecret(res.data.clientSecret);
-                    setProductInfo(res.data.productInfo);
-                    setError('');
+        axios.get(`/api/client/data?email=${session.user.email}&action=purchases`)
+            .then(userRes => {
+                const purchasedProducts = userRes.data?.purchasedProducts || []
+                const alreadyPurchased = purchasedProducts.some(
+                    (purchase) => purchase.product === prod
+                )
+                if (alreadyPurchased) {
+                    setError('Ya has comprado este producto.');
+                    setLoading(false);
+                    return;
                 } else {
-                    setError('Could not create payment.');
+                    axios.post('/api/payments/single', { productId: prod, email: session.user.email })
+                        .then(res => {
+                            if (res.data && res.data.clientSecret) {
+                                setClientSecret(res.data.clientSecret);
+                                setProductInfo(res.data.productInfo);
+                                setError('');
+                            } else {
+                                setError('Could not create payment.');
+                            }
+                        })
+                        .catch(() => setError('Could not create payment.'));
                 }
             })
-            .catch(() => setError('Could not create payment.'));
+            .catch(() => setError('Could not verify user purchases.'));
+
     }, [product, session, prod]);
 
     useEffect(() => {
@@ -103,7 +122,9 @@ const PaymentPage = ({ params }) => {
     }
 
     if (error) {
-        return <div className="client-content-container error">{error}</div>;
+        return <div className="client-content-container error">
+            <ModalInfo mainText={error} active={true} setActive={() => router.push('/client')}/>
+        </div>;
     }
 
     return (

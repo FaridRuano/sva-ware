@@ -1,10 +1,16 @@
 'use client'
 import { courses } from '@/data/courses'
+import { useSession } from '@node_modules/next-auth/react';
+import CourseAccessGuard from '@public/components/client/CourseAccessGuard';
 import CourseWindow from '@public/components/client/CourseWindow';
 import Sidebar from '@public/components/client/SideBar'
 import React, { useState } from 'react'
 
+const PRODUCT_ID = '6835b3c233e033e24646b523';
+
 const Course = ({ params }) => {
+
+  const { data: session } = useSession();
 
   const { course, chapter, lesson } = React.use(params)
   const courseData = courses[course]
@@ -36,12 +42,14 @@ const Course = ({ params }) => {
   }
 
   return (
-    <div className="client-courses-container">
-      <div className='courses-page'>
-        <Sidebar course={course} title={courseData.title} chapters={courseData.chapters} activeChapter={chapter} activeLesson={lesson} />
-        <CourseWindow data={activeLessonData} goToNextLesson={nextLesson} />
+    <CourseAccessGuard productId={PRODUCT_ID} userEmail={session?.user?.email}>
+      <div className="client-courses-container">
+        <div className='courses-page'>
+          <Sidebar course={course} title={courseData.title} chapters={courseData.chapters} activeChapter={chapter} activeLesson={lesson} />
+          <CourseWindow data={activeLessonData} goToNextLesson={nextLesson} />
+        </div>
       </div>
-    </div>
+    </CourseAccessGuard>
   );
 };
 
