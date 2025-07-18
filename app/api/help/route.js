@@ -145,10 +145,7 @@ export async function POST(request) {
 
         } else {
             try {
-                await Promise.all([
-                    transporter.sendMail(receivedHelpMail),
-                    transporter.sendMail(needHelpMail)
-                ]);
+                await transporter.sendMail(receivedHelpMail)
                 console.log('Received Help & Need Help email sent succesfully:', email)
             } catch (error) {
                 console.error('Error at sending the Received Help & Need Help email:', error.message)
