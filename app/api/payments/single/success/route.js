@@ -5,6 +5,7 @@ import User from "@models/User";
 import Product from "@models/Product";
 import Purchase from "@models/Purchase";
 import Stripe from "stripe";
+import transporter from "@libs/mailer";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
     apiVersion: '2023-10-16' // o la versión actual
