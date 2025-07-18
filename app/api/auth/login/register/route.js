@@ -32,7 +32,7 @@ export async function POST(request) {
     /* Send Email */
 
     const mailOptions = {
-        from: process.env.EMAIL_FROM,
+        from: '"No Reply VAS" <noreply@visualartsschool.com>',
         to: email,
         subject: 'Verificación de cuenta - Escuela de Artes Visuales',
         html: `
