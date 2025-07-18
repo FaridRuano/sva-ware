@@ -55,6 +55,7 @@ const Help = () => {
     const [form, setForm] = useState({ name: '', email: '', message: '' });
     const [sent, setSent] = useState(false);
     const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false);
 
     const handleChange = e => {
         setForm({ ...form, [e.target.name]: e.target.value });
@@ -64,6 +65,7 @@ const Help = () => {
         e.preventDefault();
         setError('');
         setSent(false);
+        setLoading(true);
 
         if (!form.name || !form.email || !form.message) {
             setError('Por favor completa todos los campos.');
@@ -71,20 +73,20 @@ const Help = () => {
         }
 
         try {
-            const res = await fetch('/api/help', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(form),
+            const res = await axios.post('/api/help', form, {
+            headers: { 'Content-Type': 'application/json' },
             });
-            const data = await res.json();
-            if (res.ok && data.success) {
-                setSent(true);
-                setForm({ name: '', email: '', message: '' });
+            const data = res.data;
+            if (res.status === 200 && data.success) {
+            setSent(true);
+            setForm({ name: '', email: '', message: '' });
             } else {
-                setError(data.error || 'Hubo un error al enviar tu mensaje. Intenta de nuevo.');
+            setError(data.error || 'Hubo un error al enviar tu mensaje. Intenta de nuevo.');
             }
         } catch {
             setError('Hubo un error al enviar tu mensaje. Intenta de nuevo.');
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -115,7 +117,8 @@ const Help = () => {
                             </div>
                         ))}
                     </div>
-                    <div className="help-form-container">
+                    
+                    <div className={loading ? "help-form-container loading" : "help-form-container"}>
                         <h2>¿Necesitas ayuda? Escríbenos</h2>
                         <form onSubmit={handleSubmit} className="help-form">
                             <input
