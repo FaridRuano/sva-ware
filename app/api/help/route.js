@@ -82,7 +82,7 @@ export async function POST(request) {
 
         var needHelpMail = {
             from: '"Notificaciones VAS" <notificaciones@visualartsschool.com>',
-            to: process.env.EMAIL_FROM,
+            to: 'faridruano@visualartsschool',
             subject: 'Estamos para ayudarte - Escuela de Artes Visuales',
             html: `
                 <!DOCTYPE html>
