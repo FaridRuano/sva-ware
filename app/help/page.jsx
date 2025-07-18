@@ -70,6 +70,7 @@ const Help = () => {
 
         if (!form.name || !form.email || !form.message) {
             setError('Por favor completa todos los campos.');
+            setLoading(false);
             return;
         }
 
