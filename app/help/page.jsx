@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react'
 import NavLogo from '@public/assets/icons/logo-navbar.webp'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
+import axios from '@node_modules/axios'
 
 const faqs = [
     {
