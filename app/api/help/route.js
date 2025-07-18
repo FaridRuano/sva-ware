@@ -13,7 +13,7 @@ export async function POST(request) {
         // You can save the message to a collection if you want
 
         var receivedHelpMail = {
-            from: 'soporte@visualartsschool.com',
+            from: '"Soporte VAS" <soporte@visualartsschool.com>',
             to: email,
             subject: 'Estamos para ayudarte - Escuela de Artes Visuales',
             html: `
@@ -81,7 +81,7 @@ export async function POST(request) {
         }
 
         var needHelpMail = {
-            from: 'notificaciones@visualartsschool.com',
+            from: '"Notificaciones VAS" <notificaciones@visualartsschool.com>',
             to: process.env.EMAIL_FROM,
             subject: 'Estamos para ayudarte - Escuela de Artes Visuales',
             html: `
