@@ -2,6 +2,7 @@
 
 import { useSubscription } from '@libs/useSubscription'
 import MuxPlayer from '@node_modules/@mux/mux-player-react/'
+import axios from '@node_modules/axios'
 import { useSession } from '@node_modules/next-auth/react'
 import Link from '@node_modules/next/link'
 import { useRouter } from '@node_modules/next/navigation'
@@ -17,6 +18,13 @@ const Course = () => {
   const [loadingVideo, setLoadingVideo] = useState(true)
 
   const { data: session } = useSession()
+
+  const [purchasedProducts, setPurchasedProducts] = useState([]);
+  const [loadingPurchases, setLoadingPurchases] = useState(true);
+
+  const alreadyPurchased = (productId) => {
+    return purchasedProducts.some(purchase => purchase.product === productId);
+  }
 
   const { subscription, isLoading, isError } = useSubscription(session.user.email)
 
@@ -308,6 +316,16 @@ const Course = () => {
   }
 
   useEffect(() => {
+    if (!session?.user?.email) return;
+    axios.get(`/api/client/data?email=${session.user.email}&action=purchases`)
+      .then(res => {
+        setPurchasedProducts(res.data?.purchasedProducts || []);
+      })
+      .catch(() => setPurchasedProducts([]))
+      .finally(() => setLoadingPurchases(false));
+  }, []);
+
+  useEffect(() => {
     if (isLoading) {
       setLoading(true)
     } else {
@@ -398,70 +416,82 @@ const Course = () => {
               <div className='option active'>
                 Opciones de compra
               </div>
-              <div className="btns-row">
-                <div className="btn">
-                  <div className="btn-content">
-                    <div className="content-header">
-                      <h2>Compra directa</h2>
-                      <p>
-                        Paga el precio completo por el workshop completo.
-                      </p>
+              {
+                alreadyPurchased('6835b3c233e033e24646b523') ? (
+                  <>
+                    <div className="btn-access explore" onClick={() => router.push('/client/introadobe/1/101')}>
+                      <h2 className='h2-text-responsive'>
+                        Ya compraste este workshop - Ir al Workshop
+                      </h2>
                     </div>
-                    <div className="content-body">
-                      <p>
-                        ¿Qué incluye?
-                      </p>
-                      <ul>
-                        <li>Acceso de por vida.</li>
-                        <li>Material y recursos.</li>
-                        <li>Actualizaciones futuras.</li>
-                      </ul>
-                      <div className="price">
-                        <h2>$44.99</h2>
-                        <p>
-                          USD
-                        </p>
+                  </>
+                ) : (
+                  <div className="btns-row">
+                    <div className="btn">
+                      <div className="btn-content">
+                        <div className="content-header">
+                          <h2>Compra directa</h2>
+                          <p>
+                            Paga el precio completo por el workshop completo.
+                          </p>
+                        </div>
+                        <div className="content-body">
+                          <p>
+                            ¿Qué incluye?
+                          </p>
+                          <ul>
+                            <li>Acceso de por vida.</li>
+                            <li>Material y recursos.</li>
+                            <li>Actualizaciones futuras.</li>
+                          </ul>
+                          <div className="price">
+                            <h2>$44.99</h2>
+                            <p>
+                              USD
+                            </p>
+                          </div>
+                        </div>
+                        <div className="content-footer">
+                          <div className="pay-btn" onClick={() => router.push('/client/payments/single/6835b3c233e033e24646b523')}>
+                            <h2>
+                              Comprar
+                            </h2>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                    <div className="content-footer">
-                      <div className="pay-btn" onClick={() => router.push('/client/payments/single/6835b3c233e033e24646b523')}>
-                        <h2>
-                          Comprar
-                        </h2>
+                    <div className="btn explore">
+                      <div className="btn-content">
+                        <div className="content-header">
+                          <h2>Únete a la escuela</h2>
+                          <p>
+                            Suscríbete y forma parte de nuestra comunidad.
+                          </p>
+                        </div>
+                        <div className="content-body">
+                          <p>
+                            ¿Qué incluye?
+                          </p>
+                          <ul>
+                            <li>Acceso durante tu membresía.</li>
+                            <li>Material y recursos.</li>
+                            <li>Actualizaciones futuras.</li>
+                            <li>Resuelve tus dudas con sesiones en vivo.</li>
+                            <li>Recibe feedback de tu trabajo.</li>
+                          </ul>
+                        </div>
+                        <div className="content-footer">
+                          <div className="pay-btn" onClick={() => handleSubsModal()}>
+                            <h2>
+                              Explorar planes
+                            </h2>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-                <div className="btn explore">
-                  <div className="btn-content">
-                    <div className="content-header">
-                      <h2>Únete a la escuela</h2>
-                      <p>
-                        Suscríbete y forma parte de nuestra comunidad.
-                      </p>
-                    </div>
-                    <div className="content-body">
-                      <p>
-                        ¿Qué incluye?
-                      </p>
-                      <ul>
-                        <li>Acceso durante tu membresía.</li>
-                        <li>Material y recursos.</li>
-                        <li>Actualizaciones futuras.</li>
-                        <li>Resuelve tus dudas con sesiones en vivo.</li>
-                        <li>Recibe feedback de tu trabajo.</li>
-                      </ul>
-                    </div>
-                    <div className="content-footer">
-                      <div className="pay-btn" onClick={() => handleSubsModal()}>
-                        <h2>
-                          Explorar planes
-                        </h2>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+                )
+              }
             </div>
           )
         }

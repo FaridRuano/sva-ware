@@ -33,22 +33,34 @@ export async function POST(request) {
             return NextResponse.json({ error: "Product not found" }, { status: 404 });
         }
 
-        // Use product info for PaymentIntent
-        const paymentIntent = await stripe.paymentIntents.create({
-            amount: product.price, // price in cents
-            currency: product.currency || "usd",
-            metadata: {
-                productId,
-                email,
-                stripeProductId: product.stripeProductId || "",
-            },
-            receipt_email: email,
-            automatic_payment_methods: { enabled: true },
+        const customers = await stripe.customers.list({ email, limit: 1 });
+        let customer = customers.data[0];
+        if (!customer) {
+            customer = await stripe.customers.create({ email });
+        }
+
+        // Use product info for Subscription
+        const subscription = await stripe.subscriptions.create({
+            customer: customer.id,
+            items: [{ price: product.stripePriceId }],
+            payment_behavior: 'default_incomplete',
+            expand: ['latest_invoice.payment_intent'],
         });
 
-        return NextResponse.json({ clientSecret: paymentIntent.client_secret, productInfo: product }, { status: 200 });
+        const clientSecret = subscription.latest_invoice.payment_intent.client_secret;
+
+        return NextResponse.json({
+            clientSecret,
+            productInfo: {
+                name: product.name,
+                description: product.description,
+                price: product.price,
+                imgUrl: product.imgUrl,
+                _id: product._id,
+            }
+        });
     } catch (error) {
-        console.error("Stripe error:", error);
-        return NextResponse.json({ error: "Internal server error" }, { status: 500 });
+        console.error(error);
+        return NextResponse.json({ error: 'Failed to create subscription.' }, { status: 500 });
     }
 }

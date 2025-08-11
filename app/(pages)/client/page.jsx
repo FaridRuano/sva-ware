@@ -21,7 +21,7 @@ const Client = () => {
 
   const [purchasedProducts, setPurchasedProducts] = useState([]);
   const [loadingPurchases, setLoadingPurchases] = useState(true);
-
+ 
   /* Modal Subs */
 
   const [subsModal, setSubsModal] = useState(false)

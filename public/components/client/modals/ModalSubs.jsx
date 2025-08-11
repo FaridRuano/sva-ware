@@ -11,7 +11,7 @@ const ModalSubs = ({ active, setActive }) => {
         return (
             <div className='modal-container' >
                 <div className="modal-warp extend">
-                    <div className="content-row" onClick={() => router.push('/client/payments/single/6833d009384fa4d74446f565')}>
+                    <div className="content-row" onClick={() => router.push('/client/payments/recurrent/6833d009384fa4d74446f565')}>
                         <div className="col ">
                             <div className="title">
                                 <h1>
@@ -31,7 +31,7 @@ const ModalSubs = ({ active, setActive }) => {
                             </div>
                         </div>
                     </div>
-                    <div className="content-row" id='row2'>
+                    <div className="content-row" id='row2' onClick={() => router.push('/client/payments/recurrent/6833d0a0384fa4d74446f567')}>
                         <div className="col">
                             <div className="title">
                                 <h1>

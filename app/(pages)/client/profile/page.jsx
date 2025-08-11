@@ -12,14 +12,18 @@ import ModalConfirm from '@public/components/client/modals/ModalConfirm'
 import ModalInfo from '@public/components/client/modals/ModalInfo'
 import ModalSubs from '@public/components/client/modals/ModalSubs'
 import Link from '@node_modules/next/link'
+import introadobe from '@public/assets/imgs/products/product-introadobe.jpg'
 
 const Profile = () => {
-
     const router = useRouter()
 
     const searchParams = useSearchParams()
 
     const { data: session, status } = useSession()
+
+    const [purchasedProducts, setPurchasedProducts] = useState([]);
+
+    const [coursesInfo, setCoursesInfo] = useState([]);
 
     const [name, setName] = useState('Student')
     const [email, setEmail] = useState('student@address.com')
@@ -30,6 +34,7 @@ const Profile = () => {
     })
 
     const [loading, setLoading] = useState(true)
+    const [loadingPurchases, setLoadingPurchases] = useState(true);
 
     const getUserData = async (email) => {
         try {
@@ -118,6 +123,27 @@ const Profile = () => {
     }
 
     useEffect(() => {
+        const fetchCoursesInfo = async () => {
+            if (!purchasedProducts.length) return;
+            const infoObj = {};
+            await Promise.all(
+                purchasedProducts.map(async (purchase) => {
+                    try {
+                        const res = await axios.get(`/api/products/${purchase.product}`);
+                        if (res.data && res.data.product) {
+                            infoObj[purchase.product] = res.data.product;
+                        }
+                    } catch {
+                        // handle error or leave empty
+                    }
+                })
+            );
+            setCoursesInfo(infoObj);
+        };
+        fetchCoursesInfo();
+    }, [purchasedProducts]);
+
+    useEffect(() => {
         const userData = async () => {
             if (status === 'authenticated') {
                 try {
@@ -151,6 +177,16 @@ const Profile = () => {
             router.replace('/client/profile');
         }
     }, [searchParams])
+
+    useEffect(() => {
+        if (!session?.user?.email) return;
+        axios.get(`/api/client/data?email=${session.user.email}&action=purchases`)
+            .then(res => {
+                setPurchasedProducts(res.data?.purchasedProducts || []);
+            })
+            .catch(() => setPurchasedProducts([]))
+            .finally(() => setLoadingPurchases(false));
+    }, []);
 
     if (loading) {
         return (
@@ -312,30 +348,80 @@ const Profile = () => {
                                     </div>
 
                                 ) : (
-                                    <div className="card full h-fit">
-                                        <div className="card-wrap fit">
-                                            <div className="name-holder">
-                                                <div className="icon">
-                                                    <Image src={ProductsIcon} width={10} height={'auto'} alt='Icon' />
+                                    <>
+                                        <div className="card full h-fit">
+                                            <div className="card-wrap fit">
+                                                <div className="name-holder">
+                                                    <div className="icon">
+                                                        <Image src={ProductsIcon} width={10} height={'auto'} alt='Icon' />
+                                                    </div>
+                                                    <div className="name">
+                                                        <span>Mi Contenido</span>
+                                                    </div>
                                                 </div>
-                                                <div className="name">
-                                                    <span>Mi Contenido</span>
+                                                <div className="separator"></div>
+                                                <div className="product-holder ">
+
+                                                    {
+                                                        loadingPurchases ? (
+                                                            <p>
+                                                                Estamos cargando tu contenido, por favor espera un momento.
+                                                            </p>
+                                                        ) : (
+                                                            <>
+                                                                {
+                                                                    purchasedProducts.length > 0 ? (
+                                                                        purchasedProducts.map((purchase) => {
+                                                                            const course = coursesInfo[purchase.product];
+                                                                            return (
+                                                                                <div key={purchase._id} className="product-card">
+                                                                                    <div className="card-img">
+                                                                                        <Image
+                                                                                            src={'/assets/imgs/products/product-introadobe.jpg'}
+                                                                                            width={100}
+                                                                                            height={100}
+                                                                                            alt='Cover'
+                                                                                        />
+                                                                                    </div>
+                                                                                    <div className="card-row">
+                                                                                        <div className="card-info">
+
+                                                                                            <p className='tag'><b> {course?.name || 'No disponible'}</b></p>
+                                                                                            <p><b>Fecha de compra:</b> {new Date(purchase.purchaseDate).toLocaleDateString('es-MX')}</p>
+                                                                                        </div>
+                                                                                        <div className='explore-btn'
+                                                                                            onClick={() => course?.alias && router.push(`/client/${course.alias}/1/101`)}
+                                                                                            disabled={!course?.alias}
+                                                                                        >
+                                                                                            Ir al curso
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                            );
+                                                                        })
+                                                                    ) : (
+                                                                        <p>
+                                                                            Aún no has realizado ningúna compra, puedes hacerlo desde la página principal.
+                                                                        </p>
+                                                                    )
+                                                                }
+                                                            </>
+                                                        )
+                                                    }
                                                 </div>
-                                            </div>
-                                            <div className="separator"></div>
-                                            <div className="product-holder ">
-                                                <p>
-                                                    Aún no has realizado ningúna compra, puedes hacerlo desde la página principal.
-                                                </p>
+
                                             </div>
                                         </div>
-                                    </div>
+
+                                    </>
+
                                 )
                             }
-                        </div>
+                        </div >
 
-                    </div>
-                </div>
+                    </div >
+                </div >
             </>
 
         )
