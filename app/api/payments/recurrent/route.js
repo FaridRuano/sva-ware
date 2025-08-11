@@ -39,6 +39,8 @@ export async function POST(request) {
             customer = await stripe.customers.create({ email });
         }
 
+        console.log('Stripe Price ID:', product.stripePriceId); // Should be price_...
+        
         // Use product info for Subscription
         const subscription = await stripe.subscriptions.create({
             customer: customer.id,

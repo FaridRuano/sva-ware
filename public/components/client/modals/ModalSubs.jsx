@@ -54,7 +54,7 @@ const ModalSubs = ({ active, setActive }) => {
                             </div>
                         </div>
                     </div>
-                    <div className="content-row" id='row3'>
+                    <div className="content-row" id='row3' onClick={() => router.push('/client/payments/recurrent/6833d0bd384fa4d74446f569')}>
                         <div className="col">
                             <div className="title">
                                 <h1>

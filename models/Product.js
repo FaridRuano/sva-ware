@@ -18,7 +18,8 @@ const ProductSchema = new mongoose.Schema({
         default: 'usd',
     },
     imgUrl: String, // Optional: Image URL for the product
-    stripeProductId: String, // Optional: Stripe product reference
+    stripeProductId: String,
+    stripePriceId: String,
 }, {
     timestamps: true
 });
