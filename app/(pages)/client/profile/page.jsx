@@ -113,12 +113,19 @@ const Profile = () => {
         }
     }
 
-    const handleCancelSubscription = () => {
+    const handleCancelSubscription = async () => {
         try {
-
-        }
-        catch (e) {
-            console.log(e)
+            const res = await axios.post('/api/stripe/cancel-subscription', {
+                email: email,
+            });
+            if (res.data.success) {
+                /* Subscription will end */
+            } else {
+                setInfoModalText('No se pudo cancelar la suscripción. Intenta más tarde.');
+            }
+        } catch (e) {
+            setInfoModalText('Ocurrió un error al cancelar la suscripción.');
+            console.log(e);
         }
     }
 

@@ -5,7 +5,7 @@ import { useRouter } from '@node_modules/next/navigation';
 import ModalInfo from '../modals/ModalInfo';
 import axios from '@node_modules/axios';
 
-const CheckoutForm = ({ product, client, clientSecret }) => {
+const CheckoutForm = ({ product, client, clientSecret, subscriptionId }) => {
     const stripe = useStripe();
     const elements = useElements();
     const [message, setMessage] = useState('');
@@ -39,7 +39,8 @@ const CheckoutForm = ({ product, client, clientSecret }) => {
                 const succesPayment = await axios.post('/api/payments/recurrent/success', {
                     productId: product,
                     email: client,
-                    paymentIntentId: paymentIntent.id
+                    paymentIntentId: paymentIntent.id,
+                    subscriptionId: subscriptionId
                 });
 
                 if (succesPayment.data.success) {

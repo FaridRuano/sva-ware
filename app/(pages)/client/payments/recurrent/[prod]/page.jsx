@@ -20,6 +20,7 @@ const PaymentPage = ({ params }) => {
     const [loading, setLoading] = useState(true);
     const [clientSecret, setClientSecret] = useState('');
     const [productInfo, setProductInfo] = useState(null);
+    const [subId, setSubId] = useState(null);
     const [product, setProduct] = useState(null);
     const [error, setError] = useState('');
 
@@ -101,6 +102,7 @@ const PaymentPage = ({ params }) => {
                             if (res.data && res.data.clientSecret) {
                                 setClientSecret(res.data.clientSecret);
                                 setProductInfo(res.data.productInfo);
+                                setSubId(res.data.id);
                                 setError('');
                             } else {
                                 setError('Could not create payment.');
@@ -150,7 +152,7 @@ const PaymentPage = ({ params }) => {
                                     />
                                 ) : (
                                     <Image
-                                        src={'/assets/imgs/products/product-introadobe.jpg'}
+                                        src={'/assets/imgs/products/product-monthly.jpg'}
                                         width={150}
                                         height={150}
                                         alt="Default Cover"
@@ -174,6 +176,7 @@ const PaymentPage = ({ params }) => {
                                 product={productInfo._id}
                                 client={session?.user?.email}
                                 clientSecret={clientSecret}
+                                subscriptionId={subId}
                             />
                         </Elements>
                     )}

@@ -2371,14 +2371,14 @@ button {
         gap: 1rem;
         cursor: pointer;
         padding: 10px 13px;
-        max-width: 122px;
+        max-width: fit-content;
         transition: .2s ease-out;
         border-radius: 20px;
         justify-content: flex-end;
         position: relative;
 
         .name-dropdown {
-          max-width: 95px;
+          min-width: 50px;
           overflow: hidden;
           white-space: nowrap;
         }

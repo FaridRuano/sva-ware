@@ -49,6 +49,8 @@ export async function POST(request) {
             expand: ['latest_invoice.payment_intent'],
         });
 
+        const stripeSubscriptionId = subscription.id;
+
         const clientSecret = subscription.latest_invoice.payment_intent.client_secret;
 
         return NextResponse.json({
@@ -59,7 +61,8 @@ export async function POST(request) {
                 price: product.price,
                 imgUrl: product.imgUrl,
                 _id: product._id,
-            }
+            },
+            id: stripeSubscriptionId
         });
     } catch (error) {
         console.error(error);

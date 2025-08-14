@@ -14,7 +14,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
 export async function POST(request) {
     try {
         const body = await request.json();
-        const { productId, email, paymentIntentId } = body;
+        const { productId, email, paymentIntentId, subscriptionId } = body;
 
         if (!productId || !email || !paymentIntentId) {
             return NextResponse.json({ error: "Product ID, email and paymentIntentId are required" }, { status: 400 });
@@ -50,7 +50,6 @@ export async function POST(request) {
             user.subscription.subType = product.subType || 'monthly';
             user.subscription.startDate = new Date();
             user.subscription.lastPaymentDate = new Date();
-            // Set nextPaymentDate (example: add 1 month for monthly)
             let nextDate = new Date();
             let livesessions = 1;
             if (product.subType === 'quarterly') {
@@ -66,6 +65,12 @@ export async function POST(request) {
             user.subscription.paymentMethod = 'stripe';
             user.subscription.endDate = nextDate;
             user.subscription.livesessions = livesessions;
+
+            // Guarda el Stripe Subscription ID
+            if (subscriptionId) {
+                user.subscription.stripeSubscriptionId = subscriptionId;
+            }
+
             // Add payment to user.paymentHistory
             user.paymentHistory.push({
                 product: product._id,
