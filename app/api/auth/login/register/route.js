@@ -25,9 +25,20 @@ export async function POST(request) {
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
+    /* Format email and name */
+    const formattedEmail = email.toLowerCase().trim();
+    const formattedName = name
+        .split(' ')
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+        .join(' ');
+
     /* Create User */
 
-    const newUser = await User.create({ name, email, password: hashedPassword })
+    const newUser = await User.create({
+        name: formattedName,
+        email: formattedEmail,
+        password: hashedPassword
+    })
 
     /* Send Email */
 
