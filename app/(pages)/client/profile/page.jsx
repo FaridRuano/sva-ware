@@ -84,6 +84,7 @@ const Profile = () => {
     }
 
     const responseConfirmModal = async () => {
+        setInfoModalText('');
         setConfirmModal(false)
         setLoading(true)
         if (confirmModalAction === 'password') {
@@ -115,7 +116,6 @@ const Profile = () => {
 
     const handleCancelSubscription = async () => {
         try {
-            console.log('hola')
             const res = await axios.post('/api/stripe/cancel-subscription', {
                 email: email,
             });

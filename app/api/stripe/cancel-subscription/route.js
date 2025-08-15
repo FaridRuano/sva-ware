@@ -17,8 +17,10 @@ export async function POST(request) {
             return NextResponse.json({ success: false, error: "No subscription found." });
         }
 
+        var idSub = user.subscription.stripeSubscriptionId;
         // Cancel subscription in Stripe
-        await stripe.subscriptions.update(user.subscription.stripeSubscriptionId, {
+        console.log(idSub)
+        await stripe.subscriptions.update(idSub, {
             cancel_at_period_end: true // Cancels at end of billing period
         });
 
