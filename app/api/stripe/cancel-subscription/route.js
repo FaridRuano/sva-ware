@@ -25,10 +25,8 @@ export async function POST(request) {
         const subscription = subscriptions.data[0];
         if (!subscription) throw new Error('Subscription not found');
 
-        const subscriptionItemId = subscription.items.data[0].id;
-
         // Cancel subscription in Stripe
-        await stripe.subscriptions.update(subscriptionItemId, {
+        await stripe.subscriptions.update(subscription.id, {
             cancel_at_period_end: true // Cancels at end of billing period
         });
 

@@ -84,7 +84,6 @@ const Profile = () => {
     }
 
     const responseConfirmModal = async () => {
-        setInfoModalText('');
         setConfirmModal(false)
         setLoading(true)
         if (confirmModalAction === 'password') {
@@ -92,8 +91,7 @@ const Profile = () => {
         } else if (confirmModalAction === 'cancel') {
             handleCancelSubscription()
         }
-        setLoading(false)
-        setInfoModal(true)
+
     }
 
     const handlePasswordChange = async () => {
@@ -111,6 +109,9 @@ const Profile = () => {
 
         } catch (e) {
             setInfoModalText('Lo siento no pudimos completar el proceso, intenta más tarde.')
+        } finally {
+            setLoading(false)
+            setInfoModal(true)
         }
     }
 
@@ -127,6 +128,9 @@ const Profile = () => {
         } catch (e) {
             setInfoModalText('Ocurrió un error al cancelar la suscripción.');
             console.log(e);
+        } finally {
+            setLoading(false)
+            setInfoModal(true)
         }
     }
 
