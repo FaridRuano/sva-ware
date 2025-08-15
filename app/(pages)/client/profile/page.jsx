@@ -71,6 +71,13 @@ const Profile = () => {
         handleConfirmModal()
     }
 
+    const handleRenovateConfirm = () => {
+        setConfirmModalAction('renew')
+        setConfirmModalText('¿Estás seguro de que deseas reactivar tu suscripción?')
+        setInfoModalText(`Tu suscripción fue reactivada con éxito.`)
+        handleConfirmModal()
+    }
+
     const handleConfirmModal = () => {
         setConfirmModal(current => !current)
     }
@@ -90,8 +97,9 @@ const Profile = () => {
             handlePasswordChange()
         } else if (confirmModalAction === 'cancel') {
             handleCancelSubscription()
+        } else if (confirmModalAction === 'renew') {
+            handleRenewSubscription()
         }
-
     }
 
     const handlePasswordChange = async () => {
@@ -133,6 +141,25 @@ const Profile = () => {
             setInfoModal(true)
         }
     }
+
+    const handleRenewSubscription = async () => {
+        try {
+            const res = await axios.post('/api/stripe/renew-subscription', {
+                email: email,
+            });
+            if (res.data.success) {
+                /* Subscription will be renewed */
+            } else {
+                setInfoModalText('No se pudo reactivar la suscripción. Intenta más tarde.');
+            }
+        } catch (e) {
+            setInfoModalText('Ocurrió un error al reactivar la suscripción.');
+            console.log(e);
+        } finally {
+            setLoading(false);
+            setInfoModal(true);
+        }
+    };
 
     useEffect(() => {
         const fetchCoursesInfo = async () => {
@@ -290,7 +317,7 @@ const Profile = () => {
                                                         Tu suscripción se renueva:
                                                     </span>
                                                     <span className='value'>
-                                                        {subscription.nextPaymentDate ? new Date(subscription.nextPaymentDate).toLocaleDateString('es-MX', { year: 'numeric', month: '2-digit', day: '2-digit' }) : 'No disponible'}
+                                                        {subscription.nextPaymentDate ? new Date(subscription.nextPaymentDate).toLocaleDateString('es-MX', { year: 'numeric', month: '2-digit', day: '2-digit' }) : 'No se renovará'}
                                                     </span>
                                                 </div>
                                                 <div className="info-row">
@@ -301,10 +328,17 @@ const Profile = () => {
                                                     </Link>
                                                 </div>
                                                 <div className="info-row">
-                                                    <span className='label neg link' onClick={() => handleCancelConfirm()}>
-                                                        Cancelar Suscripción
-                                                    </span>
-
+                                                    {
+                                                        subscription.nextPaymentDate ? (
+                                                            <span className='label neg link' onClick={() => handleCancelConfirm()}>
+                                                                Cancelar Suscripción
+                                                            </span>
+                                                        ) : (
+                                                            <span className='label neg link' onClick={() => handleRenovateConfirm()}>
+                                                                Volver a activar renovación automática
+                                                            </span>
+                                                        )
+                                                    }
                                                 </div>
                                             </div>
                                         </div>

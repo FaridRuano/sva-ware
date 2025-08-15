@@ -19,11 +19,29 @@ export async function POST(request) {
 
         // Cancel subscription in Stripe
         await stripe.subscriptions.update(user.subscription.stripeSubscriptionId, {
-            cancel_at_period_end: true // Cancels at end of billing period
+            cancel_at_period_end: false // Renew
         });
 
         // Update user in DB
-        user.subscription.nextPaymentDate = null;
+        const lastPaymentDate = user.subscription.lastPaymentDate ? new Date(user.subscription.lastPaymentDate) : new Date();
+        let nextPaymentDate = new Date(lastPaymentDate);
+
+        switch (user.subscription.subType) {
+            case 'quarterly':
+                nextPaymentDate.setMonth(nextPaymentDate.getMonth() + 3);
+                break;
+            case 'semestral':
+                nextPaymentDate.setMonth(nextPaymentDate.getMonth() + 6);
+                break;
+            case 'annual':
+                nextPaymentDate.setFullYear(nextPaymentDate.getFullYear() + 1);
+                break;
+            default: // monthly
+                nextPaymentDate.setMonth(nextPaymentDate.getMonth() + 1);
+                break;
+        }
+
+        user.subscription.nextPaymentDate = nextPaymentDate;
         await user.save();
 
         return NextResponse.json({ success: true });
