@@ -23,7 +23,7 @@ export async function POST(request) {
         });
 
         // Update user in DB
-        user.subscription.isActive = false;
+        user.subscription.nextPaymentDate = null;
         await user.save();
 
         return NextResponse.json({ success: true });

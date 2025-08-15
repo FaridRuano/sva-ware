@@ -120,6 +120,7 @@ const Profile = () => {
             });
             if (res.data.success) {
                 /* Subscription will end */
+                setSubscription(prev => ({ ...prev, isActive: false }));
             } else {
                 setInfoModalText('No se pudo cancelar la suscripción. Intenta más tarde.');
             }
