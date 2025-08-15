@@ -52,6 +52,10 @@ const UserSchema = new mongoose.Schema({
     liveSessions:{
       type: Number,
       default: 0,
+    },
+    stripeSubscriptionId: {
+      type: String,
+      default: null,
     }
   },
   purchasedProducts: [
