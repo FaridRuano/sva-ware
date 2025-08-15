@@ -17,10 +17,18 @@ export async function POST(request) {
             return NextResponse.json({ success: false, error: "No subscription found." });
         }
 
-        var idSub = user.subscription.stripeSubscriptionId;
+        const customers = await stripe.customers.list({ email, limit: 1 });
+        const customer = customers.data[0];
+        if (!customer) throw new Error('Customer not found');
+
+        const subscriptions = await stripe.subscriptions.list({ customer: customer.id, limit: 1 });
+        const subscription = subscriptions.data[0];
+        if (!subscription) throw new Error('Subscription not found');
+
+        const subscriptionItemId = subscription.items.data[0].id;
+
         // Cancel subscription in Stripe
-        console.log(idSub)
-        await stripe.subscriptions.update(idSub, {
+        await stripe.subscriptions.update(subscriptionItemId, {
             cancel_at_period_end: true // Cancels at end of billing period
         });
 
