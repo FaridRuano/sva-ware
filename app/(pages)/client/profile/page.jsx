@@ -125,11 +125,9 @@ const Profile = () => {
 
     const handleCancelSubscription = async () => {
         try {
-            const res = await axios.post('/api/stripe/cancel-subscription', {
-                email: email,
-            });
+            const res = await axios.post('/api/stripe/cancel-subscription', { email });
             if (res.data.success) {
-                /* Subscription will end */
+                await userData(); // <-- reload user data
             } else {
                 setInfoModalText('No se pudo cancelar la suscripción. Intenta más tarde.');
             }
@@ -144,11 +142,9 @@ const Profile = () => {
 
     const handleRenewSubscription = async () => {
         try {
-            const res = await axios.post('/api/stripe/renew-subscription', {
-                email: email,
-            });
+            const res = await axios.post('/api/stripe/renew-subscription', { email });
             if (res.data.success) {
-                /* Subscription will be renewed */
+                await userData(); // <-- reload user data
             } else {
                 setInfoModalText('No se pudo reactivar la suscripción. Intenta más tarde.');
             }
@@ -182,31 +178,31 @@ const Profile = () => {
         fetchCoursesInfo();
     }, [purchasedProducts]);
 
-    useEffect(() => {
-        const userData = async () => {
-            if (status === 'authenticated') {
-                try {
-                    const isUser = await getUserData(session.user.email)
-                    /* console.log(isUser) */
-                    if (isUser) {
-                        setName(isUser.name)
-                        setEmail(isUser.email)
-                        setVerify(isUser.emailVerified)
-                        setSubscription(isUser.subscription)
-                        setLoading(false)
+    const userData = async () => {
+        if (status === 'authenticated') {
+            try {
+                const isUser = await getUserData(session.user.email)
+                /* console.log(isUser) */
+                if (isUser) {
+                    setName(isUser.name)
+                    setEmail(isUser.email)
+                    setVerify(isUser.emailVerified)
+                    setSubscription(isUser.subscription)
+                    setLoading(false)
 
-                    } else {
-                        console.log("Error with server (404)")
-                    }
-
-
-                } catch (error) {
-                    console.error("Error at pulling user data:", error)
+                } else {
+                    console.log("Error with server (404)")
                 }
+
+
+            } catch (error) {
+                console.error("Error at pulling user data:", error)
             }
         }
-        userData()
+    }
 
+    useEffect(() => {
+        userData()
     }, [])
 
     useEffect(() => {
