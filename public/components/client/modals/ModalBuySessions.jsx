@@ -1,14 +1,16 @@
 'use client'
+import { useRouter } from '@node_modules/next/navigation'
 import React from 'react'
 
 const ModalBuySessions = ({ active, setActive }) => {
 
+    const router = useRouter()
 
     if (active) {
         return (
             <div className='modal-container' >
                 <div className="modal-warp extend">
-                    <div className="content-row">
+                    <div className="content-row" onClick={() => router.push('/client/payments/single/689fcb9fd212f159a2fa0866')}>
                         <div className="col ">
                             <div className="title">
                                 <h1>
@@ -28,7 +30,7 @@ const ModalBuySessions = ({ active, setActive }) => {
                             </div>
                         </div>
                     </div>
-                    <div className="content-row" id='row2'>
+                    <div className="content-row" id='row2' onClick={() => router.push('/client/payments/single/689fcb69d212f159a2fa0864')}>
                         <div className="col">
                             <div className="title">
                                 <h1>
@@ -51,7 +53,7 @@ const ModalBuySessions = ({ active, setActive }) => {
                             </div>
                         </div>
                     </div>
-                    <div className="content-row" id='row3'>
+                    <div className="content-row" id='row3' onClick={() => router.push('/client/payments/single/689fcb16d212f159a2fa0862')}>
                         <div className="col">
                             <div className="title">
                                 <h1>
@@ -68,7 +70,7 @@ const ModalBuySessions = ({ active, setActive }) => {
                             </div>
                             <div className="price tier3-btn">
                                 <h1>
-                                    $31.99
+                                    $29.99
                                 </h1>
                                 <p>USD</p>
                             </div>
