@@ -20,11 +20,18 @@ const CourseAccessGuard = ({ productId, userEmail, children }) => {
             .then(res => {
                 const purchasedProducts = res.data?.purchasedProducts || [];
                 const bought = purchasedProducts.some(p => p.product === productId);
-                setHasAccess(bought);
+
+                const subscriptionActive = res.data?.subscription?.isActive;
+
+                setHasAccess(bought || subscriptionActive);
             })
             .catch(() => setHasAccess(false))
             .finally(() => setLoading(false));
     }, [productId, userEmail]);
+
+    if (loading) {
+        return <div></div>;
+    }
 
     if (!hasAccess) {
         // Optionally redirect:

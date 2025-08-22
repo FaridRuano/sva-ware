@@ -21,7 +21,7 @@ export async function GET(request) {
                     return NextResponse.json({ exists: false })
                 }
 
-                return NextResponse.json({ purchasedProducts: user.purchasedProducts })
+                return NextResponse.json({ purchasedProducts: user.purchasedProducts, subscription: user.subscription || null })
 
             } catch (error) {
                 console.error('Error fetching user:', error)
