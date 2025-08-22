@@ -20,6 +20,7 @@ const ProductSchema = new mongoose.Schema({
     imgUrl: String, // Optional: Image URL for the product
     stripeProductId: String,
     stripePriceId: String,
+    alias: String
 }, {
     timestamps: true
 });

@@ -34,6 +34,21 @@ export async function POST(request) {
             return NextResponse.json({ error: "Product not found" }, { status: 404 });
         }
 
+        // Control for product type 'sessions'
+        if (product.type === 'sessions') {
+            let sessionsToAdd = 1;
+            if (product.alias === 'threesession') {
+                sessionsToAdd = 3;
+            } else if (product.alias === 'fivesession') {
+                sessionsToAdd = 5;
+            }
+
+            user.subscription.liveSessions = (user.subscription.liveSessions || 0) + sessionsToAdd;
+            await user.save();
+
+            // Continue with purchase creation and email as usual
+        }
+
         let invoiceUrl = null
         if (paymentIntentId) {
             const intent = await stripe.paymentIntents.retrieve(paymentIntentId)
