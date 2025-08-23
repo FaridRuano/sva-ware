@@ -25,6 +25,11 @@ const LiveClasses = () => {
 
     const { subscription, isLoading, mutate } = useSubscription(session.user.email)
 
+    /* My Reservations */
+
+    const [myReservations, setMyReservations] = useState([]);
+    const [loadingReservations, setLoadingReservations] = useState(false);
+
     /* Reservations Slots */
 
     const [reservedSlots, setReservedSlots] = useState([]) // ISO strings
@@ -86,6 +91,7 @@ const LiveClasses = () => {
                 var date = format(selectedDate, 'EEEE, d LLLL', { locale: es })
                 setInfoModalText(`Tu sesión para el ${date}, a las ${hour}, fue reservada con éxito.`)
             }
+            fetchReservations();
             mutate()
             setLoading(false)
             handleInfoModal()
@@ -101,6 +107,21 @@ const LiveClasses = () => {
         setSelectedDate(newDate)
         setSelectedTime(null)
     }
+
+    const fetchReservations = () => {
+        setLoadingReservations(true);
+        axios.get(`/api/client/reserves/${session.user.email}`)
+            .then(res => {
+                setMyReservations(res.data.reserves || []);
+            })
+            .catch(() => setMyReservations([]))
+            .finally(() => setLoadingReservations(false));
+    };
+
+    useEffect(() => {
+        if (!session?.user?.email) return;
+        fetchReservations();
+    }, [session?.user?.email]);
 
     useEffect(() => {
         if (!selectedDate) return
@@ -149,6 +170,7 @@ const LiveClasses = () => {
             <ModalBuySessions active={buyModal} setActive={handleBuyModal} />
 
             <div className="client-content-container">
+
                 <div className="live-wrap">
                     <div className="live-header m-btm">
                         <div className="title">
@@ -248,6 +270,70 @@ const LiveClasses = () => {
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    )
+                }
+
+                {
+                    myReservations.length > 0 && (
+                        <div className="live-wrap anim-In">
+                            <div className="live-header m-btm">
+                                <div className="title">
+                                    <h1>Mis sesiones</h1>
+                                </div>
+                            </div>
+                            {loadingReservations ? (
+                                <p>Cargando reservas...</p>
+                            ) : myReservations.length === 0 ? (
+                                <p>No tienes reservas realizadas.</p>
+                            ) : (
+                                <div className="live-table">
+                                    <table>
+                                        <tbody>
+                                            {myReservations.map(reserve => {
+                                                const dateObj = new Date(reserve.start);
+                                                const now = new Date();
+                                                const endMeeting = new Date(dateObj.getTime() + 30 * 60000); // 30 min duration
+
+                                                const isActive = now >= dateObj && now <= endMeeting;
+                                                const isFuture = now < dateObj;
+
+                                                const btnClass = isActive || isFuture ? 'btn-table' : 'btn-table disabled';
+
+                                                const statusMap = {
+                                                    confirmed: 'Confirmada',
+                                                    cancelled: 'Cancelada',
+                                                    done: 'Finalizada'
+                                                };
+
+                                                return (
+                                                    <tr key={reserve._id} className="mobile-row">
+                                                        <td colSpan={3}>
+                                                            <div className="mobile-row-main">
+                                                                <span className="col1">{statusMap[reserve.status] || 'Reservada'}</span>
+                                                                <span className="col2">{format(dateObj, 'EEEE, d LLLL yyyy', { locale: es })}</span>
+                                                                <span className="col3">{format(dateObj, 'HH:mm', { locale: es })}</span>
+                                                            </div>
+                                                        </td>
+                                                        <td className={btnClass}>
+                                                            <a
+                                                                href={reserve.meetingUrl}
+                                                                target='_blank'
+                                                                rel='noopener noreferrer'
+                                                                tabIndex={isActive || isFuture ? 0 : -1}
+                                                                style={isActive || isFuture ? {} : { pointerEvents: 'none', opacity: 0.5 }}
+                                                            >
+                                                                Ingresar
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                );
+                                            })}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            )}
+
                         </div>
                     )
                 }

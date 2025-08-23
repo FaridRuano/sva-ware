@@ -2197,28 +2197,31 @@ button {
     flex-direction: column;
     gap: .5rem;
 
-    .faq-list{
+    .faq-list {
       display: flex;
       flex-direction: column;
       gap: .6rem;
 
     }
 
-    .help-form-container{
+    .help-form-container {
       margin-top: 50px;
       display: flex;
       flex-direction: column;
       gap: 1rem;
       width: 100%;
-      h2{
+
+      h2 {
         color: $primary-color;
       }
-      .help-form{
+
+      .help-form {
         display: flex;
         flex-direction: column;
         gap: .5rem;
         width: 100%;
-        textarea{
+
+        textarea {
           padding: 10px;
           border-radius: 10px;
           border: solid 2px $light;
@@ -2228,11 +2231,13 @@ button {
           outline: none;
           transition: border-color .2s;
           resize: none;
+
           &:focus {
             border-color: $primary-color;
           }
         }
-        input{
+
+        input {
           width: 100%;
           padding: 10px;
           border-radius: 10px;
@@ -2248,7 +2253,7 @@ button {
           }
         }
 
-        button{
+        button {
           padding: 10px;
           background-color: $primary-color;
           color: $black;
@@ -2264,10 +2269,10 @@ button {
           }
         }
 
-        .form-notes{
+        .form-notes {
           min-height: 19px;
         }
-        
+
       }
     }
 
@@ -3316,14 +3321,16 @@ button {
           color: $dark;
           font-weight: 700;
           font-size: 12px;
-          .product-card{
+
+          .product-card {
             width: 100%;
             display: flex;
             flex-direction: row;
             gap: 1rem;
             justify-content: start;
             margin-bottom: 10px;
-            .card-img{
+
+            .card-img {
               width: 100px;
               height: 100px;
               border-radius: 10px;
@@ -3332,21 +3339,25 @@ button {
               justify-content: center;
               align-items: center;
             }
-            .card-row{
+
+            .card-row {
               display: flex;
               height: 100px;
               flex-direction: row;
               justify-content: space-between;
               align-items: center;
-              .tag{
+
+              .tag {
                 color: $light;
                 font-size: 18px;
               }
-              .explore-btn{
+
+              .explore-btn {
                 min-width: 65px;
               }
             }
           }
+
           .link {
             color: $light;
             cursor: pointer;
@@ -3977,6 +3988,10 @@ button {
   padding: 20px;
   transition: .3s ease-out;
 
+  &.anim-In {
+    animation: fadeIn .5s forwards;
+  }
+
   .live-header {
     width: 100%;
     height: fit-content;
@@ -3989,7 +4004,7 @@ button {
 
       h1 {
         font-size: 22px;
-        color: $light;
+        color: $primary-color;
       }
     }
 
@@ -4155,6 +4170,155 @@ button {
 
   &.min {
     height: 300px;
+  }
+
+  .live-table {
+    width: 100%;
+
+    table {
+      width: 100%;
+
+      tbody {
+        tr {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          border-bottom: 1px solid rgba($light, .1);
+          padding: 3px 8px;
+          transition: .3s ease-out;
+          width: 100%;
+          gap: 1rem;
+          &:hover {
+            background-color: rgba($light, .05);
+          }
+
+          td {
+            color: $light;
+            font-size: 12px;
+            width: 100%;
+
+            .mobile-row-main {
+              width: 100%;
+              display: flex;
+              flex-direction: row;
+              justify-content: space-between;
+
+              .col1 {
+                width: 80px;
+                font-weight: 800;
+              }
+
+              .col2 {
+                width: 150px;
+              }
+
+              .col3 {
+                width: 30px;
+              }
+            }
+
+
+            &.btn-table {
+              width: fit-content;
+              background-color: $primary-color;
+              padding: 3px 8px;
+              color: $black;
+              font-size: 13px;
+              font-weight: 500;
+              border-radius: 20px;
+              cursor: pointer;
+              text-align: center;
+              transition: .3s ease-out;
+              border: 1px solid $primary-color;
+
+              a {
+                color: $black;
+                text-decoration: none;
+              }
+
+              &:hover {
+                transform: scale(1.02);
+              }
+            }
+
+            &.disabled {
+              background-color: rgba($light, .1);
+              border: 1px solid $light;
+              pointer-events: none;
+              opacity: .5;
+
+              a {
+                color: $light;
+              }
+            }
+
+            &.col-bold {
+              font-weight: 600;
+            }
+
+          }
+        }
+      }
+    }
+
+    @media (max-width: 800px) {
+      table {
+        width: 100%;
+      }
+
+      tbody {
+        width: 100%;
+
+        .mobile-row {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          border-bottom: none;
+          width: 100%;
+          margin-bottom: 10px;
+          gap: 0;
+          padding: 0;
+
+          td {
+            width: 100%;
+            padding: 2px 4px;
+            font-size: 12px;
+
+            &.btn-table{
+              width: 100%;
+              padding: 3px 0;
+            }
+          }
+
+          .mobile-row-main {
+            display: flex;
+            flex-direction: row;
+            gap: 8px;
+            width: 100%;
+            justify-content: space-between;
+            margin-bottom: 4px;
+
+            .col1 {
+              width: 80px;
+            }
+
+            .col2 {
+              width: 150px;
+            }
+
+            .col3 {
+              width: fit-content;
+            }
+          }
+        }
+      }
+    }
+
+  }
+
+  p {
+    color: $light;
+    font-size: 12px;
   }
 
   @media (max-width: 800px) {}
