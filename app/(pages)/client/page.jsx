@@ -4,6 +4,7 @@ import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import Image from '@node_modules/next/image';
 import ClientPt1Asset from '@public/assets/imgs/covers/cover-introadobe.jpg'
+import ClientPt2Asset from '@public/assets/imgs/products/product-essentialsoundspack.jpg'
 import { useSubscription } from '@libs/useSubscription';
 import Link from '@node_modules/next/link';
 import ModalSubs from '@public/components/client/modals/ModalSubs';
@@ -21,7 +22,7 @@ const Client = () => {
 
   const [purchasedProducts, setPurchasedProducts] = useState([]);
   const [loadingPurchases, setLoadingPurchases] = useState(true);
- 
+
   /* Modal Subs */
 
   const [subsModal, setSubsModal] = useState(false)
@@ -133,9 +134,9 @@ const Client = () => {
                       Empezar
                     </div>
                   ) : (
-                  <div className="feature-btn" onClick={() => router.push('/client/payments/single/6835b3c233e033e24646b523')}>
-                    Comprar
-                  </div>
+                    <div className="feature-btn" onClick={() => router.push('/client/payments/single/6835b3c233e033e24646b523')}>
+                      Comprar
+                    </div>
                   )
                 )
               }
@@ -172,6 +173,107 @@ const Client = () => {
               </div>
             )
           }
+          <div className="products-container">
+            <div className="product-container">
+              <div className="product-img" onClick={() => router.push('/client/resource/essentialsoundspack')}>
+                <Image src={ClientPt2Asset} width={400} height={400} alt='Course' />
+              </div>
+              <div className="feature-details">
+                <div className="details-row">
+                  <div className="details-type">
+                    <div className="type-container">
+                      <span>
+                        Recurs
+                      </span>
+                    </div>
+                  </div>
+                  <div className="details-title">
+                    <h1>
+                      Paquete de Sonidos Esenciales
+                    </h1>
+                  </div>
+                </div>
+                <div className="details-row">
+                  <div className="details-type">
+                    <div className="type-container">
+                      <span>
+                        Dscrp
+                      </span>
+                    </div>
+                  </div>
+                  <div className="details-descrip">
+                    <p>
+                      El paquete indispensable para todo creador audiovisual. Incluye una selección de los
+                      sonidos más utilizados para dar vida, dinamismo e inmersión a tus proyectos.
+                      Con estos efectos tendrás la base perfecta para construir audios impactantes y profesionales.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          {/* <div className="feature-container">
+            <div className="feature-img" onClick={() => router.push('/client/course/introadobe')}>
+              <Image src={ClientPt2Asset} width={800} height={'auto'} alt='Course' />
+            </div>
+            <div className="feature-details">
+              <div className="details-row">
+                <div className="details-type">
+                  <div className="type-container">
+                    <span>
+                      Recurs
+                    </span>
+                  </div>
+                </div>
+                <div className="details-title">
+                  <h1>
+                    Paquete de Sonidos Esenciales
+                  </h1>
+                </div>
+              </div>
+              <div className="details-row">
+                <div className="details-type">
+                  <div className="type-container">
+                    <span>
+                      Dscrp
+                    </span>
+                  </div>
+                </div>
+                <div className="details-descrip">
+                  <p>
+                    El paquete indispensable para todo creador audiovisual. Incluye una selección de los
+                    sonidos más utilizados para dar vida, dinamismo e inmersión a tus proyectos.
+                    Con estos efectos tendrás la base perfecta para construir audios impactantes y profesionales.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="feature-btns">
+              <div className="feature-btn var" onClick={() => router.push('/client/course/introadobe')}>
+                Conoce más
+              </div>
+              {
+                subscription.isActive ? (
+                  <div className="feature-btn explore" onClick={() => router.push('/client/introadobe/1/101')}>
+                    Empezar
+                  </div>
+                ) : (
+
+                  alreadyPurchased('6835b3c233e033e24646b523') ? (
+                    <div className="feature-btn explore" onClick={() => router.push('/client/introadobe/1/101')}>
+                      Empezar
+                    </div>
+                  ) : (
+                    <div className="feature-btn" onClick={() => router.push('/client/payments/single/6835b3c233e033e24646b523')}>
+                      Comprar
+                    </div>
+                  )
+                )
+              }
+            </div>
+          </div> */}
+
         </section>
       </div>
     </>
