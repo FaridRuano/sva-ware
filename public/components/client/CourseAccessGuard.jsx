@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import axios from 'axios';
 import ModalInfo from './modals/ModalInfo';
 
-const CourseAccessGuard = ({ productId, userEmail, children }) => {
+const CourseAccessGuard = ({ alias, userEmail, children }) => {
     const [loading, setLoading] = useState(true);
     const [hasAccess, setHasAccess] = useState(false);
     const router = useRouter();

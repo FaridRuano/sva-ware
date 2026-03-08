@@ -11,494 +11,424 @@ import { useEffect, useState } from 'react'
 
 const Resource = () => {
 
-  const router = useRouter()
+    const router = useRouter()
 
-  const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(true)
 
-  const [loadingVideo, setLoadingVideo] = useState(true)
+    const [loadingVideo, setLoadingVideo] = useState(true)
 
-  const { data: session } = useSession()
+    const { data: session } = useSession()
 
-  const [purchasedProducts, setPurchasedProducts] = useState([]);
-  const [loadingPurchases, setLoadingPurchases] = useState(true);
+    const [purchasedProducts, setPurchasedProducts] = useState([]);
+    const [loadingPurchases, setLoadingPurchases] = useState(true);
 
-  const alreadyPurchased = (productId) => {
-    return purchasedProducts.some(purchase => purchase.product === productId);
-  }
-
-  const { subscription, isLoading, isError } = useSubscription(session.user.email)
-
-  const [isPlaying, setIsPlaying] = useState(false)
-
-  const [infoOption, setInfoOption] = useState(1)
-
-  const displayInfo = () => {
-    switch (infoOption) {
-      case 1:
-        return (
-          <div className="info-display">
-            <div className="course-descrip">
-              <h2>¿De qué trata este Workshop?</h2>
-              <p>
-                En este workshop explorarás cuatro capítulos, cada uno dedicado a una herramienta creativa de la Suite de Adobe. Cada capítulo incluye ocho lecciones en las que aprenderás desde la interfaz y las herramientas básicas de cada software hasta la creación de efectos avanzados y composiciones creativas.
-              </p>
-              <br />
-              <p>
-                A lo largo del workshop, realizarás ejercicios prácticos diseñados para desarrollar tus habilidades y convertir tus ideas en proyectos concretos. No importa si estás comenzando o si ya tienes experiencia, el contenido está estructurado para que avances de manera progresiva, dominando cada técnica antes de pasar a la siguiente.
-              </p>
-              <br />
-              <p>
-                Además, te enseñaremos técnicas que te ahorrarán años de investigación, optimizando tu flujo de trabajo y permitiéndote trabajar de manera más eficiente. Descubrirás atajos, trucos profesionales y estrategias utilizadas por expertos para mejorar la calidad de tu trabajo y reducir el tiempo de producción.
-              </p>
-              <br />
-              <p>
-                Cada lección está diseñada para ser dinámica y enfocada en lo esencial, asegurando un aprendizaje sin rodeos ni pérdida de tiempo. Nuestro objetivo es que al finalizar el workshop no solo entiendas cómo funcionan las herramientas, sino que sepas aplicarlas de manera creativa y estratégica en tus propios proyectos.
-              </p>
-            </div>
-            <div className="course-content">
-              <h2>Contenido</h2>
-              <div className="row">
-                <div className="content-row">
-                  <div className="tag">
-                    Capítulos
-                  </div>
-                  <span>
-                    4 en total {'('}6h{')'}.
-                  </span>
-                </div>
-                <div className="content-row">
-                  <div className="tag">
-                    Lecciones
-                  </div>
-                  <span>
-                    32 en total.
-                  </span>
-                </div>
-              </div>
-              <div className="row">
-                <div className="content-row">
-                  <div className="tag">
-                    Ejercicios
-                  </div>
-                  <span>
-                    25 en total {'('}apróx 6h{')'}.
-                  </span>
-                </div>
-                <div className="content-row">
-                  <div className="tag">
-                    Material
-                  </div>
-                  <span>
-                    Incluido para cada ejercicio.
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div className="course-requirements">
-              <h2>
-                Requisitos y materiales
-              </h2>
-              <ul>
-                <li>
-                  Necesitas acceso a una computadora.
-                </li>
-                <li>
-                  Software Adobe con/sin licencia.
-                </li>
-                <li>
-                  <b>No</b> necesitas ningún conocimiento previo.
-                </li>
-              </ul>
-            </div>
-          </div>
-        )
-      case 2:
-        return (
-          <div className='info-display'>
-            <div className="course-chapter">
-              <h2>
-                Capítulo 1 - Photoshop
-              </h2>
-              <div className="chapter-lesson">
-                <h3>
-                  Lección 1 - Introducción <span>{'('}4m29s{')'}</span>
-                </h3>
-              </div>
-              <div className="chapter-lesson">
-                <h3>
-                  Lección 2 - Interfaz y herramientas <span>{'('}2m50s{')'}</span>
-                </h3>
-              </div>
-              <div className="chapter-lesson">
-                <h3>
-                  Lección 3 - Selección y máscaras <span>{'('}8m27s{')'}</span>
-                </h3>
-              </div>
-              <div className="chapter-lesson">
-                <h3>
-                  Lección 4 - Textos y Efectos <span>{'('}8m23s{')'}</span>
-                </h3>
-              </div>
-              <div className="chapter-lesson">
-                <h3>
-                  Lección 5 - Retoque Fotográfico <span>{'('}11m07s{')'}</span>
-                </h3>
-              </div>
-              <div className="chapter-lesson">
-                <h3>
-                  Lección 6 - Composición de Capas <span>{'('}12m19s{')'}</span>
-                </h3>
-              </div>
-              <div className="chapter-lesson">
-                <h3>
-                  Lección 7 - Efectos Avanzados <span>{'('}12m59s{')'}</span>
-                </h3>
-              </div>
-              <div className="chapter-lesson">
-                <h3>
-                  Lección 8 - Proyecto Final <span>{'('}13m13s{')'}</span>
-                </h3>
-              </div>
-            </div>
-            <div className="course-chapter">
-              <h2>
-                Capítulo 2 - Illustrator
-              </h2>
-              <div className="chapter-lesson">
-                <h3>
-                  Lección 1 - Introducción <span>{'('}2m44s{')'}</span>
-                </h3>
-              </div>
-              <div className="chapter-lesson">
-                <h3>
-                  Lección 2 - Interfaz y herramientas <span>{'('}4m54s{')'}</span>
-                </h3>
-              </div>
-              <div className="chapter-lesson">
-                <h3>
-                  Lección 3 - Vectores <span>{'('}17m41s{')'}</span>
-                </h3>
-              </div>
-              <div className="chapter-lesson">
-                <h3>
-                  Lección 4 - Ilustracion Digital <span>{'('}10m06s{')'}</span>
-                </h3>
-              </div>
-              <div className="chapter-lesson">
-                <h3>
-                  Lección 5 - Composición Gráfica <span>{'('}13m57s{')'}</span>
-                </h3>
-              </div>
-              <div className="chapter-lesson">
-                <h3>
-                  Lección 6 - Diseño Gráfico <span>{'('}18m36s{')'}</span>
-                </h3>
-              </div>
-              <div className="chapter-lesson">
-                <h3>
-                  Lección 7 - Diseño Gráfico pt. 2 <span>{'('}10m11s{')'}</span>
-                </h3>
-              </div>
-              <div className="chapter-lesson">
-                <h3>
-                  Lección 8 - Proyecto Final <span>{'('}15m41s{')'}</span>
-                </h3>
-              </div>
-            </div>
-            <div className="course-chapter">
-              <h2>
-                Capítulo 3 - Premiere Pro
-              </h2>
-              <div className="chapter-lesson">
-                <h3>
-                  Lección 1 - Introducción <span>{'('}4m19s{')'}</span>
-                </h3>
-              </div>
-              <div className="chapter-lesson">
-                <h3>
-                  Lección 2 - Interfaz y herramientas <span>{'('}5m24s{')'}</span>
-                </h3>
-              </div>
-              <div className="chapter-lesson">
-                <h3>
-                  Lección 3 - Efectos y Controles <span>{'('}6m15s{')'}</span>
-                </h3>
-              </div>
-              <div className="chapter-lesson">
-                <h3>
-                  Lección 4 - Textos, vectores y mascaras <span>{'('}6m26s{')'}</span>
-                </h3>
-              </div>
-              <div className="chapter-lesson">
-                <h3>
-                  Lección 5 - Subsecuencias y Color <span>{'('}6m43s{')'}</span>
-                </h3>
-              </div>
-              <div className="chapter-lesson">
-                <h3>
-                  Lección 6 - Composición de Audio <span>{'('}7m03s{')'}</span>
-                </h3>
-              </div>
-              <div className="chapter-lesson">
-                <h3>
-                  Lección 7 - Exportar, interpretación, estabilización, velocidad y subtítulos <span>{'('}5m34s{')'}</span>
-                </h3>
-              </div>
-              <div className="chapter-lesson">
-                <h3>
-                  Lección 8 - Proyecto Final <span>{'('}5m00s{')'}</span>
-                </h3>
-              </div>
-            </div>
-            <div className="course-chapter">
-              <h2>
-                Capítulo 4 - After Effects
-              </h2>
-              <div className="chapter-lesson">
-                <h3>
-                  Lección 1 - Introducción <span>{'('}2m32s{')'}</span>
-                </h3>
-              </div>
-              <div className="chapter-lesson">
-                <h3>
-                  Lección 2 - Interfaz y herramientas <span>{'('}10m13s{')'}</span>
-                </h3>
-              </div>
-              <div className="chapter-lesson">
-                <h3>
-                  Lección 3 - Keyframes <span>{'('}12m35s{')'}</span>
-                </h3>
-              </div>
-              <div className="chapter-lesson">
-                <h3>
-                  Lección 4 - Motion Graphics <span>{'('}30m52s{')'}</span>
-                </h3>
-              </div>
-              <div className="chapter-lesson">
-                <h3>
-                  Lección 5 - Efectos Visuales <span>{'('}24m42s{')'}</span>
-                </h3>
-              </div>
-              <div className="chapter-lesson">
-                <h3>
-                  Lección 6 - 3D Clásico <span>{'('}13m33s{')'}</span>
-                </h3>
-              </div>
-              <div className="chapter-lesson">
-                <h3>
-                  Lección 7 - Trackeo de Cámara <span>{'('}23m09s{')'}</span>
-                </h3>
-              </div>
-              <div className="chapter-lesson">
-                <h3>
-                  Lección 8 - Proyecto Final <span>{'('}26m39s{')'}</span>
-                </h3>
-              </div>
-            </div>
-          </div>
-        )
-
-      default:
-        return (
-          <>
-          </>
-        )
-
+    const alreadyPurchased = (productId) => {
+        return purchasedProducts.some(purchase => purchase.product === productId);
     }
-  }
 
-  /* Subscription Modal */
+    const { subscription, isLoading, isError } = useSubscription(session.user.email)
 
-  const [subsModal, setSubsModal] = useState(false)
+    const [isPlaying, setIsPlaying] = useState(false)
 
-  const handleSubsModal = () => {
-    setSubsModal(current => !current)
-  }
+    const [infoOption, setInfoOption] = useState(1)
 
-  useEffect(() => {
-    if (!session?.user?.email) return;
-    axios.get(`/api/client/data?email=${session.user.email}&action=purchases`)
-      .then(res => {
-        setPurchasedProducts(res.data?.purchasedProducts || []);
-      })
-      .catch(() => setPurchasedProducts([]))
-      .finally(() => setLoadingPurchases(false));
-  }, []);
-
-  useEffect(() => {
-    if (isLoading) {
-      setLoading(true)
-    } else {
-      setLoading(false)
-    }
-  }, [isLoading])
-
-  if (loading) {
-    return (
-      <div className="client-content-container loading">
-      </div>
-    )
-  }
-
-  return (
-    <>
-      <ModalSubs active={subsModal} setActive={handleSubsModal} />
-      <div className="client-content-container">
-        <div className="course-tags">
-          <div className="course-tag">
-            WORKSHOP
-          </div>
-          <div className="course-tag purple">
-            aftereffects
-          </div>
-          <div className="course-tag blue">
-            photoshop
-          </div>
-          <div className="course-tag orange">
-            illustrator
-          </div>
-          <div className="course-tag purple">
-            premiere pro
-          </div>
-        </div>
-        <div className="course-title">
-          <h1>
-            Introducción a la Suite de Adobe
-          </h1>
-        </div>
-        <div className="course-shortdescrip">
-          <p>
-            Un workshop creado para todos aquellos que quieren aprender y/o aumentar sus
-            conocimientos sobre las principales herramientas creativas de la Suite de Adobe
-            {' ('} Photoshop, Illustrator, Premiere Pro, After Effects {')'}.
-          </p>
-        </div>
-        <div className={`course-video ${isPlaying ? 'video-playing' : ''} ${loadingVideo ? 'video-loading' : ''}`}>
-          <MuxPlayer
-            onPlay={() => setIsPlaying(true)}
-            onPause={() => setIsPlaying(false)}
-            minResolution='1080p'
-            loading="viewport"
-            poster='https://visualartsschool.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fcover-introadobe.72c0d920.jpg&w=828&q=75'
-            playbackId="6j6SgyATd3hKJY01w5J77U4D2GOHDkcrPBMWEetBcWjs"
-            accent-color="#09e199"
-            onReady={() => setLoadingVideo(false)}
-            onLoadedData={() => setLoadingVideo(false)}
-          />
-        </div>
-
-        <div className="info-displayer">
-          <div className={`option ${infoOption === 1 ? 'active' : ''}`} onClick={() => setInfoOption(1)}>
-            Introducción
-          </div>
-          <div className={`option ${infoOption === 2 ? 'active' : ''}`} onClick={() => setInfoOption(2)}>
-            Temario
-          </div>
-        </div>
-        {
-          displayInfo()
-        }
-
-        {
-          subscription.isActive ? (
-            <div className="course-btns">
-              <div className='option active'>
-                Ya tienes acceso a este workshop
-              </div>
-              <div className="btn-access explore" onClick={() => router.push('/client/introadobe/1/101')}>
-                <h2>
-                  Ir al Workshop
-                </h2>
-              </div>
-            </div>
-          ) : (
-            <div className="course-btns">
-              <div className='option active'>
-                Opciones de compra
-              </div>
-              {
-                alreadyPurchased('6835b3c233e033e24646b523') ? (
-                  <>
-                    <div className="btn-access explore" onClick={() => router.push('/client/introadobe/1/101')}>
-                      <h2 className='h2-text-responsive'>
-                        Ya compraste este workshop - Ir al Workshop
-                      </h2>
-                    </div>
-                  </>
-                ) : (
-                  <div className="btns-row">
-                    <div className="btn">
-                      <div className="btn-content">
-                        <div className="content-header">
-                          <h2>Compra directa</h2>
-                          <p>
-                            Paga el precio completo por el workshop completo.
-                          </p>
-                        </div>
-                        <div className="content-body">
-                          <p>
-                            ¿Qué incluye?
-                          </p>
-                          <ul>
-                            <li>Acceso de por vida.</li>
-                            <li>Material y recursos.</li>
-                            <li>Actualizaciones futuras.</li>
-                          </ul>
-                          <div className="price">
-                            <h2>$44.99</h2>
+    const displayInfo = () => {
+        switch (infoOption) {
+            case 1:
+                return (
+                    <div className="info-display">
+                        <div className="course-descrip">
+                            <h2>¿Qué incluye este paquete de recursos?</h2>
                             <p>
-                              USD
+                                Descubre una colección cuidadosamente seleccionada de 259 efectos de sonido únicos que llevarán tus proyectos audiovisuales al siguiente nivel. Desde explosivos impacts, whooshes y hits, hasta sonidos cotidianos como aplausos, pasos, teclados, alarmas, risas o notificaciones. Cada archivo está diseñado para aportar dinamismo, realismo e inmersión en cualquier tipo de producción.
                             </p>
-                          </div>
+                            <br />
+                            <p>
+                                Este paquete ha sido creado para integrarse sin problemas en todos los programas de edición de video y audio, tanto en computadoras como en dispositivos móviles. Funciona perfectamente con herramientas profesionales como Premiere Pro, After Effects, Final Cut, DaVinci Resolve, Audition, Pro Tools, Logic Pro, FL Studio y también con apps móviles de edición. Su formato universal asegura compatibilidad total en cualquier flujo de trabajo creativo.
+                            </p>
+                            <br />
+                            <p>
+                                Uno de los grandes beneficios de este paquete es que agiliza tu workflow: en lugar de perder tiempo buscando sonidos dispersos en internet, tendrás a la mano una biblioteca organizada y lista para usar. Los efectos están clasificados en carpetas temáticas {'('}applause, footsteps, notifications, swooshes, cinematic trailer pack, risers, impacts, gunshots, y muchos más{' )'}, lo que te permitirá
+                            </p>
+                            <br />
+                            <p>
+                                Ya sea que estés editando un cortometraje, creando contenido para redes sociales, produciendo un podcast o diseñando un spot publicitario, este Paquete de Sonidos Esenciales se convertirá en tu aliado creativo. Todo lo que necesitas para dar vida, impacto y emoción a tus proyectos está aquí, en una sola colección profesional lista para descargar.
+                            </p>
                         </div>
-                        <div className="content-footer">
-                          <div className="pay-btn" onClick={() => router.push('/client/payments/single/6835b3c233e033e24646b523')}>
+                        <div className="course-content">
+                            <h2>Contenido</h2>
+                            <div className="row">
+                                <div className="content-row">
+                                    <div className="tag">
+                                        Recursos
+                                    </div>
+                                    <span>
+                                        259 en total.
+                                    </span>
+                                </div>
+                                <div className="content-row">
+                                    <div className="tag">
+                                        Material
+                                    </div>
+                                    <span>
+                                        Guía de uso.
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="course-requirements">
                             <h2>
-                              Comprar
+                                Requisitos y materiales
                             </h2>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="btn explore">
-                      <div className="btn-content">
-                        <div className="content-header">
-                          <h2>Únete a la escuela</h2>
-                          <p>
-                            Suscríbete y forma parte de nuestra comunidad.
-                          </p>
-                        </div>
-                        <div className="content-body">
-                          <p>
-                            ¿Qué incluye?
-                          </p>
-                          <ul>
-                            <li>Acceso durante tu membresía.</li>
-                            <li>Material y recursos.</li>
-                            <li>Actualizaciones futuras.</li>
-                            <li>Resuelve tus dudas con sesiones en vivo.</li>
-                            <li>Recibe feedback de tu trabajo.</li>
-                          </ul>
-                        </div>
-                        <div className="content-footer">
-                          <div className="pay-btn" onClick={() => handleSubsModal()}>
-                            <h2>
-                              Explorar planes
-                            </h2>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )
-              }
-            </div>
-          )
-        }
-      </div>
-    </>
+                            <ul>
+                                <li>
+                                    Necesitas acceso a una computadora.
+                                </li>
+                                <li>
+                                    <b>No</b> se requieren conocimientos avanzados previos, este paquete es fácil de integrar en cualquier flujo de trabajo.
+                                </li>
+                            </ul>
 
-  )
+                        </div>
+                    </div>
+                )
+            case 2:
+                return (
+                    <div className='info-display'>
+                        <div className="course-chapter">
+                            <h2>
+                                Sonidos
+                            </h2>
+
+                            <div className="chapter-lesson">
+                                <h3>808-basssound <span>{'('}15{')'}</span></h3>
+                            </div>
+                            <div className="chapter-lesson">
+                                <h3>Alarma <span>{'('}6{')'}</span></h3>
+                            </div>
+                            <div className="chapter-lesson">
+                                <h3>Alerta <span>{'('}1{')'}</span></h3>
+                            </div>
+                            <div className="chapter-lesson">
+                                <h3>Aplausos <span>{'('}4{')'}</span></h3>
+                            </div>
+                            <div className="chapter-lesson">
+                                <h3>Avión <span>{'('}2{')'}</span></h3>
+                            </div>
+                            <div className="chapter-lesson">
+                                <h3>Bebe <span>{'('}1{')'}</span></h3>
+                            </div>
+                            <div className="chapter-lesson">
+                                <h3>Beso <span>{'('}1{')'}</span></h3>
+                            </div>
+                            <div className="chapter-lesson">
+                                <h3>Build Up <span>{'('}1{')'}</span></h3>
+                            </div>
+                            <div className="chapter-lesson">
+                                <h3>Cámara <span>{'('}5{')'}</span></h3>
+                            </div>
+                            <div className="chapter-lesson">
+                                <h3>Car <span>{'('}4{')'}</span></h3>
+                            </div>
+                            <div className="chapter-lesson">
+                                <h3>Chasquido <span>{'('}10{')'}</span></h3>
+                            </div>
+                            <div className="chapter-lesson">
+                                <h3>Cinematic Trailer <span>{'('}15{')'}</span></h3>
+                            </div>
+                            <div className="chapter-lesson">
+                                <h3>Click <span>{'('}3{')'}</span></h3>
+                            </div>
+                            <div className="chapter-lesson">
+                                <h3>Cleeeen <span>{'('}1{')'}</span></h3>
+                            </div>
+                            <div className="chapter-lesson">
+                                <h3>Descargas eléctricas <span>{'('}4{')'}</span></h3>
+                            </div>
+                            <div className="chapter-lesson">
+                                <h3>Detent <span>{'('}1{')'}</span></h3>
+                            </div>
+                            <div className="chapter-lesson">
+                                <h3>Digital Text <span>{'('}2{')'}</span></h3>
+                            </div>
+                            <div className="chapter-lesson">
+                                <h3>Dinero <span>{'('}4{')'}</span></h3>
+                            </div>
+                            <div className="chapter-lesson">
+                                <h3>Ding <span>{'('}10{')'}</span></h3>
+                            </div>
+                            <div className="chapter-lesson">
+                                <h3>Disparos <span>{'('}2{')'}</span></h3>
+                            </div>
+                            <div className="chapter-lesson">
+                                <h3>Drink & pouring soda <span>{'('}3{')'}</span></h3>
+                            </div>
+                            <div className="chapter-lesson">
+                                <h3>Elastico <span>{'('}1{')'}</span></h3>
+                            </div>
+                            <div className="chapter-lesson">
+                                <h3>Error <span>{'('}3{')'}</span></h3>
+                            </div>
+                            <div className="chapter-lesson">
+                                <h3>Flashlight <span>{'('}1{')'}</span></h3>
+                            </div>
+                            <div className="chapter-lesson">
+                                <h3>Freidora <span>{'('}3{')'}</span></h3>
+                            </div>
+                            <div className="chapter-lesson">
+                                <h3>Fuegos artificiales <span>{'('}5{')'}</span></h3>
+                            </div>
+                            <div className="chapter-lesson">
+                                <h3>Golpe <span>{'('}2{')'}</span></h3>
+                            </div>
+                            <div className="chapter-lesson">
+                                <h3>Grillo <span>{'('}1{')'}</span></h3>
+                            </div>
+                            <div className="chapter-lesson">
+                                <h3>Hit <span>{'('}5{')'}</span></h3>
+                            </div>
+                            <div className="chapter-lesson">
+                                <h3>Impacto <span>{'('}4{')'}</span></h3>
+                            </div>
+                            <div className="chapter-lesson">
+                                <h3>Interfaz <span>{'('}14{')'}</span></h3>
+                            </div>
+                            <div className="chapter-lesson">
+                                <h3>Iphone <span>{'('}5{')'}</span></h3>
+                            </div>
+                            <div className="chapter-lesson">
+                                <h3>Lapíz <span>{'('}6{')'}</span></h3>
+                            </div>
+                            <div className="chapter-lesson">
+                                <h3>Lata de Soda <span>{'('}4{')'}</span></h3>
+                            </div>
+                            <div className="chapter-lesson">
+                                <h3>Pisadas <span>{'('}5{')'}</span></h3>
+                            </div>
+                            <div className="chapter-lesson">
+                                <h3>Relampagos <span>{'('}6{')'}</span></h3>
+                            </div>
+                            <div className="chapter-lesson">
+                                <h3>Reloj <span>{'('}2{')'}</span></h3>
+                            </div>
+                            <div className="chapter-lesson">
+                                <h3>Risers <span>{'('}7{')'}</span></h3>
+                            </div>
+                            <div className="chapter-lesson">
+                                <h3>Ritmo Cardíaco <span>{'('}4{')'}</span></h3>
+                            </div>
+                            <div className="chapter-lesson">
+                                <h3>Ruido <span>{'('}3{')'}</span></h3>
+                            </div>
+                            <div className="chapter-lesson">
+                                <h3>Swooshes <span>{'('}79{')'}</span></h3>
+                            </div>
+                            <div className="chapter-lesson">
+                                <h3>Teclado <span>{'('}1{')'}</span></h3>
+                            </div>
+                            <div className="chapter-lesson">
+                                <h3>Vintage <span>{'('}1{')'}</span></h3>
+                            </div>
+                            <div className="chapter-lesson">
+                                <h3>Voces <span>{'('}2{')'}</span></h3>
+                            </div>
+
+                        </div>
+                    </div>
+                )
+
+            default:
+                return (
+                    <>
+                    </>
+                )
+
+        }
+    }
+
+    /* Subscription Modal */
+
+    const [subsModal, setSubsModal] = useState(false)
+
+    const handleSubsModal = () => {
+        setSubsModal(current => !current)
+    }
+
+    useEffect(() => {
+        if (!session?.user?.email) return;
+        axios.get(`/api/client/data?email=${session.user.email}&action=purchases`)
+            .then(res => {
+                setPurchasedProducts(res.data?.purchasedProducts || []);
+            })
+            .catch(() => setPurchasedProducts([]))
+            .finally(() => setLoadingPurchases(false));
+    }, []);
+
+    useEffect(() => {
+        if (isLoading) {
+            setLoading(true)
+        } else {
+            setLoading(false)
+        }
+    }, [isLoading])
+
+    if (loading) {
+        return (
+            <div className="client-content-container loading">
+            </div>
+        )
+    }
+
+    return (
+        <>
+            <ModalSubs active={subsModal} setActive={handleSubsModal} />
+            <div className="client-content-container">
+                <div className="course-tags">
+                    <div className="course-tag">
+                        RECURSOS
+                    </div>
+                    <div className="course-tag purple">
+                        audio
+                    </div>
+                </div>
+                <div className="course-title">
+                    <h1>
+                        Paquete de Sonidos Esenciales
+                    </h1>
+                </div>
+                <div className="course-shortdescrip">
+                    <p>
+                        El paquete indispensable para todo creador audiovisual. Incluye una selección de los
+                        sonidos más utilizados para dar vida, dinamismo e inmersión a tus proyectos.
+                        Con estos efectos tendrás la base perfecta para construir audios impactantes y profesionales.
+                    </p>
+                </div>
+                <div className={`course-video ${isPlaying ? 'video-playing' : ''} ${loadingVideo ? 'video-loading' : ''}`}>
+                    <MuxPlayer
+                        onPlay={() => setIsPlaying(true)}
+                        onPause={() => setIsPlaying(false)}
+                        minResolution='1080p'
+                        loading="viewport"
+                        poster='https://visualartsschool.com/assets/imgs/covers/cover-essentialsoundspack.jpg'
+                        playbackId="6j6SgyATd3hKJY01w5J77U4D2GOHDkcrPBMWEetBcWjs"
+                        accent-color="#09e199"
+                        onReady={() => setLoadingVideo(false)}
+                        onLoadedData={() => setLoadingVideo(false)}
+                    />
+                </div>
+
+                <div className="info-displayer">
+                    <div className={`option ${infoOption === 1 ? 'active' : ''}`} onClick={() => setInfoOption(1)}>
+                        Introducción
+                    </div>
+                    <div className={`option ${infoOption === 2 ? 'active' : ''}`} onClick={() => setInfoOption(2)}>
+                        Contenido
+                    </div>
+                </div>
+                {
+                    displayInfo()
+                }
+
+                {
+                    subscription.isActive ? (
+                        <div className="course-btns">
+                            <div className='option active'>
+                                Ya tienes acceso a este workshop
+                            </div>
+                            <div className="btn-access explore" onClick={() => router.push('/client/introadobe/1/101')}>
+                                <h2>
+                                    Ir al Workshop
+                                </h2>
+                            </div>
+                        </div>
+                    ) : (
+                        <div className="course-btns">
+                            <div className='option active'>
+                                Opciones de compra
+                            </div>
+                            {
+                                alreadyPurchased('6835b3c233e033e24646b523') ? (
+                                    <>
+                                        <div className="btn-access explore" onClick={() => router.push('/client/introadobe/1/101')}>
+                                            <h2 className='h2-text-responsive'>
+                                                Ya compraste este workshop - Ir al Workshop
+                                            </h2>
+                                        </div>
+                                    </>
+                                ) : (
+                                    <div className="btns-row">
+                                        <div className="btn">
+                                            <div className="btn-content">
+                                                <div className="content-header">
+                                                    <h2>Compra directa</h2>
+                                                    <p>
+                                                        Paga el precio completo por el workshop completo.
+                                                    </p>
+                                                </div>
+                                                <div className="content-body">
+                                                    <p>
+                                                        ¿Qué incluye?
+                                                    </p>
+                                                    <ul>
+                                                        <li>Acceso de por vida.</li>
+                                                        <li>Material y recursos.</li>
+                                                        <li>Actualizaciones futuras.</li>
+                                                    </ul>
+                                                    <div className="price">
+                                                        <h2>$44.99</h2>
+                                                        <p>
+                                                            USD
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div className="content-footer">
+                                                    <div className="pay-btn" onClick={() => router.push('/client/payments/single/6835b3c233e033e24646b523')}>
+                                                        <h2>
+                                                            Comprar
+                                                        </h2>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="btn explore">
+                                            <div className="btn-content">
+                                                <div className="content-header">
+                                                    <h2>Únete a la escuela</h2>
+                                                    <p>
+                                                        Suscríbete y forma parte de nuestra comunidad.
+                                                    </p>
+                                                </div>
+                                                <div className="content-body">
+                                                    <p>
+                                                        ¿Qué incluye?
+                                                    </p>
+                                                    <ul>
+                                                        <li>Acceso durante tu membresía.</li>
+                                                        <li>Material y recursos.</li>
+                                                        <li>Actualizaciones futuras.</li>
+                                                        <li>Resuelve tus dudas con sesiones en vivo.</li>
+                                                        <li>Recibe feedback de tu trabajo.</li>
+                                                    </ul>
+                                                </div>
+                                                <div className="content-footer">
+                                                    <div className="pay-btn" onClick={() => handleSubsModal()}>
+                                                        <h2>
+                                                            Explorar planes
+                                                        </h2>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                )
+                            }
+                        </div>
+                    )
+                }
+            </div>
+        </>
+
+    )
 }
 
 export default Resource

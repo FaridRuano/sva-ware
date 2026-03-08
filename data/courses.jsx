@@ -29,7 +29,8 @@ export const courses = {
                         ],
                         videoUrl: 'At5o01ga7QwsdCKbKCDCdL21m02MRi021hQYvd00SUpPFdU',
                         thumbnailUrl: 'https://image.mux.com/At5o01ga7QwsdCKbKCDCdL21m02MRi021hQYvd00SUpPFdU/thumbnail.png?fit_mode=preserve&time=2',
-                        posterUrl: 'https://image.mux.com/At5o01ga7QwsdCKbKCDCdL21m02MRi021hQYvd00SUpPFdU/animated.webp?fit_mode=preserve&start=0&end=4'
+                        posterUrl: 'https://image.mux.com/At5o01ga7QwsdCKbKCDCdL21m02MRi021hQYvd00SUpPFdU/animated.webp?fit_mode=preserve&start=0&end=4',
+                        driveUrl: 'https://1drv.ms/f/c/5c0044e92b33f270/EnDyMyvpRAAggFxWZwEAAAABRvMhjlTxL1QbJ5WuCGUKmA?e=gZBUTC'
                     },
                     {
                         _id: 103,
@@ -73,7 +74,7 @@ export const courses = {
                             'La composición de capas es uno de los fundamentos más importantes en el diseño gráfico y la edición digital con Photoshop. Las capas funcionan como hojas transparentes apiladas, donde cada una contiene elementos individuales que juntos conforman un diseño. Este enfoque permite modificar, reorganizar y combinar elementos de forma no destructiva, dando lugar a resultados creativos y profesionales. Durante esta sesión, exploraremos herramientas clave como máscaras, selecciones, capas de ajuste y máscaras de recorte, esenciales para controlar cómo interactúan y se integran los elementos en una composición.',
                             'Nuestro objetivo es crear tres diseños distintos que resalten el poder de estas herramientas. Empezaremos con composiciones simples, aplicando selecciones para ajustar elementos, y luego avanzaremos a técnicas más avanzadas como el uso de máscaras de recorte para incrustar imágenes dentro de texto y capas de ajuste para unificar la estética general. Estas habilidades te permitirán explorar nuevas posibilidades creativas y establecer un flujo de trabajo eficiente para tus proyectos futuros en Photoshop.'
                         ],
-                        videoUrl: 'LtvvMwtQejaNrbmeq9uQAhrcf9JMH1csb7qlJeFVopE',
+                        videoUrl: 'FAqviwtF78nRlUpIfvmSm014Mx02YBW4L4w11LaI1M3B00',
                         thumbnailUrl: 'https://image.mux.com/LtvvMwtQejaNrbmeq9uQAhrcf9JMH1csb7qlJeFVopE/thumbnail.png?fit_mode=preserve&time=2',
                         posterUrl: 'https://image.mux.com/LtvvMwtQejaNrbmeq9uQAhrcf9JMH1csb7qlJeFVopE/animated.webp?fit_mode=preserve&start=0&end=4',
                         driveUrl: 'https://1drv.ms/f/c/5c0044e92b33f270/EqtQzpUd9ZJBg0BTOo-j0YwB1jpH93ml0GP-lQhMR8kuYA?e=8bdGZJ'
@@ -130,6 +131,7 @@ export const courses = {
                         videoUrl: 'QR4VceEKf69AQMhyqFZXL6O019hT2Bmslc3iGGDm018008',
                         thumbnailUrl: 'https://image.mux.com/QR4VceEKf69AQMhyqFZXL6O019hT2Bmslc3iGGDm018008/thumbnail.png?fit_mode=preserve&time=2',
                         posterUrl: 'https://image.mux.com/QR4VceEKf69AQMhyqFZXL6O019hT2Bmslc3iGGDm018008/animated.webp?fit_mode=preserve&start=0&end=4',
+                        driveUrl: 'https://1drv.ms/f/c/5c0044e92b33f270/EmCL8AKtnJhPt8aLHzBsXpoBn5kzrjT33SHsQEqeZVVtVQ?e=wR9Hb5'
                     },
                     {
                         _id: 203,
@@ -290,6 +292,7 @@ export const courses = {
                         videoUrl: 'lYKMk8zKwSfVImcg9jaV3PxZbhZQkOK02tL010137TAIC00',
                         thumbnailUrl: 'https://image.mux.com/lYKMk8zKwSfVImcg9jaV3PxZbhZQkOK02tL010137TAIC00/thumbnail.png?fit_mode=preserve&time=3',
                         posterUrl: 'https://image.mux.com/lYKMk8zKwSfVImcg9jaV3PxZbhZQkOK02tL010137TAIC00/animated.webp?fit_mode=preserve&start=1&end=5',
+                        driveUrl: 'https://1drv.ms/f/c/5c0044e92b33f270/EhOLn_JCs3JEmyvuGicbvbIB2vgC2p2v04u7x5qOY9yXbw?e=mJZAP3',
 
                     },
                     {

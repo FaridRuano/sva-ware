@@ -379,7 +379,7 @@ const Course = () => {
             onPause={() => setIsPlaying(false)}
             minResolution='1080p'
             loading="viewport"
-            poster='https://visualartsschool.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fcover-introadobe.72c0d920.jpg&w=828&q=75'
+            poster='https://visualartsschool.com/assets/imgs/covers/cover-introadobe.jpg'
             playbackId="6j6SgyATd3hKJY01w5J77U4D2GOHDkcrPBMWEetBcWjs"
             accent-color="#09e199"
             onReady={() => setLoadingVideo(false)}

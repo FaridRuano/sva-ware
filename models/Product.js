@@ -20,7 +20,8 @@ const ProductSchema = new mongoose.Schema({
     imgUrl: String, // Optional: Image URL for the product
     stripeProductId: String,
     stripePriceId: String,
-    alias: String
+    alias: String,
+    driveUrl: String, // Optional: Drive URL for resource packs
 }, {
     timestamps: true
 });

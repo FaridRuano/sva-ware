@@ -6,7 +6,6 @@ import CourseWindow from '@public/components/client/CourseWindow';
 import Sidebar from '@public/components/client/SideBar'
 import React, { useState } from 'react'
 
-const PRODUCT_ID = '6835b3c233e033e24646b523';
 
 const Course = ({ params }) => {
 
@@ -42,7 +41,7 @@ const Course = ({ params }) => {
   }
 
   return (
-    <CourseAccessGuard productId={PRODUCT_ID} userEmail={session?.user?.email}>
+    <CourseAccessGuard alias={course} userEmail={session?.user?.email}>
       <div className="client-courses-container">
         <div className='courses-page'>
           <Sidebar course={course} title={courseData.title} chapters={courseData.chapters} activeChapter={chapter} activeLesson={lesson} />

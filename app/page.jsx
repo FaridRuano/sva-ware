@@ -722,7 +722,7 @@ const Home = () => {
                   </div>
                   <div className="info">
                     <p>
-                      Soy un artista visual de 23 años con más de 5 años de experiencia en edición de video,
+                      Soy un artista visual de 24 años con más de 5 años de experiencia en edición de video,
                       postproducción y diseño gráfico. No estudié en una universidad; soy completamente autodidacta.
                       A lo largo de mi trayectoria, nadie me ha pedido un título o certificado, porque las
                       oportunidades que he tenido han sido gracias a la calidad de mi trabajo. Me apasiona
