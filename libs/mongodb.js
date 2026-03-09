@@ -1,14 +1,42 @@
 import mongoose from "mongoose"
+import dns from "node:dns"
+
+dns.setServers(["1.1.1.1", "8.8.8.8"])
 
 const MONGODB_URI = process.env.MONGODB_URI
 
-let isConnected = false
+if (!MONGODB_URI) {
+  throw new Error("Please define the MONGODB_URI environment variable")
+}
 
-const connectMongoDB = async () => {
-  if (isConnected) return
+let cached = global.mongoose
 
-  const db = await mongoose.connect(MONGODB_URI)
-  isConnected = db.connections[0].readyState === 1
+if (!cached) {
+  cached = global.mongoose = {
+    conn: null,
+    promise: null,
+  }
+}
+
+async function connectMongoDB() {
+  if (cached.conn) {
+    return cached.conn
+  }
+
+  if (!cached.promise) {
+    cached.promise = mongoose
+      .connect(MONGODB_URI)
+      .then((mongoose) => mongoose)
+  }
+
+  try {
+    cached.conn = await cached.promise
+  } catch (error) {
+    cached.promise = null
+    throw error
+  }
+
+  return cached.conn
 }
 
 export default connectMongoDB
