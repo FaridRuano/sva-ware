@@ -1,11 +1,14 @@
-import mongoose from 'mongoose'
+import mongoose from "mongoose"
+
+const MONGODB_URI = process.env.MONGODB_URI
+
+let isConnected = false
 
 const connectMongoDB = async () => {
-    if (mongoose.connection.readyState >= 1) {
-        return mongoose.connection.getClient()
-    }
+  if (isConnected) return
 
-    return mongoose.connect(process.env.MONGODB_URI)
+  const db = await mongoose.connect(MONGODB_URI)
+  isConnected = db.connections[0].readyState === 1
 }
 
 export default connectMongoDB

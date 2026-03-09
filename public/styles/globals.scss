@@ -1,5 +1,6 @@
 /* Imports */
-@import './_variables.scss';
+@use './variables' as *;
+@use "sass:color";
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
 
 /* Common */
@@ -2265,7 +2266,7 @@ button {
           transition: background-color .2s;
 
           &:hover {
-            background-color: darken($primary-color, 10%);
+            background-color: color.adjust($primary-color, $lightness: -10%);
           }
         }
 
