@@ -1,5 +1,5 @@
-import CookieBanner from "@public/components/public/CookieBanner";
-import "@public/styles/globals.scss"
+import CookieBanner from "@components/public/CookieBanner/CookieBanner";
+import "./globals.scss";
 import { Analytics } from "@vercel/analytics/react"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 
@@ -11,7 +11,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
 
   return (
-    <html lang="en">
+    <html lang="es">
       <body>
         <CookieBanner />
         <Analytics />

@@ -6,7 +6,7 @@ import axios from '@node_modules/axios'
 import { useSession } from '@node_modules/next-auth/react'
 import Link from '@node_modules/next/link'
 import { useRouter } from '@node_modules/next/navigation'
-import ModalSubs from '@public/components/client/modals/ModalSubs'
+import ModalSubs from '@components/client/modals/ModalSubs'
 import { useEffect, useState } from 'react'
 
 const Course = () => {

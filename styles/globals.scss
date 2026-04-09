@@ -1,5 +1,9 @@
 /* Imports */
-@use './variables' as *;
+@use "../styles/variables";
+@use "../styles/mixins";
+@use "../styles/base";
+@use "../styles/utilities";
+
 @use "sass:color";
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
 

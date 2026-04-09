@@ -7,7 +7,7 @@ import ClientPt1Asset from '@public/assets/imgs/covers/cover-introadobe.jpg'
 import ClientPt2Asset from '@public/assets/imgs/products/product-essentialsoundspack.jpg'
 import { useSubscription } from '@libs/useSubscription';
 import Link from '@node_modules/next/link';
-import ModalSubs from '@public/components/client/modals/ModalSubs';
+import ModalSubs from '@components/client/modals/ModalSubs';
 import axios from '@node_modules/axios';
 
 const Client = () => {

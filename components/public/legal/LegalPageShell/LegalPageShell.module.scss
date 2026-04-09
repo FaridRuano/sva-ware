@@ -1,0 +1,490 @@
+@use "../../../../styles/variables" as *;
+@use "../../../../styles/mixins" as *;
+@use "../../../../styles/animations" as *;
+
+$page-top: 20px;
+$mobile-top: 12px;
+$sidebar-gap: 24px;
+
+.page {
+    position: relative;
+    overflow-x: hidden;
+    min-height: 100vh;
+    padding: $space-xl 0 $space-2xl;
+    background:
+        radial-gradient(circle at top, rgba(82, 206, 147, 0.08), transparent 30%),
+        radial-gradient(circle at 85% 20%, rgba(132, 0, 255, 0.08), transparent 24%),
+        linear-gradient(180deg, $bg-main 0%, #121212 100%);
+}
+
+.heroGlow {
+    position: absolute;
+    top: -180px;
+    left: 50%;
+    z-index: 0;
+    width: 900px;
+    height: 500px;
+    transform: translateX(-50%);
+    border-radius: 999px;
+    background: radial-gradient(circle, rgba(82, 206, 147, 0.12), transparent 60%);
+    filter: blur(30px);
+    pointer-events: none;
+}
+
+.gridOverlay {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+    background-size: 34px 34px;
+    mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.55), transparent 85%);
+    pointer-events: none;
+}
+
+.container {
+    position: relative;
+    z-index: 1;
+}
+
+.header {
+    display: grid;
+    grid-template-columns: 220px minmax(0, 1fr) 220px;
+    gap: $space-lg;
+    align-items: start;
+    margin-bottom: $space-2xl;
+    padding: $space-lg;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: $radius-xl;
+    background: rgba(15, 15, 15, 0.7);
+    backdrop-filter: blur(16px);
+    box-shadow: $shadow-md;
+
+    @include tablet {
+        grid-template-columns: 1fr;
+        padding: $space-md;
+        margin-bottom: $space-lg;
+    }
+}
+
+.headerCenter {
+    text-align: center;
+
+    @include tablet {
+        text-align: left;
+    }
+}
+
+.returnLink {
+    display: inline-flex;
+    align-items: center;
+    gap: $space-sm;
+    color: $text-primary;
+    font-size: $text-sm;
+    transition: $transition-normal;
+
+    &:hover {
+        opacity: 0.85;
+        transform: translateY(-1px);
+    }
+
+    img {
+        width: 44px;
+        height: auto;
+    }
+}
+
+.updated {
+    color: $text-secondary;
+    font-size: $text-sm;
+}
+
+.heroBadge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: $space-md;
+    padding: 8px 14px;
+    border: 1px solid rgba(82, 206, 147, 0.18);
+    border-radius: 999px;
+    background: rgba(82, 206, 147, 0.08);
+    color: $color-primary;
+    font-size: $text-sm;
+    font-weight: 600;
+}
+
+.title {
+    margin-bottom: $space-md;
+    color: $text-primary;
+    font-size: clamp(30px, 4vw, 56px);
+    line-height: 1.02;
+    letter-spacing: -0.04em;
+}
+
+.intro {
+    max-width: 760px;
+    margin: 0 auto;
+    color: $text-secondary;
+    font-size: clamp(15px, 2vw, 18px);
+    line-height: 1.75;
+
+    @include tablet {
+        margin: 0;
+    }
+}
+
+.layout {
+    display: grid;
+    grid-template-columns: 290px minmax(0, 1fr);
+    gap: $sidebar-gap;
+    align-items: start;
+
+    @include tablet {
+        grid-template-columns: 1fr;
+    }
+}
+
+.sidebar {
+    position: relative;
+
+    @include tablet {
+        display: none;
+    }
+}
+
+.sidebarPlaceholder {
+    width: 100%;
+    height: 0;
+}
+
+.sidebarPlaceholderActive {
+    height: auto;
+}
+
+.sidebarCard {
+    position: relative;
+    width: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: $radius-xl;
+    background: rgba(24, 24, 24, 0.72);
+    backdrop-filter: blur(14px);
+    box-shadow: $shadow-md;
+    padding: $space-lg;
+    transition:
+        box-shadow $transition-fast,
+        border-color $transition-fast;
+}
+
+.sidebarCardFixed {
+    position: fixed;
+    top: $page-top;
+    z-index: 30;
+    max-height: calc(100vh - 40px);
+    overflow-y: auto;
+}
+
+.sidebarLabel {
+    margin-bottom: $space-md;
+    color: $text-secondary;
+    font-size: $text-sm;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.nav {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.navItem {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    border: 1px solid transparent;
+    border-radius: $radius-md;
+    color: $text-secondary;
+    background: rgba(255, 255, 255, 0.025);
+    transition: $transition-normal;
+
+    &:hover {
+        border-color: rgba(82, 206, 147, 0.16);
+        color: $text-primary;
+        transform: translateX(2px);
+    }
+}
+
+.navItemActive {
+    border-color: rgba(82, 206, 147, 0.24);
+    background: rgba(82, 206, 147, 0.08);
+    color: $text-primary;
+}
+
+.navNumber {
+    display: inline-flex;
+    min-width: 34px;
+    height: 34px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.05);
+    color: $color-primary;
+    font-size: $text-sm;
+    font-weight: 700;
+}
+
+.content {
+    min-width: 0;
+}
+
+.sections {
+    display: flex;
+    flex-direction: column;
+    gap: $space-lg;
+}
+
+.sectionCard {
+    scroll-margin-top: 90px;
+    padding: clamp(20px, 3vw, 34px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: $radius-xl;
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01)),
+        rgba(24, 24, 24, 0.8);
+    box-shadow: $shadow-md;
+
+    @include tablet {
+        scroll-margin-top: 80px;
+    }
+}
+
+.sectionHeader {
+    margin-bottom: $space-md;
+}
+
+.sectionAnchor {
+    display: inline-block;
+    margin-bottom: 8px;
+    color: $color-primary;
+    font-size: $text-sm;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+}
+
+.sectionTitle {
+    color: $text-primary;
+    font-size: clamp(22px, 2.6vw, 34px);
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+}
+
+.sectionDescription {
+    margin-bottom: $space-md;
+    color: $text-secondary;
+    font-size: $text-md;
+    line-height: 1.7;
+}
+
+.paragraph {
+    color: $text-secondary;
+    font-size: $text-md;
+    line-height: 1.8;
+
+    &+& {
+        margin-top: $space-md;
+    }
+}
+
+.list {
+    margin-top: $space-lg;
+    display: flex;
+    flex-direction: column;
+    gap: $space-md;
+}
+
+.listItem {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    color: $text-secondary;
+    line-height: 1.7;
+}
+
+.listDot {
+    width: 10px;
+    height: 10px;
+    margin-top: 10px;
+    flex: 0 0 auto;
+    border-radius: 999px;
+    background: linear-gradient(135deg, $color-primary, $color-secondary);
+    box-shadow: 0 0 18px rgba(82, 206, 147, 0.35);
+}
+
+.listItemTitle {
+    color: $text-primary;
+}
+
+.mobileIndexBarSlot {
+    display: none;
+
+    @include tablet {
+        display: block;
+        height: auto;
+        margin-bottom: $space-lg;
+    }
+}
+
+.mobileIndexBarSlotActive {
+    @include tablet {
+        height: auto;
+    }
+}
+
+.mobileIndexBar {
+    display: none;
+
+    @include tablet {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: $space-md;
+        padding: 12px 14px;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: $radius-lg;
+        background: rgba(15, 15, 15, 0.82);
+        backdrop-filter: blur(14px);
+        box-shadow: $shadow-sm;
+    }
+}
+
+.mobileIndexBarFixed {
+    @include tablet {
+        position: fixed;
+        top: $mobile-top;
+        left: 12px;
+        right: 12px;
+        z-index: 35;
+        width: auto;
+    }
+}
+
+.mobileIndexButton {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: $text-primary;
+    font-size: $text-sm;
+    font-weight: 600;
+}
+
+.mobileActiveLabel {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: $color-primary;
+    font-size: $text-sm;
+    font-weight: 600;
+}
+
+.mobileMenuOverlay {
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    display: none;
+    background: rgba(0, 0, 0, 0.58);
+    backdrop-filter: blur(10px);
+    animation: fade-in .24s forwards;
+
+
+    @include tablet {
+        display: block;
+    }
+}
+
+.mobileMenu {
+    position: absolute;
+    right: 16px;
+    left: 16px;
+    top: 16px;
+    max-height: calc(100vh - 32px);
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: $radius-xl;
+    background: rgba(15, 15, 15, 0.96);
+    box-shadow: $shadow-lg;
+    animation: slide-up 0.28s ease;
+}
+
+.mobileMenuHeader {
+    @include flex-between;
+    gap: $space-md;
+    padding: $space-md;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.mobileMenuEyebrow {
+    margin-bottom: 4px;
+    color: $color-primary;
+    font-size: $text-sm;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.mobileMenuTitle {
+    color: $text-primary;
+    font-size: $text-lg;
+    line-height: 1.2;
+}
+
+.mobileMenuClose {
+    @include flex-center;
+    width: 40px;
+    height: 40px;
+    border-radius: 999px;
+    color: $text-primary;
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.mobileNav {
+    max-height: calc(100vh - 120px);
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: $space-md;
+}
+
+.mobileNavItem {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    border: 1px solid transparent;
+    border-radius: $radius-md;
+    color: $text-secondary;
+    background: rgba(255, 255, 255, 0.025);
+}
+
+.mobileNavItemActive {
+    border-color: rgba(82, 206, 147, 0.24);
+    background: rgba(82, 206, 147, 0.08);
+    color: $text-primary;
+}
+
+.mobileNavNumber {
+    display: inline-flex;
+    min-width: 34px;
+    height: 34px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.05);
+    color: $color-primary;
+    font-size: $text-sm;
+    font-weight: 700;
+}
+

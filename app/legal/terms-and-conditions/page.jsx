@@ -1,5 +1,5 @@
 'use client'
-import FooterHome from '@public/components/public/FooterHome'
+import FooterHome from '@components/public/FooterHome'
 import React from 'react'
 import NavLogo from '@public/assets/icons/logo-navbar.webp'
 import Image from 'next/image'

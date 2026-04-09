@@ -5,10 +5,10 @@ import React, { useEffect, useState } from 'react';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
 import axios from 'axios';
-import CheckoutForm from '@public/components/client/stripe/CheckOutForm';
+import CheckoutForm from '@components/client/stripe/CheckOutForm';
 import Image from '@node_modules/next/image';
 import ArrowLeft from '@public/assets/icons/arrow-left.webp'
-import ModalInfo from '@public/components/client/modals/ModalInfo';
+import ModalInfo from '@components/client/modals/ModalInfo';
 import { useRouter } from '@node_modules/next/navigation';
 
 const stripeKey = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY;

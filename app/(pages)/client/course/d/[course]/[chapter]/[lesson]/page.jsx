@@ -1,9 +1,9 @@
 'use client'
 import { courses } from '@/data/courses'
 import { useSession } from '@node_modules/next-auth/react';
-import CourseAccessGuard from '@public/components/client/CourseAccessGuard';
-import CourseWindow from '@public/components/client/CourseWindow';
-import Sidebar from '@public/components/client/SideBar'
+import CourseAccessGuard from '@components/client/CourseAccessGuard';
+import CourseWindow from '@components/client/CourseWindow';
+import Sidebar from '@components/client/SideBar'
 import React, { useState } from 'react'
 
 

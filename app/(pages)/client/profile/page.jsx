@@ -8,9 +8,9 @@ import SubsIcon2 from '@public/assets/icons/logo-footer.webp'
 import { useSession } from 'next-auth/react';
 import { useRouter, useSearchParams } from 'next/navigation'
 import axios from '@node_modules/axios'
-import ModalConfirm from '@public/components/client/modals/ModalConfirm'
-import ModalInfo from '@public/components/client/modals/ModalInfo'
-import ModalSubs from '@public/components/client/modals/ModalSubs'
+import ModalConfirm from '@components/client/modals/ModalConfirm'
+import ModalInfo from '@components/client/modals/ModalInfo'
+import ModalSubs from '@components/client/modals/ModalSubs'
 import Link from '@node_modules/next/link'
 import introadobe from '@public/assets/imgs/products/product-introadobe.jpg'
 

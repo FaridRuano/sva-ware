@@ -1,8 +1,8 @@
 'use client'
 import axios from '@node_modules/axios';
-import NavBar from '@public/components/client/NavBar';
-import SessionWrapper from '@public/components/client/SessionWrapper';
-import FooterHome from '@public/components/public/FooterHome';
+import NavBar from '@components/client/NavBar';
+import SessionWrapper from '@components/client/SessionWrapper';
+import FooterHome from '@components/public/FooterHome';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';

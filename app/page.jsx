@@ -1,8 +1,8 @@
 'use client'
 import React, { useEffect, useMemo, useState } from 'react'
 import { useRouter } from 'next/navigation'
-import FooterHome from "@public/components/public/FooterHome"
-import NavBar from "@public/components/public/NavBar"
+import FooterHome from "@components/public/FooterHome"
+import NavBar from "@components/public/NavBar"
 import Image from '@node_modules/next/image'
 import PT2Asset from '@public/assets/imgs/home-pt2-asset.webp'
 import PT2Asset2 from '@public/assets/imgs/home-pt2-asset-2.webp'
